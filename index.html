@@ -2,3946 +2,3136 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gravity — المعرفة بلا حدود</title>
+<meta charset="UTF-8">
 
-    <meta name="theme-color" content="#050816">
-    <meta name="description" content="Gravity — مكتبة رقمية حديثة للمعرفة والكتب.">
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+>
 
-    <style>
+<title>
+    Gravity — المعرفة بلا حدود
+</title>
 
-        /* =========================================================
-           GRAVITY ULTIMATE
-           M11 — 2026
-        ========================================================= */
 
-        :root {
-            --bg: #030612;
-            --bg-2: #070b1c;
-            --panel: rgba(12, 18, 39, .72);
-            --panel-strong: rgba(14, 21, 46, .94);
+<style>
 
-            --text: #f8fafc;
-            --muted: #94a3b8;
-            --muted-2: #64748b;
+:root {
 
-            --purple: #8b5cf6;
-            --purple-light: #c4b5fd;
-            --cyan: #22d3ee;
-            --blue: #3b82f6;
+    --bg:#020617;
+    --panel:rgba(10,16,35,.78);
+    --border:rgba(255,255,255,.09);
 
-            --border: rgba(255,255,255,.09);
-            --border-hover: rgba(167,139,250,.38);
+    --purple:#8b5cf6;
+    --cyan:#22d3ee;
 
-            --radius: 24px;
+    --text:#f8fafc;
+    --muted:#94a3b8;
 
-            --shadow:
-                0 25px 70px rgba(0,0,0,.28);
-        }
+}
 
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+* {
 
-        html {
-            scroll-behavior: smooth;
-        }
+    box-sizing:
+        border-box;
 
+    margin:0;
+    padding:0;
 
-        body {
-            min-height: 100vh;
+}
 
-            overflow-x: hidden;
 
-            color: var(--text);
+html {
 
-            font-family:
-                Tahoma,
-                Arial,
-                sans-serif;
+    scroll-behavior:
+        smooth;
 
-            background:
-                radial-gradient(
-                    circle at 10% 5%,
-                    rgba(124,58,237,.18),
-                    transparent 26%
-                ),
-                radial-gradient(
-                    circle at 90% 18%,
-                    rgba(8,145,178,.13),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 50% 100%,
-                    rgba(37,99,235,.12),
-                    transparent 32%
-                ),
-                var(--bg);
-        }
+}
 
 
-        button,
-        input {
-            font-family: inherit;
-        }
+body {
 
+    min-height:
+        100vh;
 
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
+    overflow-x:
+        hidden;
 
+    color:
+        var(--text);
 
-        /* =========================================================
-           SPACE
-        ========================================================= */
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-        .space-layer {
-            position: fixed;
-            inset: 0;
+    background:
 
-            z-index: -10;
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(124,58,237,.2),
+            transparent 28%
+        ),
 
-            pointer-events: none;
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(8,145,178,.14),
+            transparent 28%
+        ),
 
-            overflow: hidden;
-        }
+        var(--bg);
 
+}
 
-        .stars {
-            position: absolute;
-            inset: 0;
 
-            opacity: .72;
+button,
+input {
 
-            background-image:
-                radial-gradient(circle at 8% 15%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 22% 73%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 38% 28%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 52% 83%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 67% 12%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 79% 58%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 94% 30%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 46% 48%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 15% 48%, white 0 1px, transparent 1.5px),
-                radial-gradient(circle at 86% 88%, white 0 1px, transparent 1.5px);
+    font-family:
+        inherit;
 
-            background-size:
-                240px 240px,
-                310px 310px,
-                370px 370px,
-                430px 430px,
-                290px 290px,
-                350px 350px,
-                410px 410px,
-                500px 500px,
-                270px 270px,
-                330px 330px;
+}
 
-            animation:
-                starsMove 25s linear infinite;
-        }
 
+.space {
 
-        @keyframes starsMove {
-            from {
-                transform: translateY(0);
-            }
+    position:
+        fixed;
 
-            to {
-                transform: translateY(40px);
-            }
-        }
+    inset:0;
 
+    z-index:-5;
 
-        .nebula {
-            position: absolute;
+    pointer-events:
+        none;
 
-            width: 500px;
-            height: 500px;
+}
 
-            border-radius: 50%;
 
-            filter: blur(90px);
+.stars {
 
-            opacity: .16;
+    position:absolute;
 
-            animation:
-                nebulaFloat 15s ease-in-out infinite alternate;
-        }
+    inset:0;
 
+    opacity:.65;
 
-        .nebula-purple {
-            top: -240px;
-            right: -170px;
+    background-image:
 
-            background: #7c3aed;
-        }
+        radial-gradient(
+            circle at 10% 20%,
+            white 0 1px,
+            transparent 1.5px
+        ),
 
+        radial-gradient(
+            circle at 30% 70%,
+            white 0 1px,
+            transparent 1.5px
+        ),
 
-        .nebula-cyan {
-            bottom: -250px;
-            left: -180px;
+        radial-gradient(
+            circle at 70% 30%,
+            white 0 1px,
+            transparent 1.5px
+        ),
 
-            background: #0891b2;
+        radial-gradient(
+            circle at 90% 80%,
+            white 0 1px,
+            transparent 1.5px
+        );
 
-            animation-delay: -7s;
-        }
+    background-size:
+        240px 240px,
+        330px 330px,
+        390px 390px,
+        300px 300px;
 
+}
 
-        @keyframes nebulaFloat {
-            from {
-                transform: translate(0,0) scale(1);
-            }
 
-            to {
-                transform: translate(50px,35px) scale(1.15);
-            }
-        }
+.nebula {
 
+    position:absolute;
 
-        /* =========================================================
-           HEADER
-        ========================================================= */
+    width:500px;
+    height:500px;
 
-        .site-header {
-            position: sticky;
+    border-radius:50%;
 
-            top: 0;
+    filter:
+        blur(100px);
 
-            z-index: 1000;
+    opacity:.13;
 
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.07);
+}
 
-            background:
-                rgba(3,6,18,.72);
 
-            backdrop-filter:
-                blur(22px);
+.nebula.a {
 
-            -webkit-backdrop-filter:
-                blur(22px);
-        }
+    top:-260px;
+    right:-180px;
 
+    background:#7c3aed;
 
-        .header-inner {
-            width:
-                min(1240px, calc(100% - 32px));
+}
 
-            min-height: 78px;
 
-            margin: auto;
+.nebula.b {
 
-            display: flex;
+    bottom:-280px;
+    left:-180px;
 
-            align-items: center;
+    background:#0891b2;
 
-            justify-content: space-between;
+}
 
-            gap: 20px;
-        }
 
+header {
 
-        .brand {
-            display: flex;
+    position:
+        sticky;
 
-            align-items: center;
+    top:0;
 
-            gap: 12px;
+    z-index:1000;
 
-            color: white;
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
 
-            text-decoration: none;
+    background:
+        rgba(2,6,23,.7);
 
-            min-width: 0;
-        }
+    backdrop-filter:
+        blur(20px);
 
+}
 
-        .brand-symbol {
-            position: relative;
 
-            width: 48px;
-            height: 48px;
+.header {
 
-            flex: 0 0 auto;
+    width:
+        min(1200px,calc(100% - 26px));
 
-            display: grid;
+    min-height:
+        72px;
 
-            place-items: center;
+    margin:auto;
 
-            border-radius: 16px;
+    display:flex;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7c3aed,
-                    #2563eb 55%,
-                    #0891b2
-                );
+    align-items:center;
 
-            box-shadow:
-                0 0 35px
-                rgba(124,58,237,.32);
-        }
+    justify-content:space-between;
 
+}
 
-        .brand-symbol::before {
-            content: "";
 
-            width: 17px;
-            height: 17px;
+.logo {
 
-            border-radius: 50%;
+    display:flex;
 
-            background:
-                #f8fafc;
+    align-items:center;
 
-            box-shadow:
-                0 0 15px
-                rgba(255,255,255,.75);
-        }
+    gap:11px;
 
+    color:white;
 
-        .brand-name strong {
-            display: block;
+    text-decoration:none;
 
-            font-size: 19px;
+}
 
-            letter-spacing: .8px;
-        }
 
+.logo-icon {
 
-        .brand-name span {
-            display: block;
+    width:44px;
+    height:44px;
 
-            margin-top: 3px;
+    display:grid;
 
-            color: var(--muted-2);
+    place-items:center;
 
-            font-size: 10px;
-        }
+    border-radius:14px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #0891b2
+        );
 
-        .header-actions {
-            display: flex;
+    box-shadow:
+        0 0 30px
+        rgba(124,58,237,.3);
 
-            align-items: center;
+}
 
-            gap: 8px;
-        }
 
+.logo-icon::after {
 
-        .header-btn {
-            min-height: 42px;
+    content:"";
 
-            padding:
-                0 15px;
+    width:16px;
+    height:16px;
 
-            border:
-                1px solid
-                var(--border);
+    border-radius:50%;
 
-            border-radius: 13px;
+    background:white;
 
-            display: inline-flex;
+}
 
-            align-items: center;
 
-            justify-content: center;
+.logo strong {
 
-            gap: 7px;
+    display:block;
 
-            color: #dbeafe;
+    font-size:18px;
 
-            text-decoration: none;
+}
 
-            background:
-                rgba(255,255,255,.035);
 
-            cursor: pointer;
+.logo small {
 
-            transition:
-                .25s ease;
-        }
+    display:block;
 
+    color:#64748b;
 
-        .header-btn:hover {
-            transform:
-                translateY(-2px);
+    font-size:9px;
 
-            border-color:
-                var(--border-hover);
+    margin-top:3px;
 
-            background:
-                rgba(124,58,237,.1);
-        }
+}
 
 
-        /* =========================================================
-           HERO
-        ========================================================= */
+.account {
 
-        .hero {
-            width:
-                min(1240px, calc(100% - 32px));
+    min-height:42px;
 
-            margin:
-                auto;
+    padding:
+        0 14px;
 
-            min-height:
-                650px;
+    border:
+        1px solid
+        var(--border);
 
-            display:
-                grid;
+    border-radius:13px;
 
-            grid-template-columns:
-                1.08fr .92fr;
+    color:#e2e8f0;
 
-            align-items:
-                center;
+    background:
+        rgba(255,255,255,.04);
 
-            gap:
-                50px;
-        }
+    text-decoration:none;
 
+    display:inline-flex;
 
-        .hero-content {
-            animation:
-                heroEnter .8s ease both;
-        }
+    align-items:center;
 
+    justify-content:center;
 
-        @keyframes heroEnter {
-            from {
-                opacity: 0;
-                transform:
-                    translateY(25px);
-            }
+}
 
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0);
-            }
-        }
 
+.hero {
 
-        .hero-badge {
-            display:
-                inline-flex;
+    width:
+        min(1200px,calc(100% - 26px));
 
-            align-items:
-                center;
+    min-height:
+        570px;
 
-            gap: 8px;
+    margin:auto;
 
-            padding:
-                8px 13px;
+    display:grid;
 
-            margin-bottom:
-                22px;
+    grid-template-columns:
+        1.05fr .95fr;
 
-            border:
-                1px solid
-                rgba(139,92,246,.24);
+    align-items:center;
 
-            border-radius:
-                999px;
+    gap:40px;
 
-            color:
-                #c4b5fd;
+}
 
-            font-size:
-                12px;
 
-            background:
-                rgba(124,58,237,.07);
-        }
+.hero h1 {
 
+    font-size:
+        clamp(48px,7vw,82px);
 
-        .status-dot {
-            width:
-                7px;
+    line-height:
+        .98;
 
-            height:
-                7px;
+    letter-spacing:
+        -3px;
 
-            border-radius:
-                50%;
+    margin-bottom:22px;
 
-            background:
-                #34d399;
+}
 
-            box-shadow:
-                0 0 12px
-                #34d399;
-        }
 
+.hero h1 span {
 
-        .hero-title {
-            font-size:
-                clamp(48px, 7vw, 88px);
+    background:
+        linear-gradient(
+            90deg,
+            #c4b5fd,
+            #67e8f9,
+            #a78bfa
+        );
 
-            line-height:
-                .98;
+    color:transparent;
 
-            letter-spacing:
-                -4px;
+    -webkit-background-clip:text;
 
-            margin-bottom:
-                25px;
-        }
+    background-clip:text;
 
+}
 
-        .hero-title .gradient {
-            background:
-                linear-gradient(
-                    90deg,
-                    #c4b5fd,
-                    #67e8f9,
-                    #a78bfa
-                );
 
-            color:
-                transparent;
+.hero p {
 
-            -webkit-background-clip:
-                text;
+    max-width:620px;
 
-            background-clip:
-                text;
-        }
+    color:#94a3b8;
 
+    line-height:1.9;
 
-        .hero-description {
-            max-width:
-                650px;
+    font-size:16px;
 
-            color:
-                #94a3b8;
+    margin-bottom:25px;
 
-            font-size:
-                17px;
+}
 
-            line-height:
-                1.95;
 
-            margin-bottom:
-                29px;
-        }
+.hero-buttons {
 
+    display:flex;
 
-        .hero-actions {
-            display:
-                flex;
+    flex-wrap:wrap;
 
-            flex-wrap:
-                wrap;
+    gap:10px;
 
-            gap:
-                11px;
-        }
+}
 
 
-        .hero-primary,
-        .hero-secondary {
-            min-height:
-                52px;
+.hero-btn {
 
-            padding:
-                0 21px;
+    min-height:50px;
 
-            border-radius:
-                15px;
+    padding:
+        0 19px;
 
-            display:
-                inline-flex;
+    border-radius:14px;
 
-            align-items:
-                center;
+    display:inline-flex;
 
-            justify-content:
-                center;
+    align-items:center;
 
-            gap:
-                8px;
+    justify-content:center;
 
-            text-decoration:
-                none;
+    text-decoration:none;
 
-            font-weight:
-                bold;
+    font-weight:bold;
 
-            transition:
-                .3s ease;
-        }
+}
 
 
-        .hero-primary {
-            color:
-                white;
+.hero-main {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #7c3aed,
-                    #2563eb 55%,
-                    #0891b2
-                );
+    color:white;
 
-            box-shadow:
-                0 15px 38px
-                rgba(79,70,229,.3);
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb,
+            #0891b2
+        );
 
+    box-shadow:
+        0 15px 35px
+        rgba(79,70,229,.28);
 
-        .hero-primary:hover {
-            transform:
-                translateY(-4px);
+}
 
-            box-shadow:
-                0 20px 48px
-                rgba(79,70,229,.42);
-        }
 
+.hero-alt {
 
-        .hero-secondary {
-            color:
-                #cbd5e1;
+    color:#cbd5e1;
 
-            border:
-                1px solid
-                var(--border);
+    border:
+        1px solid
+        var(--border);
 
-            background:
-                rgba(255,255,255,.035);
-        }
+    background:
+        rgba(255,255,255,.035);
 
+}
 
-        .hero-secondary:hover {
-            transform:
-                translateY(-4px);
 
-            background:
-                rgba(255,255,255,.065);
-        }
+.planet-area {
 
+    min-height:440px;
 
-        /* =========================================================
-           PLANET
-        ========================================================= */
+    display:grid;
 
-        .planet-stage {
-            position:
-                relative;
+    place-items:center;
 
-            min-height:
-                510px;
+    position:relative;
 
-            display:
-                grid;
+}
 
-            place-items:
-                center;
-        }
 
+.planet-glow {
 
-        .planet-halo {
-            position:
-                absolute;
+    position:absolute;
 
-            width:
-                410px;
+    width:380px;
+    height:380px;
 
-            height:
-                410px;
+    border-radius:50%;
 
-            border-radius:
-                50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(124,58,237,.25),
+            transparent 68%
+        );
 
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(124,58,237,.23),
-                    transparent 66%
-                );
+}
 
-            filter:
-                blur(20px);
-        }
 
+.planet {
 
-        .planet {
-            position:
-                relative;
+    width:225px;
+    height:225px;
 
-            width:
-                245px;
+    border-radius:50%;
 
-            height:
-                245px;
+    position:relative;
 
-            border-radius:
-                50%;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ede9fe,
+            #a78bfa 15%,
+            #7c3aed 40%,
+            #312e81 67%,
+            #111827
+        );
 
-            background:
-                radial-gradient(
-                    circle at 32% 23%,
-                    #ede9fe 0,
-                    #c4b5fd 10%,
-                    #8b5cf6 32%,
-                    #4c1d95 57%,
-                    #111827 100%
-                );
+    box-shadow:
+        inset -30px -25px 50px
+        rgba(0,0,0,.7),
 
-            box-shadow:
-                inset -32px -25px 55px
-                    rgba(0,0,0,.7),
+        inset 20px 15px 30px
+        rgba(255,255,255,.14),
 
-                inset 25px 18px 40px
-                    rgba(255,255,255,.14),
+        0 0 80px
+        rgba(124,58,237,.45);
 
-                0 0 90px
-                    rgba(124,58,237,.42);
+    animation:
+        planet 5s ease-in-out infinite;
 
-            animation:
-                planetFloat 5s ease-in-out infinite;
-        }
+}
 
 
-        @keyframes planetFloat {
-            0%,100% {
-                transform:
-                    translateY(0)
-                    rotate(-3deg);
-            }
+@keyframes planet {
 
-            50% {
-                transform:
-                    translateY(-16px)
-                    rotate(3deg);
-            }
-        }
+    50% {
+        transform:
+            translateY(-14px)
+            rotate(3deg);
+    }
 
+}
 
-        .planet::before {
-            content:
-                "";
 
-            position:
-                absolute;
+.orbit {
 
-            inset:
-                22px;
+    position:absolute;
 
-            border-radius:
-                50%;
+    width:410px;
+    height:145px;
 
-            opacity:
-                .55;
+    border:
+        1px solid
+        rgba(103,232,249,.45);
 
-            background:
-                radial-gradient(
-                    ellipse at 25% 32%,
-                    transparent 0 18px,
-                    rgba(255,255,255,.12) 19px 28px,
-                    transparent 29px
-                ),
+    border-radius:50%;
 
-                radial-gradient(
-                    ellipse at 70% 62%,
-                    rgba(15,23,42,.35),
-                    transparent 40px
-                ),
+    transform:
+        rotate(-18deg);
 
-                radial-gradient(
-                    ellipse at 45% 78%,
-                    rgba(255,255,255,.07),
-                    transparent 30px
-                );
-        }
+}
 
 
-        .planet-ring {
-            position:
-                absolute;
+.moon {
 
-            width:
-                430px;
+    position:absolute;
 
-            height:
-                155px;
+    width:45px;
+    height:45px;
 
-            border:
-                1px solid
-                rgba(103,232,249,.52);
+    border-radius:50%;
 
-            border-radius:
-                50%;
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            white,
+            #94a3b8 55%,
+            #334155
+        );
 
-            transform:
-                rotate(-18deg);
+    top:65px;
+    right:45px;
 
-            box-shadow:
-                0 0 25px
-                rgba(34,211,238,.12);
-        }
+}
 
 
-        .planet-ring::before {
-            content:
-                "";
+.stats {
 
-            position:
-                absolute;
+    width:
+        min(1200px,calc(100% - 26px));
 
-            width:
-                10px;
+    margin:
+        0 auto 65px;
 
-            height:
-                10px;
+    display:grid;
 
-            border-radius:
-                50%;
+    grid-template-columns:
+        repeat(4,1fr);
 
-            background:
-                #67e8f9;
+    gap:10px;
 
-            box-shadow:
-                0 0 20px
-                #67e8f9;
+}
 
-            left:
-                18%;
 
-            top:
-                3px;
+.stat {
 
-            animation:
-                ringOrbit 7s linear infinite;
-        }
+    padding:18px;
 
+    border:
+        1px solid
+        var(--border);
 
-        @keyframes ringOrbit {
-            from {
-                transform:
-                    rotate(0)
-                    translateX(0);
-            }
+    border-radius:18px;
 
-            to {
-                transform:
-                    rotate(360deg)
-                    translateX(0);
-            }
-        }
+    background:
+        rgba(10,16,35,.6);
 
+}
 
-        .planet-ring-back {
-            position:
-                absolute;
 
-            width:
-                430px;
+.stat-number {
 
-            height:
-                155px;
+    font-size:26px;
 
-            border:
-                1px solid
-                rgba(167,139,250,.18);
+    font-weight:bold;
 
-            border-radius:
-                50%;
+}
 
-            transform:
-                rotate(-18deg)
-                scale(.82);
-        }
 
+.stat-label {
 
-        .mini-moon {
-            position:
-                absolute;
+    color:#64748b;
 
-            width:
-                49px;
+    font-size:11px;
 
-            height:
-                49px;
+    margin-top:4px;
 
-            border-radius:
-                50%;
+}
 
-            right:
-                55px;
 
-            top:
-                72px;
+.container {
 
-            background:
-                radial-gradient(
-                    circle at 30% 25%,
-                    #f8fafc,
-                    #94a3b8 55%,
-                    #334155
-                );
+    width:
+        min(1200px,calc(100% - 26px));
 
-            box-shadow:
-                0 0 25px
-                rgba(255,255,255,.16);
+    margin:
+        0 auto 90px;
 
-            animation:
-                moonFloat 4s ease-in-out infinite;
-        }
+}
 
 
-        @keyframes moonFloat {
-            50% {
-                transform:
-                    translateY(-10px);
-            }
-        }
+.section-title {
 
+    margin-bottom:20px;
 
-        .floating-label {
-            position:
-                absolute;
+}
 
-            padding:
-                9px 12px;
 
-            border:
-                1px solid
-                rgba(255,255,255,.09);
+.section-title h2 {
 
-            border-radius:
-                12px;
+    font-size:30px;
 
-            color:
-                #cbd5e1;
+    margin-bottom:6px;
 
-            font-size:
-                10px;
+}
 
-            background:
-                rgba(7,11,28,.68);
 
-            backdrop-filter:
-                blur(12px);
+.section-title p {
 
-            animation:
-                labelFloat 4s ease-in-out infinite;
-        }
+    color:#64748b;
 
+    font-size:12px;
 
-        .label-one {
-            top:
-                80px;
+}
 
-            left:
-                25px;
-        }
 
+.search {
 
-        .label-two {
-            bottom:
-                95px;
+    position:relative;
 
-            right:
-                20px;
+}
 
-            animation-delay:
-                -2s;
-        }
 
+.search input {
 
-        @keyframes labelFloat {
-            50% {
-                transform:
-                    translateY(-7px);
-            }
-        }
+    width:100%;
 
+    height:58px;
 
-        /* =========================================================
-           QUICK STATS
-        ========================================================= */
+    padding:
+        0 52px 0 17px;
 
-        .stats {
-            width:
-                min(1240px, calc(100% - 32px));
+    border:
+        1px solid
+        var(--border);
 
-            margin:
-                0 auto 70px;
+    outline:none;
 
-            display:
-                grid;
+    border-radius:16px;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+    color:white;
 
-            gap:
-                13px;
-        }
+    background:
+        rgba(10,16,35,.75);
 
+    font-size:15px;
 
-        .stat-card {
-            padding:
-                20px;
+}
 
-            border:
-                1px solid
-                var(--border);
 
-            border-radius:
-                20px;
+.search span {
 
-            background:
-                rgba(12,18,39,.55);
+    position:absolute;
 
-            backdrop-filter:
-                blur(14px);
+    right:18px;
 
-            transition:
-                .3s ease;
-        }
+    top:50%;
 
+    transform:
+        translateY(-50%);
 
-        .stat-card:hover {
-            transform:
-                translateY(-4px);
+}
 
-            border-color:
-                rgba(139,92,246,.26);
-        }
 
+.filters {
 
-        .stat-icon {
-            margin-bottom:
-                11px;
+    display:flex;
 
-            font-size:
-                22px;
-        }
+    flex-wrap:wrap;
 
+    gap:7px;
 
-        .stat-number {
-            font-size:
-                27px;
+    margin:
+        12px 0 35px;
 
-            font-weight:
-                800;
-        }
+}
 
 
-        .stat-label {
-            margin-top:
-                4px;
+.filter {
 
-            color:
-                var(--muted-2);
+    min-height:38px;
 
-            font-size:
-                12px;
-        }
+    padding:
+        0 13px;
 
+    border:
+        1px solid
+        var(--border);
 
-        /* =========================================================
-           MAIN CONTENT
-        ========================================================= */
+    border-radius:999px;
 
-        .main-container {
-            width:
-                min(1240px, calc(100% - 32px));
+    color:#94a3b8;
 
-            margin:
-                0 auto 100px;
-        }
+    background:
+        rgba(255,255,255,.025);
 
+    cursor:pointer;
 
-        .section-head {
-            display:
-                flex;
+}
 
-            align-items:
-                flex-end;
 
-            justify-content:
-                space-between;
+.filter.active {
 
-            gap:
-                20px;
+    color:white;
 
-            margin-bottom:
-                22px;
-        }
+    border-color:
+        rgba(139,92,246,.5);
 
+    background:
+        rgba(124,58,237,.25);
 
-        .section-head h2 {
-            font-size:
-                31px;
+}
 
-            margin-bottom:
-                7px;
-        }
 
+.reading-bar {
 
-        .section-head p {
-            color:
-                var(--muted-2);
+    display:flex;
 
-            font-size:
-                13px;
+    justify-content:space-between;
 
-            line-height:
-                1.7;
-        }
+    align-items:center;
 
+    gap:15px;
 
-        .section-link {
-            color:
-                #a78bfa;
+    padding:17px;
 
-            text-decoration:
-                none;
+    margin-bottom:30px;
 
-            font-size:
-                13px;
-        }
+    border:
+        1px solid
+        rgba(34,211,238,.12);
 
+    border-radius:18px;
 
-        /* =========================================================
-           SEARCH
-        ========================================================= */
+    background:
+        rgba(8,145,178,.05);
 
-        .search-area {
-            margin-bottom:
-                42px;
-        }
+}
 
 
-        .search-box {
-            position:
-                relative;
-        }
+.reading-bar strong {
 
+    display:block;
 
-        .search-box input {
-            width:
-                100%;
+    margin-bottom:4px;
 
-            height:
-                62px;
+}
 
-            padding:
-                0 56px 0 20px;
 
-            border:
-                1px solid
-                var(--border);
+.reading-bar span {
 
-            outline:
-                none;
+    color:#64748b;
 
-            border-radius:
-                18px;
+    font-size:11px;
 
-            color:
-                white;
+}
 
-            font-size:
-                16px;
 
-            background:
-                rgba(10,16,35,.8);
+.reading-button {
 
-            box-shadow:
-                0 12px 40px
-                rgba(0,0,0,.12);
+    min-height:40px;
 
-            transition:
-                .25s ease;
-        }
+    padding:
+        0 13px;
 
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-        .search-box input::placeholder {
-            color:
-                #64748b;
-        }
+    border-radius:11px;
 
+    color:#c4b5fd;
 
-        .search-box input:focus {
-            border-color:
-                rgba(139,92,246,.62);
+    background:
+        rgba(124,58,237,.08);
 
-            box-shadow:
-                0 0 0 4px
-                rgba(124,58,237,.08),
-                0 12px 40px
-                rgba(0,0,0,.18);
-        }
+    cursor:pointer;
 
+}
 
-        .search-icon {
-            position:
-                absolute;
 
-            right:
-                20px;
+.grid {
 
-            top:
-                50%;
+    display:grid;
 
-            transform:
-                translateY(-50%);
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
 
-            color:
-                #94a3b8;
+    gap:15px;
 
-            font-size:
-                21px;
+}
 
-            pointer-events:
-                none;
-        }
 
+.card {
 
-        /* =========================================================
-           CATEGORY CHIPS
-        ========================================================= */
+    position:relative;
 
-        .filters {
-            display:
-                flex;
+    padding:19px;
 
-            flex-wrap:
-                wrap;
+    min-height:360px;
 
-            gap:
-                8px;
+    border:
+        1px solid
+        var(--border);
 
-            margin-top:
-                13px;
-        }
+    border-radius:21px;
 
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,23,42,.92),
+            rgba(7,11,28,.8)
+        );
 
-        .filter {
-            min-height:
-                39px;
+    overflow:hidden;
 
-            padding:
-                0 14px;
+    transition:.3s ease;
 
-            border:
-                1px solid
-                var(--border);
+}
 
-            border-radius:
-                999px;
 
-            color:
-                #94a3b8;
+.card:hover {
 
-            background:
-                rgba(255,255,255,.025);
+    transform:
+        translateY(-7px);
 
-            cursor:
-                pointer;
+    border-color:
+        rgba(139,92,246,.35);
 
-            transition:
-                .22s ease;
-        }
+    box-shadow:
+        0 25px 55px
+        rgba(0,0,0,.28);
 
+}
 
-        .filter:hover {
-            color:
-                white;
 
-            border-color:
-                rgba(139,92,246,.3);
+.cover {
 
-            background:
-                rgba(124,58,237,.09);
-        }
+    width:76px;
 
+    height:100px;
 
-        .filter.active {
-            color:
-                white;
+    margin-bottom:15px;
 
-            border-color:
-                rgba(139,92,246,.5);
+    display:grid;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(124,58,237,.42),
-                    rgba(8,145,178,.22)
-                );
-        }
+    place-items:center;
 
+    border-radius:12px;
 
-        /* =========================================================
-           RECENT
-        ========================================================= */
+    font-size:28px;
 
-        .recent-section {
-            margin-bottom:
-                75px;
-        }
+    background:
+        linear-gradient(
+            145deg,
+            #312e81,
+            #7c3aed,
+            #0891b2
+        );
 
+}
 
-        .recent-grid {
-            display:
-                grid;
 
-            grid-template-columns:
-                repeat(3, minmax(0, 1fr));
+.lang {
 
-            gap:
-                15px;
-        }
+    display:inline-block;
 
+    padding:
+        4px 8px;
 
-        .recent-card {
-            position:
-                relative;
+    border-radius:999px;
 
-            overflow:
-                hidden;
+    color:#a5f3fc;
 
-            padding:
-                21px;
+    background:
+        rgba(8,145,178,.08);
 
-            min-height:
-                185px;
+    font-size:9px;
 
-            border:
-                1px solid
-                var(--border);
+}
 
-            border-radius:
-                22px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(15,23,42,.88),
-                    rgba(12,18,39,.62)
-                );
+.card h3 {
 
-            transition:
-                .3s ease;
-        }
+    font-size:16px;
 
+    line-height:1.5;
 
-        .recent-card:hover {
-            transform:
-                translateY(-6px);
+    margin:
+        8px 0 5px;
 
-            border-color:
-                var(--border-hover);
-        }
+}
 
 
-        .recent-top {
-            display:
-                flex;
+.author {
 
-            align-items:
-                center;
+    color:#a78bfa;
 
-            justify-content:
-                space-between;
+    font-size:11px;
 
-            margin-bottom:
-                18px;
-        }
+}
 
 
-        .recent-icon {
-            width:
-                42px;
+.description {
 
-            height:
-                42px;
+    min-height:68px;
 
-            display:
-                grid;
+    margin:
+        9px 0;
 
-            place-items:
-                center;
+    color:#94a3b8;
 
-            border-radius:
-                13px;
+    font-size:11px;
 
-            background:
-                rgba(124,58,237,.13);
-        }
+    line-height:1.8;
 
+}
 
-        .recent-tag {
-            color:
-                #67e8f9;
 
-            font-size:
-                10px;
-        }
+.category {
 
+    color:#64748b;
 
-        .recent-card h3 {
-            font-size:
-                18px;
+    font-size:9px;
 
-            margin-bottom:
-                6px;
+    margin-bottom:13px;
 
-            line-height:
-                1.5;
-        }
+}
 
 
-        .recent-author {
-            color:
-                #a78bfa;
+.card-actions {
 
-            font-size:
-                12px;
-        }
+    display:grid;
 
+    grid-template-columns:
+        1fr 42px;
 
-        /* =========================================================
-           LIBRARY GRID
-        ========================================================= */
+    gap:7px;
 
-        .library-section {
-            margin-top:
-                10px;
-        }
+}
 
 
-        .book-grid {
-            display:
-                grid;
+.open {
 
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
+    min-height:42px;
 
-            gap:
-                16px;
-        }
+    border:0;
 
+    border-radius:11px;
 
-        .book-card {
-            position:
-                relative;
+    color:white;
 
-            min-height:
-                370px;
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #0891b2
+        );
 
-            padding:
-                20px;
+    cursor:pointer;
 
-            overflow:
-                hidden;
+    font-weight:bold;
 
-            border:
-                1px solid
-                var(--border);
+}
 
-            border-radius:
-                23px;
 
-            background:
-                linear-gradient(
-                    150deg,
-                    rgba(15,23,42,.94),
-                    rgba(8,13,30,.78)
-                );
+.icon-button {
 
-            box-shadow:
-                0 15px 45px
-                rgba(0,0,0,.15);
+    min-height:42px;
 
-            transition:
-                transform .35s ease,
-                border-color .35s ease,
-                box-shadow .35s ease;
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-            animation:
-                cardAppear .45s ease both;
-        }
+    border-radius:11px;
 
+    color:#cbd5e1;
 
-        @keyframes cardAppear {
-            from {
-                opacity:
-                    0;
+    background:
+        rgba(255,255,255,.035);
 
-                transform:
-                    translateY(15px);
-            }
+    cursor:pointer;
 
-            to {
-                opacity:
-                    1;
+    font-size:18px;
 
-                transform:
-                    translateY(0);
-            }
-        }
+}
 
 
-        .book-card::before {
-            content:
-                "";
+.icon-button.active {
 
-            position:
-                absolute;
+    color:#f0abfc;
 
-            width:
-                160px;
+    background:
+        rgba(126,34,206,.28);
 
-            height:
-                160px;
+}
 
-            border-radius:
-                50%;
 
-            top:
-                -100px;
+.empty {
 
-            left:
-                -80px;
+    grid-column:
+        1/-1;
 
-            background:
-                rgba(124,58,237,.12);
+    padding:60px 20px;
 
-            filter:
-                blur(30px);
+    text-align:center;
 
-            pointer-events:
-                none;
-        }
+    color:#64748b;
 
+    border:
+        1px dashed
+        rgba(255,255,255,.12);
 
-        .book-card:hover {
-            transform:
-                translateY(-8px);
+    border-radius:20px;
 
-            border-color:
-                var(--border-hover);
+}
 
-            box-shadow:
-                0 25px 65px
-                rgba(0,0,0,.28),
-                0 0 35px
-                rgba(124,58,237,.07);
-        }
 
+.empty strong {
 
-        .book-cover {
-            width:
-                82px;
+    display:block;
 
-            height:
-                110px;
+    color:white;
 
-            margin-bottom:
-                17px;
+    margin-bottom:7px;
 
-            display:
-                grid;
+}
 
-            place-items:
-                center;
 
-            border-radius:
-                13px;
+footer {
 
-            font-size:
-                30px;
+    border-top:
+        1px solid
+        rgba(255,255,255,.07);
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #312e81,
-                    #7c3aed 48%,
-                    #0891b2
-                );
+    padding:35px 20px;
 
-            box-shadow:
-                0 15px 30px
-                rgba(0,0,0,.35);
+    text-align:center;
 
-            transform:
-                perspective(600px)
-                rotateY(-8deg);
+    color:#64748b;
 
-            transition:
-                .35s ease;
-        }
+    font-size:11px;
 
+}
 
-        .book-card:hover .book-cover {
-            transform:
-                perspective(600px)
-                rotateY(0)
-                translateY(-4px);
-        }
 
+#adminButton {
 
-        .book-language {
-            display:
-                inline-flex;
+    position:fixed;
 
-            padding:
-                5px 9px;
+    left:15px;
 
-            margin-bottom:
-                9px;
+    bottom:15px;
 
-            border-radius:
-                999px;
+    z-index:9999;
 
-            color:
-                #a5f3fc;
+    min-height:44px;
 
-            border:
-                1px solid
-                rgba(34,211,238,.15);
+    padding:
+        0 15px;
 
-            background:
-                rgba(8,145,178,.08);
+    display:none;
 
-            font-size:
-                10px;
-        }
+    align-items:center;
 
+    justify-content:center;
 
-        .book-card h3 {
-            font-size:
-                17px;
+    border-radius:13px;
 
-            line-height:
-                1.55;
+    color:white;
 
-            margin-bottom:
-                6px;
-        }
+    text-decoration:none;
 
+    font-weight:bold;
 
-        .book-author {
-            color:
-                #a78bfa;
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #0891b2
+        );
 
-            font-size:
-                12px;
+    box-shadow:
+        0 12px 35px
+        rgba(79,70,229,.4);
 
-            margin-bottom:
-                10px;
-        }
+}
 
 
-        .book-description {
-            color:
-                #94a3b8;
+@media(max-width:950px) {
 
-            font-size:
-                12px;
+    .hero {
 
-            line-height:
-                1.8;
+        grid-template-columns:1fr;
 
-            min-height:
-                65px;
+        text-align:center;
 
-            margin-bottom:
-                11px;
-        }
+        padding:
+            60px 0 30px;
 
+    }
 
-        .book-category {
-            color:
-                #64748b;
 
-            font-size:
-                10px;
+    .hero p {
 
-            margin-bottom:
-                15px;
-        }
+        margin-left:auto;
+        margin-right:auto;
 
+    }
 
-        .book-open {
-            width:
-                100%;
 
-            min-height:
-                44px;
+    .hero-buttons {
 
-            border:
-                0;
+        justify-content:center;
 
-            border-radius:
-                12px;
+    }
 
-            color:
-                white;
 
-            font-weight:
-                bold;
+    .grid {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(124,58,237,.88),
-                    rgba(8,145,178,.72)
-                );
+        grid-template-columns:
+            repeat(3,1fr);
 
-            cursor:
-                pointer;
+    }
 
-            transition:
-                .25s ease;
-        }
+}
 
 
-        .book-open:hover {
-            transform:
-                translateY(-2px);
+@media(max-width:700px) {
 
-            box-shadow:
-                0 10px 28px
-                rgba(79,70,229,.25);
-        }
+    .stats {
 
+        grid-template-columns:
+            repeat(2,1fr);
 
-        /* =========================================================
-           EMPTY / LOADING
-        ========================================================= */
+    }
 
-        .state-box {
-            grid-column:
-                1 / -1;
 
-            min-height:
-                220px;
+    .grid {
 
-            display:
-                grid;
+        grid-template-columns:
+            repeat(2,1fr);
 
-            place-items:
-                center;
+    }
 
-            text-align:
-                center;
 
-            padding:
-                30px;
+    .planet {
 
-            border:
-                1px dashed
-                rgba(255,255,255,.12);
+        width:180px;
+        height:180px;
 
-            border-radius:
-                22px;
+    }
 
-            color:
-                var(--muted);
 
-            background:
-                rgba(255,255,255,.02);
-        }
+    .orbit {
 
+        width:310px;
+        height:110px;
 
-        .state-box strong {
-            display:
-                block;
+    }
 
-            color:
-                white;
+}
 
-            font-size:
-                20px;
 
-            margin-bottom:
-                7px;
-        }
+@media(max-width:500px) {
 
+    .logo small,
+    .logo strong {
 
-        /* =========================================================
-           FOOTER
-        ========================================================= */
+        display:none;
 
-        .footer {
-            border-top:
-                1px solid
-                rgba(255,255,255,.07);
+    }
 
-            padding:
-                45px 20px;
 
-            color:
-                #64748b;
+    .hero h1 {
 
-            text-align:
-                center;
-        }
+        font-size:49px;
 
+    }
 
-        .footer-logo {
-            color:
-                #c4b5fd;
 
-            font-size:
-                18px;
+    .grid {
 
-            font-weight:
-                bold;
+        grid-template-columns:1fr;
 
-            margin-bottom:
-                8px;
-        }
+    }
 
 
-        .footer p {
-            font-size:
-                11px;
+    .reading-bar {
 
-            line-height:
-                1.8;
-        }
+        align-items:flex-start;
 
+        flex-direction:column;
 
-        /* =========================================================
-           ADMIN BUTTON
-        ========================================================= */
+    }
 
-        #gravity-admin-button {
-            position:
-                fixed;
+}
 
-            left:
-                18px;
+</style>
 
-            bottom:
-                18px;
-
-            z-index:
-                9999;
-
-            min-height:
-                46px;
-
-            padding:
-                0 17px;
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            border-radius:
-                14px;
-
-            color:
-                white;
-
-            text-decoration:
-                none;
-
-            font-weight:
-                bold;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #7c3aed,
-                    #0891b2
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            box-shadow:
-                0 15px 40px
-                rgba(79,70,229,.4);
-
-            backdrop-filter:
-                blur(15px);
-
-            transition:
-                .25s ease;
-        }
-
-
-        #gravity-admin-button:hover {
-            transform:
-                translateY(-4px);
-
-            box-shadow:
-                0 20px 50px
-                rgba(79,70,229,.52);
-        }
-
-
-        /* =========================================================
-           FAVORITE
-        ========================================================= */
-
-        .gravity-favorite-button {
-            position:
-                absolute;
-
-            top:
-                14px;
-
-            left:
-                14px;
-
-            z-index:
-                40;
-
-            width:
-                42px;
-
-            height:
-                42px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.13);
-
-            border-radius:
-                50%;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            color:
-                #e2e8f0;
-
-            background:
-                rgba(3,7,18,.72);
-
-            font-size:
-                21px;
-
-            cursor:
-                pointer;
-
-            backdrop-filter:
-                blur(12px);
-
-            transition:
-                .2s ease;
-        }
-
-
-        .gravity-favorite-button:hover {
-            transform:
-                scale(1.08);
-        }
-
-
-        /* =========================================================
-           MOBILE
-        ========================================================= */
-
-        @media (max-width: 1050px) {
-
-            .hero {
-                grid-template-columns:
-                    1fr 1fr;
-            }
-
-            .book-grid {
-                grid-template-columns:
-                    repeat(3, minmax(0,1fr));
-            }
-
-        }
-
-
-        @media (max-width: 850px) {
-
-            .hero {
-                grid-template-columns:
-                    1fr;
-
-                min-height:
-                    auto;
-
-                padding:
-                    70px 0 35px;
-
-                text-align:
-                    center;
-            }
-
-
-            .hero-description {
-                margin:
-                    0 auto 27px;
-            }
-
-
-            .hero-actions {
-                justify-content:
-                    center;
-            }
-
-
-            .planet-stage {
-                min-height:
-                    390px;
-            }
-
-
-            .stats {
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
-
-
-            .recent-grid {
-                grid-template-columns:
-                    1fr;
-            }
-
-
-            .book-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0,1fr));
-            }
-
-        }
-
-
-        @media (max-width: 560px) {
-
-            .header-inner,
-            .hero,
-            .stats,
-            .main-container {
-                width:
-                    calc(100% - 22px);
-            }
-
-
-            .site-header .brand-name {
-                display:
-                    none;
-            }
-
-
-            .brand-symbol {
-                width:
-                    43px;
-
-                height:
-                    43px;
-            }
-
-
-            .header-btn {
-                min-height:
-                    39px;
-
-                padding:
-                    0 11px;
-
-                font-size:
-                    11px;
-            }
-
-
-            .hero-title {
-                font-size:
-                    49px;
-
-                letter-spacing:
-                    -2.5px;
-            }
-
-
-            .hero-description {
-                font-size:
-                    14px;
-            }
-
-
-            .planet {
-                width:
-                    190px;
-
-                height:
-                    190px;
-            }
-
-
-            .planet-ring,
-            .planet-ring-back {
-                width:
-                    320px;
-
-                height:
-                    115px;
-            }
-
-
-            .mini-moon {
-                width:
-                    40px;
-
-                height:
-                    40px;
-
-                right:
-                    30px;
-            }
-
-
-            .floating-label {
-                display:
-                    none;
-            }
-
-
-            .stats {
-                gap:
-                    8px;
-
-                margin-bottom:
-                    55px;
-            }
-
-
-            .stat-card {
-                padding:
-                    15px;
-            }
-
-
-            .stat-number {
-                font-size:
-                    22px;
-            }
-
-
-            .section-head {
-                display:
-                    block;
-            }
-
-
-            .section-head h2 {
-                font-size:
-                    26px;
-            }
-
-
-            .section-link {
-                display:
-                    inline-block;
-
-                margin-top:
-                    8px;
-            }
-
-
-            .book-grid {
-                grid-template-columns:
-                    1fr;
-            }
-
-
-            .book-card {
-                min-height:
-                    auto;
-            }
-
-
-            #gravity-admin-button {
-                left:
-                    11px;
-
-                bottom:
-                    11px;
-
-                min-height:
-                    42px;
-
-                padding:
-                    0 13px;
-
-                font-size:
-                    12px;
-            }
-
-        }
-
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration:
-                    .01ms !important;
-
-                animation-iteration-count:
-                    1 !important;
-
-                transition-duration:
-                    .01ms !important;
-
-                scroll-behavior:
-                    auto !important;
-            }
-
-        }
-
-    </style>
 </head>
 
 
 <body>
 
-    <!-- =========================================================
-         SPACE BACKGROUND
-    ========================================================== -->
 
-    <div class="space-layer">
+<div class="space">
 
-        <div class="stars"></div>
+    <div class="stars"></div>
 
-        <div class="nebula nebula-purple"></div>
+    <div class="nebula a"></div>
 
-        <div class="nebula nebula-cyan"></div>
+    <div class="nebula b"></div>
+
+</div>
+
+
+<header>
+
+<div class="header">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <div class="logo-icon"></div>
+
+        <div>
+
+            <strong>
+                GRAVITY
+            </strong>
+
+            <small>
+                المعرفة بلا حدود
+            </small>
+
+        </div>
+
+    </a>
+
+
+    <a
+        href="login.html"
+        class="account"
+        id="account"
+    >
+        ⭐ تسجيل الدخول
+    </a>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+<div>
+
+    <div
+        style="
+        display:inline-block;
+        padding:7px 11px;
+        border:1px solid rgba(139,92,246,.25);
+        border-radius:999px;
+        color:#c4b5fd;
+        font-size:11px;
+        margin-bottom:18px;
+        "
+    >
+        ✦ مكتبتك في مدار واحد
+    </div>
+
+
+    <h1>
+
+        المعرفة
+
+        <br>
+
+        <span>
+            بلا حدود.
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        مكتبة Gravity الرقمية تجمع لك
+        الروايات والمغامرات والخيال العلمي
+        والأدب والثقافة في تجربة واحدة.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a
+            href="#library"
+            class="hero-btn hero-main"
+        >
+            📚 ابدأ الاستكشاف
+        </a>
+
+
+        <a
+            href="login.html"
+            class="hero-btn hero-alt"
+        >
+            👤 حسابي
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="planet-area">
+
+    <div class="planet-glow"></div>
+
+    <div class="orbit"></div>
+
+    <div class="planet"></div>
+
+    <div class="moon"></div>
+
+</div>
+
+</section>
+
+
+<section class="stats">
+
+    <div class="stat">
+
+        <div
+            class="stat-number"
+            id="total"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            كتاب
+        </div>
 
     </div>
 
 
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
-
-    <header class="site-header">
-
-        <div class="header-inner">
-
-            <a
-                href="index.html"
-                class="brand"
-            >
-
-                <div class="brand-symbol"></div>
-
-                <div class="brand-name">
-
-                    <strong>
-                        GRAVITY
-                    </strong>
-
-                    <span>
-                        المعرفة بلا حدود
-                    </span>
-
-                </div>
-
-            </a>
-
-
-            <div class="header-actions">
-
-                <a
-                    href="login.html"
-                    class="header-btn"
-                    id="gravity-account-button"
-                >
-                    ⭐ تسجيل الدخول
-                </a>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =========================================================
-         HERO
-    ========================================================== -->
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="hero-badge">
-
-                    <span class="status-dot"></span>
-
-                    مكتبة Gravity مفتوحة أمامك
-
-                </div>
-
-
-                <h1 class="hero-title">
-
-                    المعرفة
-
-                    <br>
-
-                    <span class="gradient">
-                        بلا حدود.
-                    </span>
-
-                </h1>
-
-
-                <p class="hero-description">
-
-                    ادخل مدارًا مختلفًا من المعرفة.
-                    استكشف الروايات، الخيال العلمي،
-                    المغامرات، الغموض، الأدب والثقافة
-                    من خلال تجربة مكتبة رقمية مصممة بروح المستقبل.
-
-                </p>
-
-
-                <div class="hero-actions">
-
-                    <a
-                        href="#library"
-                        class="hero-primary"
-                    >
-                        📚 استكشف المكتبة
-                    </a>
-
-
-                    <a
-                        href="login.html"
-                        class="hero-secondary"
-                    >
-                        👤 حسابي
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="planet-stage">
-
-                <div class="planet-halo"></div>
-
-                <div class="planet-ring-back"></div>
-
-                <div class="planet-ring"></div>
-
-                <div class="planet"></div>
-
-                <div class="mini-moon"></div>
-
-
-                <div class="floating-label label-one">
-                    ✦ Explore
-                </div>
-
-
-                <div class="floating-label label-two">
-                    Knowledge ∞
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             STATS
-        ====================================================== -->
-
-        <section class="stats">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    📚
-                </div>
-
-                <div
-                    class="stat-number"
-                    id="stat-total"
-                >
-                    —
-                </div>
-
-                <div class="stat-label">
-                    كتاب في المدار
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🌍
-                </div>
-
-                <div
-                    class="stat-number"
-                    id="stat-arabic"
-                >
-                    —
-                </div>
-
-                <div class="stat-label">
-                    كتب عربية
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🌐
-                </div>
-
-                <div
-                    class="stat-number"
-                    id="stat-english"
-                >
-                    —
-                </div>
-
-                <div class="stat-label">
-                    English
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    🚀
-                </div>
-
-                <div
-                    class="stat-number"
-                    id="stat-categories"
-                >
-                    —
-                </div>
-
-                <div class="stat-label">
-                    تصنيفات
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             CONTENT
-        ====================================================== -->
+    <div class="stat">
 
         <div
-            class="main-container"
-            id="library"
+            class="stat-number"
+            id="arabic"
         >
+            0
+        </div>
+
+        <div class="stat-label">
+            عربي
+        </div>
+
+    </div>
 
 
-            <!-- SEARCH -->
+    <div class="stat">
 
-            <section class="search-area">
+        <div
+            class="stat-number"
+            id="english"
+        >
+            0
+        </div>
 
-                <div class="section-head">
+        <div class="stat-label">
+            English
+        </div>
 
-                    <div>
+    </div>
 
-                        <h2>
-                            ابحث في الكون
-                        </h2>
 
-                        <p>
-                            اكتب اسم كتاب أو مؤلف أو نوع الكتاب.
-                        </p>
+    <div class="stat">
 
+        <div
+            class="stat-number"
+            id="categories"
+        >
+            0
+        </div>
+
+        <div class="stat-label">
+            تصنيف
+        </div>
+
+    </div>
+
+</section>
+
+
+<div
+    class="container"
+    id="library"
+>
+
+
+<div class="section-title">
+
+    <h2>
+        🔎 ابحث في المكتبة
+    </h2>
+
+    <p>
+        ابحث بالعنوان أو المؤلف أو التصنيف.
+    </p>
+
+</div>
+
+
+<div class="search">
+
+    <span>
+        🔎
+    </span>
+
+    <input
+        id="search"
+        type="search"
+        placeholder="ابحث عن كتاب..."
+    >
+
+</div>
+
+
+<div
+    class="filters"
+    id="filters"
+>
+
+    <button
+        class="filter active"
+        data-category="الكل"
+    >
+        الكل
+    </button>
+
+    <button
+        class="filter"
+        data-category="روايات عربية"
+    >
+        روايات عربية
+    </button>
+
+    <button
+        class="filter"
+        data-category="أدب عربي"
+    >
+        أدب عربي
+    </button>
+
+    <button
+        class="filter"
+        data-category="خيال علمي"
+    >
+        خيال علمي
+    </button>
+
+    <button
+        class="filter"
+        data-category="فانتازيا"
+    >
+        فانتازيا
+    </button>
+
+    <button
+        class="filter"
+        data-category="فضاء وفانتازيا"
+    >
+        الفضاء
+    </button>
+
+    <button
+        class="filter"
+        data-category="مغامرات"
+    >
+        مغامرات
+    </button>
+
+    <button
+        class="filter"
+        data-category="غموض"
+    >
+        غموض
+    </button>
+
+    <button
+        class="filter"
+        data-category="رعب وفانتازيا"
+    >
+        رعب
+    </button>
+
+    <button
+        class="filter"
+        data-category="قصص مصورة"
+    >
+        قصص مصورة
+    </button>
+
+</div>
+
+
+<div class="reading-bar">
+
+    <div>
+
+        <strong>
+            📚 أقرأها لاحقًا
+        </strong>
+
+        <span id="readingCount">
+            سجّل دخولك لحفظ الكتب التي تريد قراءتها لاحقًا.
+        </span>
+
+    </div>
+
+
+    <button
+        class="reading-button"
+        id="showReading"
+        type="button"
+    >
+        عرض قائمتي
+    </button>
+
+</div>
+
+
+<div class="section-title">
+
+    <h2>
+        🚀 مكتبة Gravity
+    </h2>
+
+    <p id="results">
+        جاري تحميل الكتب...
+    </p>
+
+</div>
+
+
+<div
+    class="grid"
+    id="grid"
+>
+
+    <div class="empty">
+
+        <strong>
+            🚀 جاري فتح المدار...
+        </strong>
+
+        لحظات.
+
+    </div>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+    <strong>
+        GRAVITY
+    </strong>
+
+    <br>
+
+    المعرفة بلا حدود — M11 © 2026
+
+</footer>
+
+
+<a
+    id="adminButton"
+    href="admin.html"
+>
+    👑 الإدارة
+</a>
+
+
+<script src="books.js?v=20261004"></script>
+
+<script src="supabase.js?v=20261004"></script>
+
+<script src="auth.js?v=20261004"></script>
+
+<script src="favorites.js?v=20261004"></script>
+
+
+<script>
+
+
+/* ============================================================
+   DATA
+============================================================ */
+
+
+let books = [];
+
+
+try {
+
+    if (
+        typeof getGravityBooks ===
+        "function"
+    ) {
+
+        books =
+            getGravityBooks();
+
+    }
+
+} catch(error) {
+
+    console.error(
+        "Gravity books:",
+        error
+    );
+
+}
+
+
+if (!Array.isArray(books)) {
+    books = [];
+}
+
+
+/*
+ * كتب إضافية قانونية من Project Gutenberg.
+ * لا نعيد استضافة الكتب؛ نفتح المصدر الرسمي.
+ */
+
+
+const extraBooks = [
+
+    {
+        title:"Pride and Prejudice",
+        author:"Jane Austen",
+        category:"روايات",
+        language:"English",
+        description:"A classic English novel.",
+        url:"https://www.gutenberg.org/ebooks/1342"
+    },
+
+    {
+        title:"A Tale of Two Cities",
+        author:"Charles Dickens",
+        category:"روايات",
+        language:"English",
+        description:"A classic historical novel.",
+        url:"https://www.gutenberg.org/ebooks/98"
+    },
+
+    {
+        title:"The Adventures of Tom Sawyer",
+        author:"Mark Twain",
+        category:"مغامرات",
+        language:"English",
+        description:"Classic adventures and childhood.",
+        url:"https://www.gutenberg.org/ebooks/74"
+    },
+
+    {
+        title:"The Adventures of Huckleberry Finn",
+        author:"Mark Twain",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic American adventure.",
+        url:"https://www.gutenberg.org/ebooks/76"
+    },
+
+    {
+        title:"Moby Dick",
+        author:"Herman Melville",
+        category:"مغامرات",
+        language:"English",
+        description:"A legendary sea adventure.",
+        url:"https://www.gutenberg.org/ebooks/2701"
+    },
+
+    {
+        title:"The Secret Garden",
+        author:"Frances Hodgson Burnett",
+        category:"فانتازيا",
+        language:"English",
+        description:"A beloved classic children's novel.",
+        url:"https://www.gutenberg.org/ebooks/17396"
+    },
+
+    {
+        title:"Little Women",
+        author:"Louisa May Alcott",
+        category:"روايات",
+        language:"English",
+        description:"A classic family novel.",
+        url:"https://www.gutenberg.org/ebooks/514"
+    },
+
+    {
+        title:"Anne of Green Gables",
+        author:"L. M. Montgomery",
+        category:"روايات",
+        language:"English",
+        description:"A classic coming-of-age story.",
+        url:"https://www.gutenberg.org/ebooks/45"
+    },
+
+    {
+        title:"The Jungle Book",
+        author:"Rudyard Kipling",
+        category:"فانتازيا",
+        language:"English",
+        description:"Classic stories inspired by the jungle.",
+        url:"https://www.gutenberg.org/ebooks/236"
+    },
+
+    {
+        title:"The Wind in the Willows",
+        author:"Kenneth Grahame",
+        category:"فانتازيا",
+        language:"English",
+        description:"A classic animal adventure.",
+        url:"https://www.gutenberg.org/ebooks/289"
+    },
+
+    {
+        title:"The Wonderful Wizard of Oz",
+        author:"L. Frank Baum",
+        category:"فانتازيا",
+        language:"English",
+        description:"A journey into the magical world of Oz.",
+        url:"https://www.gutenberg.org/ebooks/55"
+    },
+
+    {
+        title:"Alice's Adventures in Wonderland",
+        author:"Lewis Carroll",
+        category:"فانتازيا",
+        language:"English",
+        description:"Alice enters a strange and wonderful world.",
+        url:"https://www.gutenberg.org/ebooks/11"
+    },
+
+    {
+        title:"Through the Looking-Glass",
+        author:"Lewis Carroll",
+        category:"فانتازيا",
+        language:"English",
+        description:"Another journey behind the mirror.",
+        url:"https://www.gutenberg.org/ebooks/12"
+    },
+
+    {
+        title:"The Wind in the Willows",
+        author:"Kenneth Grahame",
+        category:"حكايات",
+        language:"English",
+        description:"A classic tale of friendship and adventure.",
+        url:"https://www.gutenberg.org/ebooks/289"
+    },
+
+    {
+        title:"The Call of the Wild",
+        author:"Jack London",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic wilderness adventure.",
+        url:"https://www.gutenberg.org/ebooks/215"
+    },
+
+    {
+        title:"White Fang",
+        author:"Jack London",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic story of survival and nature.",
+        url:"https://www.gutenberg.org/ebooks/910"
+    },
+
+    {
+        title:"The Scarlet Pimpernel",
+        author:"Baroness Orczy",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic adventure novel.",
+        url:"https://www.gutenberg.org/ebooks/60"
+    },
+
+    {
+        title:"The Wonderful Adventures of Nils",
+        author:"Selma Lagerlöf",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic fantasy adventure.",
+        url:"https://www.gutenberg.org/ebooks/7452"
+    },
+
+    {
+        title:"The Island of Doctor Moreau",
+        author:"H. G. Wells",
+        category:"خيال علمي",
+        language:"English",
+        description:"A classic science-fiction novel.",
+        url:"https://www.gutenberg.org/ebooks/159"
+    },
+
+    {
+        title:"The Invisible Man",
+        author:"H. G. Wells",
+        category:"خيال علمي",
+        language:"English",
+        description:"A classic science-fiction story.",
+        url:"https://www.gutenberg.org/ebooks/5230"
+    },
+
+    {
+        title:"The First Men in the Moon",
+        author:"H. G. Wells",
+        category:"فضاء وفانتازيا",
+        language:"English",
+        description:"An imaginative journey to the Moon.",
+        url:"https://www.gutenberg.org/ebooks/1013"
+    },
+
+    {
+        title:"The Time Machine",
+        author:"H. G. Wells",
+        category:"خيال علمي",
+        language:"English",
+        description:"A journey through time.",
+        url:"https://www.gutenberg.org/ebooks/35"
+    },
+
+    {
+        title:"The War of the Worlds",
+        author:"H. G. Wells",
+        category:"فضاء وفانتازيا",
+        language:"English",
+        description:"A classic story of an alien invasion.",
+        url:"https://www.gutenberg.org/ebooks/36"
+    },
+
+    {
+        title:"Frankenstein",
+        author:"Mary Shelley",
+        category:"خيال علمي",
+        language:"English",
+        description:"A classic tale combining science and horror.",
+        url:"https://www.gutenberg.org/ebooks/84"
+    },
+
+    {
+        title:"Dracula",
+        author:"Bram Stoker",
+        category:"رعب وفانتازيا",
+        language:"English",
+        description:"A classic Gothic horror novel.",
+        url:"https://www.gutenberg.org/ebooks/345"
+    },
+
+    {
+        title:"The Strange Case of Dr. Jekyll and Mr. Hyde",
+        author:"Robert Louis Stevenson",
+        category:"غموض",
+        language:"English",
+        description:"A classic story of mystery and identity.",
+        url:"https://www.gutenberg.org/ebooks/43"
+    },
+
+    {
+        title:"The Adventures of Sherlock Holmes",
+        author:"Arthur Conan Doyle",
+        category:"غموض",
+        language:"English",
+        description:"Classic detective adventures.",
+        url:"https://www.gutenberg.org/ebooks/1661"
+    },
+
+    {
+        title:"The Hound of the Baskervilles",
+        author:"Arthur Conan Doyle",
+        category:"غموض",
+        language:"English",
+        description:"One of Sherlock Holmes' famous mysteries.",
+        url:"https://www.gutenberg.org/ebooks/2852"
+    },
+
+    {
+        title:"The Sign of the Four",
+        author:"Arthur Conan Doyle",
+        category:"غموض",
+        language:"English",
+        description:"Another Sherlock Holmes mystery.",
+        url:"https://www.gutenberg.org/ebooks/2097"
+    },
+
+    {
+        title:"Gulliver's Travels",
+        author:"Jonathan Swift",
+        category:"مغامرات",
+        language:"English",
+        description:"Voyages into strange imaginary worlds.",
+        url:"https://www.gutenberg.org/ebooks/829"
+    },
+
+    {
+        title:"Twenty Thousand Leagues Under the Sea",
+        author:"Jules Verne",
+        category:"مغامرات",
+        language:"English",
+        description:"A legendary underwater adventure.",
+        url:"https://www.gutenberg.org/ebooks/164"
+    },
+
+    {
+        title:"The Mysterious Island",
+        author:"Jules Verne",
+        category:"مغامرات",
+        language:"English",
+        description:"Adventure, survival and discovery.",
+        url:"https://www.gutenberg.org/ebooks/1268"
+    },
+
+    {
+        title:"From the Earth to the Moon",
+        author:"Jules Verne",
+        category:"فضاء وفانتازيا",
+        language:"English",
+        description:"A classic journey toward the Moon.",
+        url:"https://www.gutenberg.org/ebooks/18857"
+    },
+
+    {
+        title:"A Princess of Mars",
+        author:"Edgar Rice Burroughs",
+        category:"فضاء وفانتازيا",
+        language:"English",
+        description:"A classic adventure on Mars.",
+        url:"https://www.gutenberg.org/ebooks/62"
+    },
+
+    {
+        title:"The Gods of Mars",
+        author:"Edgar Rice Burroughs",
+        category:"فضاء وفانتازيا",
+        language:"English",
+        description:"Another adventure in Barsoom.",
+        url:"https://www.gutenberg.org/ebooks/64"
+    },
+
+    {
+        title:"The Lost World",
+        author:"Arthur Conan Doyle",
+        category:"مغامرات",
+        language:"English",
+        description:"An expedition into an unknown world.",
+        url:"https://www.gutenberg.org/ebooks/139"
+    },
+
+    {
+        title:"The Three Musketeers",
+        author:"Alexandre Dumas",
+        category:"مغامرات",
+        language:"English",
+        description:"Classic adventure and swordplay.",
+        url:"https://www.gutenberg.org/ebooks/1257"
+    },
+
+    {
+        title:"The Count of Monte Cristo",
+        author:"Alexandre Dumas",
+        category:"مغامرات",
+        language:"English",
+        description:"A classic tale of adventure and revenge.",
+        url:"https://www.gutenberg.org/ebooks/1184"
+    },
+
+    {
+        title:"The Princess and the Goblin",
+        author:"George MacDonald",
+        category:"فانتازيا",
+        language:"English",
+        description:"A classic fantasy adventure.",
+        url:"https://www.gutenberg.org/ebooks/708"
+    },
+
+    {
+        title:"The King of the Golden River",
+        author:"John Ruskin",
+        category:"فانتازيا",
+        language:"English",
+        description:"A classic fairy tale.",
+        url:"https://www.gutenberg.org/ebooks/701"
+    },
+
+    {
+        title:"The Blue Fairy Book",
+        author:"Andrew Lang",
+        category:"حكايات",
+        language:"English",
+        description:"A collection of classic fairy tales.",
+        url:"https://www.gutenberg.org/ebooks/503"
+    },
+
+    {
+        title:"The Red Fairy Book",
+        author:"Andrew Lang",
+        category:"حكايات",
+        language:"English",
+        description:"Another classic fairy tale collection.",
+        url:"https://www.gutenberg.org/ebooks/540"
+    },
+
+    {
+        title:"Grimm's Fairy Tales",
+        author:"Jacob Grimm & Wilhelm Grimm",
+        category:"حكايات",
+        language:"English",
+        description:"Classic European fairy tales.",
+        url:"https://www.gutenberg.org/ebooks/2591"
+    },
+
+    {
+        title:"The Arabian Nights",
+        author:"Traditional Tales",
+        category:"حكايات عربية",
+        language:"English",
+        description:"Classic tales from the Arab and Eastern tradition.",
+        url:"https://www.gutenberg.org/ebooks/128"
+    },
+
+    {
+        title:"The Wonderful Garden",
+        author:"Traditional",
+        category:"حكايات",
+        language:"English",
+        description:"Classic public-domain literature.",
+        url:"https://www.gutenberg.org/"
+    },
+
+    {
+        title:"The Secret Agent",
+        author:"Joseph Conrad",
+        category:"غموض",
+        language:"English",
+        description:"A classic mystery and political novel.",
+        url:"https://www.gutenberg.org/ebooks/974"
+    },
+
+    {
+        title:"The Red Badge of Courage",
+        author:"Stephen Crane",
+        category:"روايات",
+        language:"English",
+        description:"A classic American novel.",
+        url:"https://www.gutenberg.org/ebooks/73"
+    }
+
+];
+
+
+books = [
+    ...books,
+    ...extraBooks
+];
+
+
+/* إزالة التكرار */
+
+const seen =
+    new Set();
+
+
+books =
+    books.filter(
+        book => {
+
+            const key =
+                String(
+                    book.title || ""
+                ) +
+                "|" +
+                String(
+                    book.author || ""
+                );
+
+
+            if (
+                seen.has(key)
+            ) {
+
+                return false;
+
+            }
+
+
+            seen.add(key);
+
+            return true;
+
+        }
+    );
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+
+const grid =
+    document.getElementById(
+        "grid"
+    );
+
+
+const search =
+    document.getElementById(
+        "search"
+    );
+
+
+const results =
+    document.getElementById(
+        "results"
+    );
+
+
+const filters =
+    document.querySelectorAll(
+        ".filter"
+    );
+
+
+const account =
+    document.getElementById(
+        "account"
+    );
+
+
+const adminButton =
+    document.getElementById(
+        "adminButton"
+    );
+
+
+const readingCount =
+    document.getElementById(
+        "readingCount"
+    );
+
+
+const showReading =
+    document.getElementById(
+        "showReading"
+    );
+
+
+let currentCategory =
+    "الكل";
+
+
+let readingOnly =
+    false;
+
+
+/* ============================================================
+   STATS
+============================================================ */
+
+
+document.getElementById(
+    "total"
+).textContent =
+    books.length;
+
+
+document.getElementById(
+    "arabic"
+).textContent =
+    books.filter(
+        book =>
+            book.language ===
+            "العربية"
+    ).length;
+
+
+document.getElementById(
+    "english"
+).textContent =
+    books.filter(
+        book =>
+            book.language ===
+            "English"
+    ).length;
+
+
+document.getElementById(
+    "categories"
+).textContent =
+    new Set(
+        books.map(
+            book =>
+                book.category
+        )
+    ).size;
+
+
+/* ============================================================
+   ESCAPE
+============================================================ */
+
+
+function escapeHTML(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* ============================================================
+   RENDER
+============================================================ */
+
+
+async function render() {
+
+    let list =
+        [...books];
+
+
+    const query =
+        search.value
+            .trim()
+            .toLowerCase();
+
+
+    if (
+        currentCategory !==
+        "الكل"
+    ) {
+
+        list =
+            list.filter(
+                book =>
+                    book.category ===
+                    currentCategory
+            );
+
+    }
+
+
+    if (query) {
+
+        list =
+            list.filter(
+                book => {
+
+                    const text =
+                        [
+                            book.title,
+                            book.author,
+                            book.category,
+                            book.language,
+                            book.description
+                        ]
+                        .join(" ")
+                        .toLowerCase();
+
+
+                    return text.includes(
+                        query
+                    );
+
+                }
+            );
+
+    }
+
+
+    if (readingOnly) {
+
+        const user =
+            await window.gravityAuth
+                ?.getCurrentUser();
+
+
+        if (!user) {
+
+            showLoginMessage();
+
+            return;
+
+        }
+
+
+        const later =
+            await window.gravityReadLater
+                .getAll();
+
+
+        const urls =
+            new Set(
+                later.map(
+                    item =>
+                        item.url
+                )
+            );
+
+
+        list =
+            list.filter(
+                book =>
+                    urls.has(
+                        book.url
+                    )
+            );
+
+    }
+
+
+    results.textContent =
+        list.length +
+        " كتاب";
+
+
+    if (!list.length) {
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <strong>
+                    🌌 لا توجد نتائج
+                </strong>
+
+                جرّب تغيير البحث أو التصنيف.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        list.map(
+            (book,index) => `
+
+                <article
+                    class="card"
+                    data-index="${index}"
+                >
+
+                    <div class="cover">
+                        📖
                     </div>
 
-                </div>
-
-
-                <div class="search-box">
-
-                    <span class="search-icon">
-                        🔎
+                    <span class="lang">
+                        ${escapeHTML(
+                            book.language ||
+                            "كتاب"
+                        )}
                     </span>
 
-                    <input
-                        id="gravity-search"
-                        type="search"
-                        autocomplete="off"
-                        placeholder="ابحث عن كتاب، مؤلف، تصنيف..."
-                    >
+                    <h3>
+                        ${escapeHTML(
+                            book.title
+                        )}
+                    </h3>
 
-                </div>
-
-
-                <div
-                    class="filters"
-                    id="gravity-filters"
-                >
-
-                    <button
-                        type="button"
-                        class="filter active"
-                        data-category="الكل"
-                    >
-                        الكل
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="روايات عربية"
-                    >
-                        روايات عربية
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="أدب عربي"
-                    >
-                        أدب عربي
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="خيال علمي"
-                    >
-                        خيال علمي
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="فضاء وفانتازيا"
-                    >
-                        فضاء وفانتازيا
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="فانتازيا"
-                    >
-                        فانتازيا
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="مغامرات"
-                    >
-                        مغامرات
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="غموض"
-                    >
-                        غموض
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="رعب وفانتازيا"
-                    >
-                        رعب
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="قصص مصورة"
-                    >
-                        قصص مصورة
-                    </button>
-
-                    <button
-                        type="button"
-                        class="filter"
-                        data-category="حكايات عربية"
-                    >
-                        حكايات عربية
-                    </button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 RECENT
-            ================================================== -->
-
-            <section class="recent-section">
-
-                <div class="section-head">
-
-                    <div>
-
-                        <h2>
-                            وصل حديثًا إلى المدار
-                        </h2>
-
-                        <p>
-                            آخر الكتب الموجودة في مكتبتك.
-                        </p>
-
+                    <div class="author">
+                        ${escapeHTML(
+                            book.author
+                        )}
                     </div>
 
-                    <a
-                        href="#all-books"
-                        class="section-link"
-                    >
-                        عرض المكتبة كاملة ↓
-                    </a>
-
-                </div>
-
-
-                <div
-                    class="recent-grid"
-                    id="gravity-recent-grid"
-                >
-
-                    <div class="state-box">
-                        جاري تحميل الكتب...
+                    <div class="description">
+                        ${escapeHTML(
+                            book.description ||
+                            "كتاب متاح من مصدر قانوني."
+                        )}
                     </div>
 
-                </div>
+                    <div class="category">
+                        ${escapeHTML(
+                            book.category ||
+                            "عام"
+                        )}
+                    </div>
 
-            </section>
+                    <div class="card-actions">
 
-
-
-            <!-- =================================================
-                 ALL BOOKS
-            ================================================== -->
-
-            <section
-                class="library-section"
-                id="all-books"
-            >
-
-                <div class="section-head">
-
-                    <div>
-
-                        <h2>
-                            كل الكتب
-                        </h2>
-
-                        <p
-                            id="gravity-results-text"
+                        <button
+                            class="open"
+                            type="button"
                         >
-                            جاري تحميل المكتبة...
-                        </p>
+                            🚀 فتح
+                        </button>
+
+                        <button
+                            class="icon-button later"
+                            type="button"
+                            title="أقرأها لاحقًا"
+                        >
+                            🔖
+                        </button>
 
                     </div>
 
-                </div>
+                </article>
+
+            `
+        )
+        .join("");
 
 
-                <div
-                    class="book-grid"
-                    id="gravity-book-grid"
-                >
-
-                    <div class="state-box">
-
-                        <div>
-                            <strong>
-                                🚀 جاري تجهيز المدار
-                            </strong>
-
-                            لحظات وتظهر المكتبة.
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
+    const cards =
+        grid.querySelectorAll(
+            ".card"
+        );
 
 
+    for (
+        let i = 0;
+        i < cards.length;
+        i++
+    ) {
 
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-logo">
-            GRAVITY
-        </div>
-
-        <p>
-            المعرفة بلا حدود.
-        </p>
-
-        <p style="margin-top:8px;">
-            منصة رقمية من تطوير
-            <strong style="color:#c4b5fd;">
-                M11
-            </strong>
-            © 2026
-        </p>
-
-    </footer>
+        const card =
+            cards[i];
 
 
-
-    <!-- =========================================================
-         CORE DATA
-    ========================================================== -->
-
-    <script src="books.js?v=20261004"></script>
-
-    <script>
-
-        /* =======================================================
-           GRAVITY CORE
-        ======================================================= */
-
-        let gravityCurrentCategory = "الكل";
+        const book =
+            list[i];
 
 
-        const gravityGrid =
-            document.getElementById(
-                "gravity-book-grid"
+        const open =
+            card.querySelector(
+                ".open"
             );
 
 
-        const gravityRecentGrid =
-            document.getElementById(
-                "gravity-recent-grid"
+        const later =
+            card.querySelector(
+                ".later"
             );
 
 
-        const gravitySearch =
-            document.getElementById(
-                "gravity-search"
-            );
+        open.addEventListener(
+            "click",
+            () => {
 
+                const params =
+                    new URLSearchParams({
 
-        const gravityResults =
-            document.getElementById(
-                "gravity-results-text"
-            );
+                        title:
+                            book.title || "",
 
+                        author:
+                            book.author || "",
 
-        const gravityFilters =
-            document.querySelectorAll(
-                ".filter"
-            );
+                        category:
+                            book.category || "",
 
+                        description:
+                            book.description || "",
 
-        function gravityBooksList() {
+                        url:
+                            book.url || "",
 
-            try {
-
-                if (
-                    typeof getGravityBooks ===
-                    "function"
-                ) {
-
-                    const books =
-                        getGravityBooks();
-
-                    return Array.isArray(books)
-                        ? books
-                        : [];
-
-                }
-
-            } catch (error) {
-
-                console.error(
-                    "Gravity books error:",
-                    error
-                );
-
-            }
-
-            return [];
-
-        }
-
-
-        function gravityEscape(value) {
-
-            return String(
-                value ?? ""
-            )
-            .replace(
-                /&/g,
-                "&amp;"
-            )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
-
-        }
-
-
-        function gravityUpdateStats(
-            books
-        ) {
-
-            const total =
-                books.length;
-
-
-            const arabic =
-                books.filter(
-                    book =>
-                        String(
+                        language:
                             book.language || ""
-                        ).toLowerCase() ===
-                        "العربية"
-                ).length;
+
+                    });
 
 
-            const english =
-                books.filter(
-                    book =>
-                        String(
-                            book.language || ""
-                        ).toLowerCase() ===
-                        "english"
-                ).length;
+                window.location.href =
+                    "book.html?" +
+                    params.toString();
 
-
-            const categories =
-                new Set(
-                    books.map(
-                        book =>
-                            book.category
-                    )
-                );
-
-
-            const totalElement =
-                document.getElementById(
-                    "stat-total"
-                );
-
-
-            const arabicElement =
-                document.getElementById(
-                    "stat-arabic"
-                );
-
-
-            const englishElement =
-                document.getElementById(
-                    "stat-english"
-                );
-
-
-            const categoriesElement =
-                document.getElementById(
-                    "stat-categories"
-                );
-
-
-            if (totalElement) {
-                totalElement.textContent =
-                    total;
             }
+        );
 
 
-            if (arabicElement) {
-                arabicElement.textContent =
-                    arabic;
-            }
+        const user =
+            await window.gravityAuth
+                ?.getCurrentUser();
 
 
-            if (englishElement) {
-                englishElement.textContent =
-                    english;
-            }
+        /*
+         * المفضلة لا تظهر للزائر.
+         */
+
+        if (user) {
+
+            const favorite =
+                document.createElement(
+                    "button"
+                );
 
 
-            if (categoriesElement) {
-                categoriesElement.textContent =
-                    categories.size;
-            }
-
-        }
+            favorite.type =
+                "button";
 
 
-        function gravityGetFilteredBooks() {
-
-            const books =
-                gravityBooksList();
+            favorite.className =
+                "icon-button";
 
 
-            const query =
-                String(
-                    gravitySearch?.value || ""
-                )
-                .trim()
-                .toLowerCase();
+            favorite.style.position =
+                "absolute";
 
 
-            let result =
-                [...books];
+            favorite.style.top =
+                "14px";
 
 
-            if (
-                gravityCurrentCategory !==
-                "الكل"
-            ) {
+            favorite.style.left =
+                "14px";
 
-                result =
-                    result.filter(
-                        book =>
-                            String(
-                                book.category || ""
-                            ) ===
-                            gravityCurrentCategory
+
+            favorite.style.zIndex =
+                "5";
+
+
+            const isFavorite =
+                await window.gravityFavorites
+                    .isFavorite(
+                        book.url
                     );
 
+
+            favorite.textContent =
+                isFavorite
+                    ? "♥"
+                    : "♡";
+
+
+            if (isFavorite) {
+
+                favorite.classList.add(
+                    "active"
+                );
+
             }
 
 
-            if (query) {
-
-                result =
-                    result.filter(
-                        book => {
-
-                            const searchable =
-                                [
-                                    book.title,
-                                    book.author,
-                                    book.category,
-                                    book.language,
-                                    book.description
-                                ]
-                                .join(" ")
-                                .toLowerCase();
+            favorite.title =
+                isFavorite
+                    ? "إزالة من المفضلة"
+                    : "إضافة للمفضلة";
 
 
-                            return searchable.includes(
-                                query
+            favorite.addEventListener(
+                "click",
+                async event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const result =
+                        await window.gravityFavorites
+                            .toggle(
+                                book
                             );
 
-                        }
-                    );
-
-            }
-
-
-            return result;
-
-        }
-
-
-        function gravityOpenBook(
-            book
-        ) {
-
-            if (
-                typeof openGravityBook ===
-                "function"
-            ) {
-
-                openGravityBook(
-                    book
-                );
-
-                return;
-            }
-
-
-            const params =
-                new URLSearchParams({
-                    title:
-                        book.title || "",
-                    author:
-                        book.author || "",
-                    category:
-                        book.category || "",
-                    description:
-                        book.description || "",
-                    url:
-                        book.url || "",
-                    language:
-                        book.language || ""
-                });
-
-
-            window.location.href =
-                "book.html?" +
-                params.toString();
-
-        }
-
-
-        /* =======================================================
-           RECENT
-        ======================================================= */
-
-        function renderRecentBooks() {
-
-            if (!gravityRecentGrid) {
-                return;
-            }
-
-
-            const books =
-                gravityBooksList();
-
-
-            if (!books.length) {
-
-                gravityRecentGrid.innerHTML = `
-                    <div class="state-box">
-                        <div>
-                            <strong>
-                                🌌 المكتبة فارغة
-                            </strong>
-                            لم تتم إضافة كتب بعد.
-                        </div>
-                    </div>
-                `;
-
-                return;
-            }
-
-
-            const recent =
-                [...books]
-                    .reverse()
-                    .slice(0, 6);
-
-
-            gravityRecentGrid.innerHTML =
-                recent.map(
-                    book => `
-
-                        <article class="recent-card">
-
-                            <div class="recent-top">
-
-                                <div class="recent-icon">
-                                    📖
-                                </div>
-
-                                <div class="recent-tag">
-                                    ● داخل المدار
-                                </div>
-
-                            </div>
-
-                            <h3>
-                                ${gravityEscape(book.title)}
-                            </h3>
-
-                            <div class="recent-author">
-                                ${gravityEscape(book.author)}
-                            </div>
-
-                        </article>
-
-                    `
-                )
-                .join("");
-
-        }
-
-
-        /* =======================================================
-           BOOK CARDS
-        ======================================================= */
-
-        function renderLibrary() {
-
-            if (!gravityGrid) {
-                return;
-            }
-
-
-            const books =
-                gravityGetFilteredBooks();
-
-
-            if (gravityResults) {
-
-                gravityResults.textContent =
-                    books.length +
-                    " كتاب متاح في النتائج";
-
-            }
-
-
-            if (!books.length) {
-
-                gravityGrid.innerHTML = `
-
-                    <div class="state-box">
-
-                        <div>
-
-                            <strong>
-                                🌌 لم نجد ما تبحث عنه
-                            </strong>
-
-                            جرّب اسمًا مختلفًا أو اختر تصنيفًا آخر.
-
-                        </div>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-
-            gravityGrid.innerHTML =
-                books.map(
-                    (book, index) => {
-
-                        return `
-
-                            <article
-                                class="book-card"
-                                data-gravity-book
-                                data-index="${index}"
-                            >
-
-                                <div class="book-cover">
-                                    📖
-                                </div>
-
-
-                                <div class="book-language">
-                                    ${gravityEscape(
-                                        book.language || "كتاب"
-                                    )}
-                                </div>
-
-
-                                <h3>
-                                    ${gravityEscape(
-                                        book.title
-                                    )}
-                                </h3>
-
-
-                                <div class="book-author">
-                                    ${gravityEscape(
-                                        book.author
-                                    )}
-                                </div>
-
-
-                                <div class="book-description">
-                                    ${gravityEscape(
-                                        book.description ||
-                                        "اكتشف هذا الكتاب من مصدره الرسمي."
-                                    )}
-                                </div>
-
-
-                                <div class="book-category">
-                                    ${gravityEscape(
-                                        book.category ||
-                                        "عام"
-                                    )}
-                                </div>
-
-
-                                <button
-                                    type="button"
-                                    class="book-open"
-                                >
-                                    🚀 فتح الكتاب
-                                </button>
-
-                            </article>
-
-                        `;
-
-                    }
-                )
-                .join("");
-
-
-            const cards =
-                gravityGrid.querySelectorAll(
-                    "[data-gravity-book]"
-                );
-
-
-            books.forEach(
-                (book, index) => {
-
-                    const card =
-                        cards[index];
-
-
-                    if (!card) {
-                        return;
-                    }
-
-
-                    card.__gravityBook =
-                        book;
-
-
-                    const openButton =
-                        card.querySelector(
-                            ".book-open"
-                        );
-
-
-                    if (openButton) {
-
-                        openButton.addEventListener(
-                            "click",
-                            function () {
-
-                                gravityOpenBook(
-                                    book
-                                );
-
-                            }
-                        );
-
-                    }
-
-                }
-            );
-
-
-            /*
-             * المفضلة الخاصة بنا
-             */
-
-            setTimeout(
-                gravitySetupFavorites,
-                50
-            );
-
-        }
-
-
-        /* =======================================================
-           FAVORITES
-        ======================================================= */
-
-        async function gravitySetupFavorites() {
-
-            if (
-                !window.gravityFavorites
-            ) {
-                return;
-            }
-
-
-            const cards =
-                gravityGrid?.querySelectorAll(
-                    "[data-gravity-book]"
-                );
-
-
-            if (!cards) {
-                return;
-            }
-
-
-            let user = null;
-
-
-            try {
-
-                if (
-                    window.gravityAuth
-                ) {
-
-                    user =
-                        await window.gravityAuth
-                            .getCurrentUser();
-
-                }
-
-            } catch {
-
-                user = null;
-
-            }
-
-
-            let favorites =
-                new Set();
-
-
-            if (user) {
-
-                try {
-
-                    const rows =
-                        await window.gravityFavorites
-                            .getAll();
-
-
-                    favorites =
-                        new Set(
-                            rows.map(
-                                row =>
-                                    row.book_url
-                            )
-                        );
-
-                } catch (error) {
-
-                    console.error(
-                        "Favorites load:",
-                        error
-                    );
-
-                }
-
-            }
-
-
-            cards.forEach(
-                card => {
 
                     if (
-                        card.querySelector(
-                            ".gravity-favorite-button"
-                        )
+                        result.success
                     ) {
-                        return;
-                    }
+
+                        const now =
+                            await window.gravityFavorites
+                                .isFavorite(
+                                    book.url
+                                );
 
 
-                    const book =
-                        card.__gravityBook;
+                        favorite.textContent =
+                            now
+                                ? "♥"
+                                : "♡";
 
 
-                    if (
-                        !book ||
-                        !book.url
-                    ) {
-                        return;
-                    }
-
-
-                    const button =
-                        document.createElement(
-                            "button"
+                        favorite.classList.toggle(
+                            "active",
+                            now
                         );
 
-
-                    button.type =
-                        "button";
-
-
-                    button.className =
-                        "gravity-favorite-button";
-
-
-                    const active =
-                        favorites.has(
-                            book.url
-                        );
-
-
-                    button.textContent =
-                        active
-                            ? "♥"
-                            : "♡";
-
-
-                    if (active) {
-
-                        button.style.color =
-                            "#f0abfc";
-
-                        button.style.background =
-                            "rgba(126,34,206,.35)";
-
-                        button.style.boxShadow =
-                            "0 0 25px rgba(192,132,252,.28)";
-
                     }
-
-
-                    button.setAttribute(
-                        "aria-label",
-                        active
-                            ? "إزالة من المفضلة"
-                            : "إضافة إلى المفضلة"
-                    );
-
-
-                    button.addEventListener(
-                        "click",
-                        async function (event) {
-
-                            event.preventDefault();
-
-                            event.stopPropagation();
-
-
-                            try {
-
-                                const currentUser =
-                                    window.gravityAuth
-                                        ? await window.gravityAuth
-                                            .getCurrentUser()
-                                        : null;
-
-
-                                if (!currentUser) {
-
-                                    const login =
-                                        confirm(
-                                            "⭐ سجّل دخولك أولًا لاستخدام المفضلة.\n\nهل تريد تسجيل الدخول؟"
-                                        );
-
-
-                                    if (login) {
-
-                                        window.location.href =
-                                            "login.html";
-
-                                    }
-
-                                    return;
-
-                                }
-
-
-                                button.disabled =
-                                    true;
-
-
-                                const result =
-                                    await window.gravityFavorites
-                                        .toggle(
-                                            book
-                                        );
-
-
-                                if (
-                                    !result ||
-                                    !result.success
-                                ) {
-
-                                    throw new Error(
-                                        "Favorite update failed"
-                                    );
-
-                                }
-
-
-                                const now =
-                                    await window.gravityFavorites
-                                        .isFavorite(
-                                            book.url
-                                        );
-
-
-                                button.textContent =
-                                    now
-                                        ? "♥"
-                                        : "♡";
-
-
-                                button.style.color =
-                                    now
-                                        ? "#f0abfc"
-                                        : "#e2e8f0";
-
-
-                                button.style.background =
-                                    now
-                                        ? "rgba(126,34,206,.35)"
-                                        : "rgba(3,7,18,.72)";
-
-
-                                button.style.boxShadow =
-                                    now
-                                        ? "0 0 25px rgba(192,132,252,.28)"
-                                        : "none";
-
-
-                                button.setAttribute(
-                                    "aria-label",
-                                    now
-                                        ? "إزالة من المفضلة"
-                                        : "إضافة إلى المفضلة"
-                                );
-
-                            } catch (error) {
-
-                                console.error(
-                                    "Favorite error:",
-                                    error
-                                );
-
-
-                                alert(
-                                    "حصل خطأ أثناء تحديث المفضلة."
-                                );
-
-                            } finally {
-
-                                button.disabled =
-                                    false;
-
-                            }
-
-                        }
-                    );
-
-
-                    card.appendChild(
-                        button
-                    );
 
                 }
+            );
+
+
+            card.appendChild(
+                favorite
             );
 
         }
 
 
-        /* =======================================================
-           FILTERS
-        ======================================================= */
+        /*
+         * أقرأها لاحقًا
+         */
 
-        gravityFilters.forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        gravityFilters.forEach(
-                            item =>
-                                item.classList.remove(
-                                    "active"
-                                )
-                        );
-
-
-                        button.classList.add(
-                            "active"
-                        );
-
-
-                        gravityCurrentCategory =
-                            button.dataset.category ||
-                            "الكل";
-
-
-                        renderLibrary();
-
-                    }
+        const isLater =
+            await window.gravityReadLater
+                ?.has(
+                    book.url
                 );
 
-            }
-        );
 
+        if (isLater) {
 
-        /* =======================================================
-           SEARCH
-        ======================================================= */
-
-        if (gravitySearch) {
-
-            gravitySearch.addEventListener(
-                "input",
-                function () {
-
-                    renderLibrary();
-
-                }
+            later.classList.add(
+                "active"
             );
 
         }
 
 
-        /* =======================================================
-           INITIAL DATA
-        ======================================================= */
-
-        const initialBooks =
-            gravityBooksList();
-
-
-        gravityUpdateStats(
-            initialBooks
-        );
-
-
-        renderRecentBooks();
-
-
-        renderLibrary();
-
-    </script>
-
-
-
-    <!-- =========================================================
-         AUTH
-    ========================================================== -->
-
-    <script src="supabase.js?v=20261004"></script>
-
-    <script src="auth.js?v=20261004"></script>
-
-    <script src="favorites.js?v=20261004"></script>
-
-
-    <script>
-
-        /* =======================================================
-           ACCOUNT / ADMIN
-        ======================================================= */
-
-        async function gravityWaitAuth() {
-
-            for (
-                let i = 0;
-                i < 80;
-                i++
-            ) {
-
-                if (
-                    window.gravityAuth &&
-                    window.gravitySupabaseReady
-                ) {
-
-                    return true;
-
-                }
-
-
-                await new Promise(
-                    resolve =>
-                        setTimeout(
-                            resolve,
-                            100
-                        )
-                );
-
-            }
-
-
-            return false;
-
-        }
-
-
-        function removeAdminButton() {
-
-            const old =
-                document.getElementById(
-                    "gravity-admin-button"
-                );
-
-
-            if (old) {
-                old.remove();
-            }
-
-        }
-
-
-        function createAdminButton() {
-
-            removeAdminButton();
-
-
-            const button =
-                document.createElement(
-                    "a"
-                );
-
-
-            button.id =
-                "gravity-admin-button";
-
-
-            button.href =
-                "admin.html";
-
-
-            button.textContent =
-                "👑 الإدارة";
-
-
-            document.body.appendChild(
-                button
-            );
-
-        }
-
-
-        async function gravityUpdateAccount() {
-
-            const button =
-                document.getElementById(
-                    "gravity-account-button"
-                );
-
-
-            if (!button) {
-                return;
-            }
-
-
-            removeAdminButton();
-
-
-            try {
-
-                const ready =
-                    await gravityWaitAuth();
-
-
-                if (!ready) {
-
-                    button.href =
-                        "login.html";
-
-                    button.textContent =
-                        "⭐ تسجيل الدخول";
-
-                    return;
-
-                }
-
-
-                await window.gravitySupabaseReady;
-
+        later.addEventListener(
+            "click",
+            async () => {
 
                 const user =
                     await window.gravityAuth
-                        .getCurrentUser();
+                        ?.getCurrentUser();
 
 
                 if (!user) {
 
-                    button.href =
-                        "login.html";
-
-                    button.textContent =
-                        "⭐ تسجيل الدخول";
-
-                    return;
-
-                }
+                    const go =
+                        confirm(
+                            "🔖 سجّل دخولك أولًا لاستخدام أقرأها لاحقًا.\n\nهل تريد تسجيل الدخول؟"
+                        );
 
 
-                button.href =
-                    "login.html";
+                    if (go) {
 
-                button.textContent =
-                    "👤 حسابي";
+                        window.location.href =
+                            "login.html";
 
-
-                await window.gravityAuth
-                    .createProfileIfNeeded();
-
-
-                const supabase =
-                    window.gravitySupabase;
-
-
-                const {
-                    data: profile,
-                    error
-                } =
-                    await supabase
-                        .from("profiles")
-                        .select(
-                            "user_id, role, full_name"
-                        )
-                        .eq(
-                            "user_id",
-                            user.id
-                        )
-                        .maybeSingle();
-
-
-                if (error) {
-
-                    console.error(
-                        "Profile:",
-                        error
-                    );
+                    }
 
                     return;
 
                 }
+
+
+                const result =
+                    await window.gravityReadLater
+                        .toggle(
+                            book
+                        );
 
 
                 if (
-                    profile &&
-                    profile.role === "admin"
+                    result.success
                 ) {
 
-                    createAdminButton();
+                    later.classList.toggle(
+                        "active"
+                    );
+
+
+                    updateReadingCount();
 
                 }
 
-            } catch (error) {
+            }
+        );
 
-                console.error(
-                    "Gravity account:",
-                    error
+    }
+
+}
+
+
+/* ============================================================
+   READING COUNT
+============================================================ */
+
+
+async function updateReadingCount() {
+
+    const user =
+        await window.gravityAuth
+            ?.getCurrentUser();
+
+
+    if (!user) {
+
+        readingCount.textContent =
+            "سجّل دخولك لحفظ الكتب التي تريد قراءتها لاحقًا.";
+
+        return;
+
+    }
+
+
+    const list =
+        await window.gravityReadLater
+            .getAll();
+
+
+    readingCount.textContent =
+        list.length +
+        " كتاب محفوظ للقراءة لاحقًا.";
+
+}
+
+
+/* ============================================================
+   LOGIN MESSAGE
+============================================================ */
+
+
+function showLoginMessage() {
+
+    grid.innerHTML = `
+
+        <div class="empty">
+
+            <strong>
+                🔐 سجّل دخولك
+            </strong>
+
+            أقرأها لاحقًا والمفضلة متاحتان للحسابات المسجلة فقط.
+
+            <br><br>
+
+            <a
+                href="login.html"
+                style="
+                    color:#c4b5fd;
+                    text-decoration:none;
+                "
+            >
+                الذهاب لتسجيل الدخول →
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ============================================================
+   FILTERS
+============================================================ */
+
+
+filters.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            async () => {
+
+                filters.forEach(
+                    item =>
+                        item.classList.remove(
+                            "active"
+                        )
                 );
 
 
-                removeAdminButton();
+                button.classList.add(
+                    "active"
+                );
 
 
-                button.href =
-                    "login.html";
+                currentCategory =
+                    button.dataset.category ||
+                    "الكل";
 
-                button.textContent =
-                    "⭐ تسجيل الدخول";
+
+                readingOnly =
+                    false;
+
+
+                showReading.textContent =
+                    "عرض قائمتي";
+
+
+                await render();
 
             }
+        );
+
+    }
+);
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+
+search.addEventListener(
+    "input",
+    async () => {
+
+        readingOnly =
+            false;
+
+        showReading.textContent =
+            "عرض قائمتي";
+
+        await render();
+
+    }
+);
+
+
+/* ============================================================
+   READ LATER BUTTON
+============================================================ */
+
+
+showReading.addEventListener(
+    "click",
+    async () => {
+
+        const user =
+            await window.gravityAuth
+                ?.getCurrentUser();
+
+
+        if (!user) {
+
+            const go =
+                confirm(
+                    "🔖 سجّل دخولك أولًا لفتح قائمة أقرأها لاحقًا.\n\nهل تريد تسجيل الدخول؟"
+                );
+
+
+            if (go) {
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+            return;
 
         }
 
 
-        /*
-         * تشغيل الحساب
-         */
-
-        gravityUpdateAccount();
+        readingOnly =
+            !readingOnly;
 
 
-        /*
-         * لو حصل Login / Logout
-         */
-
-        async function setupAuthListener() {
-
-            try {
-
-                await gravityWaitAuth();
+        showReading.textContent =
+            readingOnly
+                ? "عرض كل الكتب"
+                : "عرض قائمتي";
 
 
-                if (
-                    !window.gravitySupabase
-                ) {
-                    return;
-                }
+        await render();
+
+    }
+);
 
 
-                window.gravitySupabase.auth
-                    .onAuthStateChange(
-                        function () {
+/* ============================================================
+   ACCOUNT + ADMIN
+============================================================ */
 
-                            setTimeout(
-                                function () {
 
-                                    gravityUpdateAccount();
+async function updateAccount() {
 
-                                    gravitySetupFavorites();
+    try {
 
-                                },
-                                150
-                            );
+        const user =
+            await window.gravityAuth
+                .getCurrentUser();
 
-                        }
-                    );
 
-            } catch (error) {
+        if (!user) {
 
-                console.error(
-                    "Auth listener:",
-                    error
-                );
+            account.textContent =
+                "⭐ تسجيل الدخول";
 
-            }
+            account.href =
+                "login.html";
+
+
+            adminButton.style.display =
+                "none";
+
+
+            await updateReadingCount();
+
+            return;
 
         }
 
 
-        setupAuthListener();
+        account.textContent =
+            "👤 حسابي";
 
-    </script>
+        account.href =
+            "login.html";
 
+
+        /*
+         * فقط الأدمن يشوف زر الإدارة.
+         */
+
+        const admin =
+            await window.gravityAuth
+                .isAdmin();
+
+
+        if (admin) {
+
+            adminButton.style.display =
+                "inline-flex";
+
+        } else {
+
+            adminButton.style.display =
+                "none";
+
+        }
+
+
+        await updateReadingCount();
+
+
+    } catch (error) {
+
+        console.error(
+            "Gravity account:",
+            error
+        );
+
+
+        account.textContent =
+            "⭐ تسجيل الدخول";
+
+
+        account.href =
+            "login.html";
+
+
+        adminButton.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* ============================================================
+   START
+============================================================ */
+
+
+(async function start() {
+
+    try {
+
+        await window.gravitySupabaseReady;
+
+    } catch {
+
+        // Supabase may still initialize.
+
+    }
+
+
+    await updateAccount();
+
+    await updateReadingCount();
+
+    await render();
+
+
+    /*
+     * تحديث الواجهة بعد Login / Logout
+     */
+
+    if (
+        window.gravitySupabase
+    ) {
+
+        window.gravitySupabase.auth
+            .onAuthStateChange(
+                () => {
+
+                    setTimeout(
+                        async () => {
+
+                            await updateAccount();
+
+                            await updateReadingCount();
+
+                            await render();
+
+                        },
+                        200
+                    );
+
+                }
+            );
+
+    }
+
+})();
+
+</script>
 
 </body>
 
-</html>
+        </html> 
