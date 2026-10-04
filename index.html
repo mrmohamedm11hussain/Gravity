@@ -3,13 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Gravity — مكتبتك الرقمية</title>
-
-  <meta
-    name="description"
-    content="Gravity — مكتبة رقمية حديثة لاكتشاف الكتب وقراءتها."
-  >
+  <title>Gravity | المكتبة الرقمية</title>
 
   <style>
     * {
@@ -18,330 +12,137 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #f5f7fb;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f6f8fc;
       color: #172033;
-      min-height: 100vh;
+      line-height: 1.7;
     }
 
     button,
     input {
-      font: inherit;
+      font-family: inherit;
     }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* =========================
-       HEADER
-    ========================== */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid #e8ebf2;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #e7eaf0;
     }
 
-    .navbar {
+    .nav {
       max-width: 1200px;
       margin: auto;
-      min-height: 78px;
-      padding: 0 22px;
+      padding: 16px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 20px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 23px;
+    .logo {
+      font-size: 27px;
+      font-weight: 900;
+      color: #111827;
     }
 
-    .brand-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: #171c2f;
-      color: white;
-      font-size: 21px;
-      box-shadow: 0 8px 22px rgba(23, 28, 47, 0.18);
-    }
-
-    .brand small {
-      display: block;
-      color: #7b8395;
-      font-size: 10px;
-      margin-top: 2px;
-      font-weight: 500;
+    .logo span {
+      color: #6d5dfc;
     }
 
     nav {
       display: flex;
-      align-items: center;
-      gap: 7px;
+      gap: 22px;
     }
 
     nav a {
-      padding: 10px 14px;
-      border-radius: 11px;
-      color: #626b7d;
-      font-size: 14px;
-      transition: 0.25s ease;
+      color: #4b5563;
+      text-decoration: none;
+      font-weight: 700;
     }
 
     nav a:hover {
-      background: #f0f2f7;
-      color: #171c2f;
+      color: #6d5dfc;
     }
-
-    .menu-button {
-      display: none;
-      border: 0;
-      background: #f0f2f7;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      font-size: 20px;
-    }
-
-    /* =========================
-       HERO
-    ========================== */
 
     .hero {
       max-width: 1200px;
-      margin: auto;
-      padding: 80px 22px 65px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .hero-content {
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #e9ebff;
-      color: #4b55c8;
-      padding: 8px 13px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      margin: 35px auto;
+      padding: 70px 35px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.2), transparent 30%),
+        linear-gradient(135deg, #111827, #3730a3);
+      color: white;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero h1 {
-      font-size: clamp(42px, 6vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 22px;
-      color: #14192a;
-    }
-
-    .hero h1 span {
-      color: #5964e8;
+      font-size: clamp(35px, 6vw, 64px);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      color: #687185;
+      max-width: 650px;
+      color: #e5e7eb;
       font-size: 18px;
-      line-height: 1.9;
-      max-width: 620px;
       margin-bottom: 30px;
     }
 
-    .hero-buttons {
+    .search {
+      max-width: 650px;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .primary-button,
-    .secondary-button {
-      border: 0;
-      padding: 14px 21px;
-      border-radius: 13px;
-      font-weight: 700;
-      transition: 0.25s ease;
-    }
-
-    .primary-button {
-      background: #171c2f;
-      color: white;
-      box-shadow: 0 12px 25px rgba(23, 28, 47, 0.18);
-    }
-
-    .primary-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 17px 30px rgba(23, 28, 47, 0.23);
-    }
-
-    .secondary-button {
       background: white;
-      color: #252c40;
-      border: 1px solid #e2e6ee;
+      padding: 7px;
+      border-radius: 16px;
     }
 
-    .secondary-button:hover {
-      transform: translateY(-3px);
-      background: #f8f9fc;
+    .search input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 14px;
+      font-size: 16px;
+      color: #111827;
     }
 
-    /* =========================
-       HERO VISUAL
-    ========================== */
-
-    .hero-visual {
-      min-height: 390px;
-      border-radius: 32px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 75% 20%, rgba(122, 133, 255, 0.7), transparent 28%),
-        radial-gradient(circle at 20% 80%, rgba(80, 210, 190, 0.35), transparent 30%),
-        #171c2f;
-      box-shadow: 0 25px 60px rgba(23, 28, 47, 0.18);
-      animation: fadeUp 0.9s 0.1s ease both;
+    .search button {
+      border: none;
+      border-radius: 12px;
+      padding: 0 22px;
+      background: #6d5dfc;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    .orbit {
-      position: absolute;
-      width: 290px;
-      height: 290px;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 50%;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .orbit.two {
-      width: 200px;
-      height: 200px;
-    }
-
-    .book-shape {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) rotate(-7deg);
-      width: 145px;
-      height: 190px;
-      border-radius: 8px 18px 18px 8px;
-      background: #ffffff;
-      box-shadow: 18px 20px 45px rgba(0,0,0,0.28);
-      padding: 25px 20px;
-    }
-
-    .book-shape::before {
-      content: "";
-      position: absolute;
-      left: 15px;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: #dfe2ec;
-    }
-
-    .book-title-line {
-      height: 7px;
-      background: #171c2f;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      width: 75%;
-    }
-
-    .book-title-line.short {
-      width: 48%;
-    }
-
-    .floating-card {
-      position: absolute;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 12px 15px;
-      border-radius: 14px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-      font-size: 12px;
-      font-weight: 700;
-      color: #20263a;
-    }
-
-    .card-one {
-      top: 18%;
-      right: 8%;
-      animation: floating 4s ease-in-out infinite;
-    }
-
-    .card-two {
-      bottom: 18%;
-      left: 8%;
-      animation: floating 4.5s 0.5s ease-in-out infinite;
-    }
-
-    /* =========================
-       SECTION
-    ========================== */
-
-    section {
+    .container {
       max-width: 1200px;
       margin: auto;
-      padding: 65px 22px;
+      padding: 20px 22px 60px;
     }
 
-    .section-heading {
+    .section-title {
+      margin: 35px 0 18px;
       display: flex;
       justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 28px;
+      align-items: center;
+      gap: 15px;
     }
 
-    .section-heading h2 {
-      font-size: 30px;
-      margin-bottom: 7px;
+    .section-title h2 {
+      font-size: 28px;
     }
 
-    .section-heading p {
-      color: #788195;
-      font-size: 14px;
+    .section-title p {
+      color: #6b7280;
     }
-
-    .view-all {
-      color: #5964e8;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       CATEGORIES
-    ========================== */
 
     .categories {
       display: grid;
@@ -350,246 +151,129 @@
     }
 
     .category {
+      border: 1px solid #e5e7eb;
       background: white;
-      border: 1px solid #e8ebf2;
-      border-radius: 20px;
-      padding: 24px;
-      transition: 0.3s ease;
+      border-radius: 18px;
+      padding: 22px;
+      cursor: pointer;
+      transition: .25s;
     }
 
     .category:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 35px rgba(30, 38, 65, 0.08);
+      transform: translateY(-5px);
+      border-color: #6d5dfc;
+      box-shadow: 0 12px 30px rgba(0,0,0,.07);
     }
 
     .category-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 15px;
-      background: #f0f1ff;
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-      margin-bottom: 17px;
+      font-size: 32px;
+      margin-bottom: 8px;
     }
 
     .category h3 {
-      font-size: 16px;
-      margin-bottom: 7px;
+      margin-bottom: 4px;
     }
 
     .category p {
-      color: #858c9c;
-      font-size: 12px;
-      line-height: 1.6;
+      color: #6b7280;
+      font-size: 14px;
     }
-
-    /* =========================
-       BOOKS
-    ========================== */
 
     .books {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 20px;
     }
 
     .book {
       background: white;
-      border: 1px solid #e8ebf2;
+      border: 1px solid #e5e7eb;
       border-radius: 20px;
       overflow: hidden;
-      transition: 0.3s ease;
+      transition: .25s;
     }
 
     .book:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 20px 38px rgba(30, 38, 65, 0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.08);
     }
 
-    .book-cover {
-      height: 205px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #1d2236, #5862dc);
+    .cover {
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg,#111827,#6366f1);
       color: white;
       font-size: 42px;
-      position: relative;
-      overflow: hidden;
     }
 
-    .book-cover::after {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 50%;
+    .book-content {
+      padding: 18px;
     }
 
-    .book-info {
-      padding: 17px;
-    }
-
-    .book-category {
-      color: #6872e6;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .book h3 {
-      font-size: 15px;
+    .book-content h3 {
       margin-bottom: 7px;
+      font-size: 18px;
     }
 
-    .book p {
-      color: #8a91a1;
-      font-size: 12px;
+    .book-content p {
+      color: #6b7280;
+      font-size: 14px;
+      margin-bottom: 14px;
     }
 
-    /* =========================
-       SEARCH
-    ========================== */
-
-    .search-section {
-      background: #171c2f;
-      max-width: 1200px;
-      border-radius: 28px;
-      padding: 45px;
-      color: white;
-      margin-top: 20px;
-      margin-bottom: 70px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .search-section::after {
-      content: "";
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.08);
-      left: -70px;
-      bottom: -130px;
-    }
-
-    .search-section h2 {
-      font-size: 28px;
-      margin-bottom: 9px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .search-section p {
-      color: #aeb5c7;
-      margin-bottom: 22px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .search-box {
-      background: white;
-      border-radius: 14px;
+    .book-buttons {
       display: flex;
-      padding: 5px;
-      max-width: 700px;
-      position: relative;
-      z-index: 2;
+      gap: 8px;
     }
 
-    .search-box input {
+    .book-buttons button {
       flex: 1;
-      border: 0;
-      outline: 0;
-      padding: 14px;
-      min-width: 0;
-      color: #20263a;
-    }
-
-    .search-box button {
-      border: 0;
-      background: #5964e8;
-      color: white;
-      border-radius: 11px;
-      padding: 0 22px;
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      cursor: pointer;
       font-weight: 700;
     }
 
-    /* =========================
-       FOOTER
-    ========================== */
+    .read {
+      background: #111827;
+      color: white;
+    }
+
+    .download {
+      background: #eeeefe;
+      color: #5145cd;
+    }
+
+    .about {
+      margin-top: 60px;
+      padding: 35px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 25px;
+    }
+
+    .about h2 {
+      margin-bottom: 10px;
+    }
+
+    .about p {
+      color: #5b6473;
+      max-width: 800px;
+    }
 
     footer {
-      border-top: 1px solid #e5e8ef;
-      background: white;
-      padding: 30px 22px;
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 30px;
     }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    footer p {
-      color: #858c9c;
-      font-size: 12px;
-    }
-
-    .creator {
-      color: #252c40;
-      font-weight: 800;
-    }
-
-    /* =========================
-       ANIMATIONS
-    ========================== */
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes floating {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    /* =========================
-       MOBILE
-    ========================== */
 
     @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 55px;
-      }
-
-      .hero-visual {
-        min-height: 330px;
-      }
-
-      .categories {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
+      .categories,
       .books {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -597,59 +281,26 @@
       nav {
         display: none;
       }
-
-      .menu-button {
-        display: block;
-      }
     }
 
-    @media (max-width: 560px) {
-      .navbar {
-        min-height: 68px;
+    @media (max-width: 550px) {
+      .categories,
+      .books {
+        grid-template-columns: 1fr;
       }
 
       .hero {
-        padding: 45px 17px;
+        margin: 15px;
+        padding: 45px 22px;
       }
 
-      .hero h1 {
-        font-size: 45px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      section {
-        padding: 48px 17px;
-      }
-
-      .categories,
-      .books {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .category {
-        padding: 17px;
-      }
-
-      .book-cover {
-        height: 160px;
-      }
-
-      .search-section {
-        margin: 20px 17px 50px;
-        padding: 28px 20px;
-      }
-
-      .search-box button {
-        padding: 0 14px;
-      }
-
-      .footer-content {
+      .search {
         flex-direction: column;
-        text-align: center;
+        gap: 7px;
+      }
+
+      .search button {
+        padding: 13px;
       }
     }
   </style>
@@ -657,267 +308,259 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="navbar">
+<header>
+  <div class="nav">
+    <div class="logo">Gravi<span>ty</span></div>
 
-      <a href="#" class="brand">
-        <div class="brand-icon">G</div>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#categories">التصنيفات</a>
+      <a href="#books">الكتب</a>
+      <a href="#about">عن Gravity</a>
+    </nav>
+  </div>
+</header>
 
-        <div>
-          Gravity
-          <small>Digital Library</small>
-        </div>
-      </a>
+<main id="home">
 
-      <nav>
-        <a href="#home">الرئيسية</a>
-        <a href="#categories">التصنيفات</a>
-        <a href="#books">الكتب</a>
-        <a href="#about">عن Gravity</a>
-      </nav>
+  <section class="hero">
+    <h1>اكتشف عالمًا جديدًا من المعرفة.</h1>
 
-      <button class="menu-button" aria-label="فتح القائمة">
-        ☰
-      </button>
+    <p>
+      Gravity مكتبة رقمية تجمع الكتب والمعرفة في مكان واحد،
+      لتجعل الوصول إلى المحتوى المفيد أسهل وأبسط.
+    </p>
 
+    <div class="search">
+      <input id="searchInput" type="text" placeholder="ابحث عن كتاب أو مؤلف...">
+      <button onclick="searchBooks()">بحث</button>
     </div>
-  </header>
+  </section>
 
+  <div class="container">
 
-  <!-- HERO -->
-  <main id="home">
-
-    <div class="hero">
-
-      <div class="hero-content">
-
-        <div class="badge">
-          ✦ مكتبتك الرقمية
-        </div>
-
-        <h1>
-          اكتشف عالمًا<br>
-          من <span>الكتب.</span>
-        </h1>
-
-        <p>
-          Gravity هي مكتبة رقمية حديثة تساعدك على اكتشاف
-          الكتب والمعرفة في مكان واحد، بطريقة بسيطة ومريحة.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#books" class="primary-button">
-            استكشف الكتب
-          </a>
-
-          <a href="#categories" class="secondary-button">
-            تصفح التصنيفات
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="hero-visual">
-
-        <div class="orbit"></div>
-        <div class="orbit two"></div>
-
-        <div class="book-shape">
-          <div class="book-title-line"></div>
-          <div class="book-title-line short"></div>
-          <br>
-          <div class="book-title-line"></div>
-          <div class="book-title-line short"></div>
-        </div>
-
-        <div class="floating-card card-one">
-          📚 آلاف الأفكار
-        </div>
-
-        <div class="floating-card card-two">
-          ✦ اكتشف شيئًا جديدًا
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- CATEGORIES -->
     <section id="categories">
-
-      <div class="section-heading">
+      <div class="section-title">
         <div>
-          <h2>تصفح حسب اهتمامك</h2>
-          <p>اختر المجال الذي تريد استكشافه.</p>
+          <h2>استكشف الأقسام</h2>
+          <p>اختر المجال الذي تريد القراءة فيه.</p>
         </div>
       </div>
 
       <div class="categories">
 
-        <div class="category">
-          <div class="category-icon">🎓</div>
+        <div class="category" onclick="filterBooks('دراسية')">
+          <div class="category-icon">📚</div>
           <h3>كتب دراسية</h3>
-          <p>مراجع وكتب تعليمية لمراحل ومجالات مختلفة.</p>
+          <p>مناهج وكتب تعليمية</p>
         </div>
 
-        <div class="category">
+        <div class="category" onclick="filterBooks('روايات')">
           <div class="category-icon">📖</div>
           <h3>روايات وقصص</h3>
-          <p>اكتشف عوالم وشخصيات وقصصًا جديدة.</p>
+          <p>أدب وقصص وقراءة ممتعة</p>
         </div>
 
-        <div class="category">
-          <div class="category-icon">🧠</div>
+        <div class="category" onclick="filterBooks('علوم')">
+          <div class="category-icon">🔬</div>
           <h3>علوم وثقافة</h3>
-          <p>معرفة وأفكار تساعدك على التعلم والاستكشاف.</p>
+          <p>معرفة وثقافة وعلوم</p>
         </div>
 
-        <div class="category">
+        <div class="category" onclick="filterBooks('لغات')">
           <div class="category-icon">🌍</div>
           <h3>لغات ومعرفة</h3>
-          <p>كتب ومصادر تساعدك على تطوير مهاراتك.</p>
+          <p>تعلم اللغات وتطوير المعرفة</p>
         </div>
 
       </div>
-
     </section>
 
-
-    <!-- BOOKS -->
     <section id="books">
 
-      <div class="section-heading">
+      <div class="section-title">
         <div>
           <h2>كتب مميزة</h2>
-          <p>مجموعة تجريبية سنطورها لاحقًا إلى مكتبة حقيقية.</p>
+          <p id="resultText">مجموعة تجريبية لواجهة المكتبة</p>
         </div>
-
-        <span class="view-all">
-          قريبًا المزيد
-        </span>
       </div>
 
-      <div class="books">
+      <div class="books" id="booksContainer">
 
-        <article class="book">
-          <div class="book-cover">📘</div>
-          <div class="book-info">
-            <div class="book-category">تعليم</div>
-            <h3>كتاب المعرفة</h3>
-            <p>محتوى تعليمي ومعرفي</p>
+        <article class="book" data-category="دراسية">
+          <div class="cover">📘</div>
+          <div class="book-content">
+            <h3>أساسيات الرياضيات</h3>
+            <p>كتب دراسية</p>
+
+            <div class="book-buttons">
+              <button class="read" onclick="readBook('أساسيات الرياضيات')">
+                قراءة
+              </button>
+
+              <button class="download" onclick="downloadBook('أساسيات الرياضيات')">
+                تحميل
+              </button>
+            </div>
           </div>
         </article>
 
-        <article class="book">
-          <div class="book-cover">📕</div>
-          <div class="book-info">
-            <div class="book-category">روايات</div>
-            <h3>عالم من الحكايات</h3>
-            <p>قصص وروايات</p>
+        <article class="book" data-category="روايات">
+          <div class="cover">📕</div>
+          <div class="book-content">
+            <h3>رحلة إلى المجهول</h3>
+            <p>روايات وقصص</p>
+
+            <div class="book-buttons">
+              <button class="read" onclick="readBook('رحلة إلى المجهول')">
+                قراءة
+              </button>
+
+              <button class="download" onclick="downloadBook('رحلة إلى المجهول')">
+                تحميل
+              </button>
+            </div>
           </div>
         </article>
 
-        <article class="book">
-          <div class="book-cover">📗</div>
-          <div class="book-info">
-            <div class="book-category">علوم</div>
-            <h3>رحلة إلى المعرفة</h3>
+        <article class="book" data-category="علوم">
+          <div class="cover">📗</div>
+          <div class="book-content">
+            <h3>عالم العلوم</h3>
             <p>علوم وثقافة</p>
+
+            <div class="book-buttons">
+              <button class="read" onclick="readBook('عالم العلوم')">
+                قراءة
+              </button>
+
+              <button class="download" onclick="downloadBook('عالم العلوم')">
+                تحميل
+              </button>
+            </div>
           </div>
         </article>
 
-        <article class="book">
-          <div class="book-cover">📙</div>
-          <div class="book-info">
-            <div class="book-category">لغات</div>
-            <h3>بوابة اللغات</h3>
-            <p>تعلم وتطوير المهارات</p>
+        <article class="book" data-category="لغات">
+          <div class="cover">📙</div>
+          <div class="book-content">
+            <h3>تعلم الإنجليزية</h3>
+            <p>لغات ومعرفة</p>
+
+            <div class="book-buttons">
+              <button class="read" onclick="readBook('تعلم الإنجليزية')">
+                قراءة
+              </button>
+
+              <button class="download" onclick="downloadBook('تعلم الإنجليزية')">
+                تحميل
+              </button>
+            </div>
           </div>
         </article>
 
       </div>
-
     </section>
 
-
-    <!-- SEARCH -->
-    <section class="search-section">
-
-      <h2>ابحث عن كتابك</h2>
+    <section id="about" class="about">
+      <h2>عن Gravity</h2>
 
       <p>
-        ابحث داخل مكتبة Gravity بسهولة.
+        Gravity مشروع مكتبة رقمية يهدف إلى تسهيل الوصول إلى الكتب
+        والمصادر التعليمية والثقافية بشكل منظم وسهل الاستخدام.
+        صُنع بواسطة M11.
       </p>
-
-      <div class="search-box">
-
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="اكتب اسم كتاب أو موضوع..."
-        >
-
-        <button onclick="searchBooks()">
-          بحث
-        </button>
-
-      </div>
-
     </section>
 
+  </div>
+</main>
 
-    <!-- ABOUT -->
-    <section id="about">
+<footer>
+  © 2026 Gravity — صُنع بواسطة M11
+</footer>
 
-      <div class="section-heading">
-        <div>
-          <h2>عن Gravity</h2>
-          <p>
-            مشروع رقمي من M11 لبناء تجربة مختلفة لاكتشاف المعرفة.
-          </p>
-        </div>
-      </div>
+<script>
 
-    </section>
+  function searchBooks() {
 
-  </main>
+    const input =
+      document.getElementById("searchInput").value
+      .trim()
+      .toLowerCase();
 
+    const books =
+      document.querySelectorAll(".book");
 
-  <!-- FOOTER -->
-  <footer>
+    let found = 0;
 
-    <div class="footer-content">
+    books.forEach(book => {
 
-      <p>
-        © 2026 Gravity — جميع الحقوق محفوظة
-      </p>
+      const title =
+        book.querySelector("h3")
+        .textContent
+        .toLowerCase();
 
-      <p>
-        صُنع بواسطة <span class="creator">M11</span>
-      </p>
-
-    </div>
-
-  </footer>
-
-
-  <script>
-    function searchBooks() {
-      const input = document.getElementById("searchInput");
-      const value = input.value.trim();
-
-      if (!value) {
-        alert("اكتب اسم كتاب أو موضوع للبحث.");
-        input.focus();
-        return;
+      if (!input || title.includes(input)) {
+        book.style.display = "";
+        found++;
+      } else {
+        book.style.display = "none";
       }
 
-      alert("سنبحث عن: " + value);
-    }
-  </script>
+    });
+
+    document.getElementById("resultText").textContent =
+      input
+      ? `تم العثور على ${found} كتاب`
+      : "مجموعة تجريبية لواجهة المكتبة";
+  }
+
+
+  function filterBooks(category) {
+
+    const books =
+      document.querySelectorAll(".book");
+
+    let found = 0;
+
+    books.forEach(book => {
+
+      if (book.dataset.category === category) {
+        book.style.display = "";
+        found++;
+      } else {
+        book.style.display = "none";
+      }
+
+    });
+
+    document.getElementById("resultText").textContent =
+      `قسم ${category} — ${found} كتاب`;
+  }
+
+
+  function readBook(bookName) {
+
+    alert(
+      "سيتم فتح كتاب: " +
+      bookName +
+      "\n\nسنربط الكتاب الحقيقي هنا في المرحلة القادمة."
+    );
+
+  }
+
+
+  function downloadBook(bookName) {
+
+    alert(
+      "تحميل كتاب: " +
+      bookName +
+      "\n\nسنربط ملف الكتاب هنا لاحقًا."
+    );
+
+  }
+
+</script>
 
 </body>
-  </html>
+            </html>
