@@ -1,516 +1,1057 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>تسجيل الدخول — Gravity × M11</title>
+<meta charset="UTF-8">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0"
+>
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-family: Tahoma, Arial, sans-serif;
-            color: #fff;
-            background:
-                radial-gradient(circle at 20% 20%, rgba(124, 58, 237, .25), transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, .18), transparent 30%),
-                #030712;
-        }
+<title>Gravity — الحساب</title>
 
-        .stars,
-        .stars::before,
-        .stars::after {
-            position: fixed;
-            inset: 0;
-            content: "";
-            pointer-events: none;
-        }
+<style>
 
-        .stars {
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px);
-            background-size: 70px 70px;
-            opacity: .35;
-            animation: starsMove 20s linear infinite;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .stars::before {
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1px);
-            background-size: 110px 110px;
-            transform: translate(-30px, -20px);
-        }
+body {
 
-        @keyframes starsMove {
-            from {
-                transform: translateY(0);
-            }
-            to {
-                transform: translateY(70px);
-            }
-        }
+    min-height: 100vh;
 
-        .page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 18px;
-            position: relative;
-            z-index: 2;
-        }
+    display: flex;
 
-        .login-card {
-            width: min(460px, 100%);
-            padding: 34px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,.12);
-            background: rgba(10, 15, 35, .82);
-            backdrop-filter: blur(22px);
-            box-shadow:
-                0 30px 80px rgba(0,0,0,.55),
-                0 0 70px rgba(99,102,241,.12);
-            animation: cardIn .8s ease;
-        }
+    align-items: center;
 
-        @keyframes cardIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+    justify-content: center;
 
-        .brand {
-            text-align: center;
-            margin-bottom: 28px;
-        }
+    padding: 20px;
 
-        .planet {
-            width: 105px;
-            height: 105px;
-            margin: 0 auto 18px;
-            border-radius: 50%;
-            position: relative;
-            background:
-                radial-gradient(circle at 30% 25%, #a78bfa, transparent 8%),
-                radial-gradient(circle at 65% 65%, #0891b2, transparent 18%),
-                linear-gradient(135deg, #312e81, #06b6d4);
-            box-shadow:
-                0 0 35px rgba(99,102,241,.6),
-                inset -15px -12px 30px rgba(0,0,0,.45);
-            animation: planetFloat 4s ease-in-out infinite;
-        }
+    color: #f8fafc;
 
-        .planet::after {
-            content: "";
-            position: absolute;
-            width: 145px;
-            height: 35px;
-            border: 2px solid rgba(167,139,250,.8);
-            border-radius: 50%;
-            top: 35px;
-            left: -20px;
-            transform: rotate(-18deg);
-            box-shadow: 0 0 15px rgba(103,232,249,.3);
-        }
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-        @keyframes planetFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(-3deg);
-            }
-            50% {
-                transform: translateY(-9px) rotate(3deg);
-            }
-        }
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(124,58,237,.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(8,145,178,.18),
+            transparent 30%
+        ),
+        #020617;
 
-        .brand h1 {
-            margin: 0;
-            font-size: 30px;
-            letter-spacing: .5px;
-        }
+    overflow-x: hidden;
 
-        .brand p {
-            color: #a5b4fc;
-            margin: 9px 0 0;
-            font-size: 14px;
-        }
+}
 
-        .tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            padding: 5px;
-            border-radius: 15px;
-            background: rgba(255,255,255,.05);
-            margin-bottom: 22px;
-        }
 
-        .tab {
-            border: 0;
-            border-radius: 11px;
-            padding: 12px;
-            background: transparent;
-            color: #94a3b8;
-            cursor: pointer;
-            font-size: 15px;
-        }
+.stars {
 
-        .tab.active {
-            color: white;
-            background: rgba(99,102,241,.35);
-        }
+    position: fixed;
 
-        .field {
-            margin-bottom: 16px;
-        }
+    inset: 0;
 
-        .field label {
-            display: block;
-            margin-bottom: 7px;
-            color: #cbd5e1;
-            font-size: 14px;
-        }
+    pointer-events: none;
 
-        .field input {
-            width: 100%;
-            padding: 14px 15px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,.1);
-            outline: none;
-            color: white;
-            background: rgba(255,255,255,.055);
-            font-size: 15px;
-            transition: .25s;
-        }
+    opacity: .55;
 
-        .field input:focus {
-            border-color: #818cf8;
-            box-shadow: 0 0 0 3px rgba(129,140,248,.1);
-        }
+    background-image:
+        radial-gradient(
+            circle at 10% 20%,
+            white 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 30% 70%,
+            white 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 70% 30%,
+            white 0 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            white 0 1px,
+            transparent 1.5px
+        );
 
-        .submit {
-            width: 100%;
-            border: 0;
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 5px;
-            color: white;
-            background: linear-gradient(135deg, #7c3aed, #0891b2);
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: .25s;
-        }
+    background-size:
+        250px 250px,
+        330px 330px,
+        410px 410px,
+        300px 300px;
 
-        .submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(79,70,229,.25);
-        }
+}
 
-        .message {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 14px;
-            background: rgba(255,255,255,.06);
-        }
 
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 22px;
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 14px;
-        }
+.panel {
 
-        .back:hover {
-            color: white;
-        }
+    width:
+        min(460px, 100%);
 
-        .hidden {
-            display: none;
-        }
+    padding:
+        32px;
 
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 25px 20px;
-            }
+    border:
+        1px solid
+        rgba(255,255,255,.09);
 
-            .brand h1 {
-                font-size: 26px;
-            }
-        }
-    </style>
+    border-radius:
+        28px;
+
+    background:
+        rgba(8,13,30,.82);
+
+    backdrop-filter:
+        blur(22px);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,0,0,.4);
+
+}
+
+
+.logo {
+
+    width: 65px;
+    height: 65px;
+
+    margin:
+        0 auto 18px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb,
+            #0891b2
+        );
+
+    box-shadow:
+        0 0 45px
+        rgba(124,58,237,.35);
+
+}
+
+
+.logo::after {
+
+    content: "";
+
+    width: 23px;
+    height: 23px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 20px
+        white;
+
+}
+
+
+h1 {
+
+    text-align: center;
+
+    font-size: 30px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.subtitle {
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.tabs {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 7px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.tab {
+
+    min-height: 44px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    border-radius: 12px;
+
+    color: #94a3b8;
+
+    background:
+        rgba(255,255,255,.03);
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+}
+
+
+.tab.active {
+
+    color: white;
+
+    border-color:
+        rgba(139,92,246,.45);
+
+    background:
+        rgba(124,58,237,.18);
+
+}
+
+
+.field {
+
+    margin-bottom: 14px;
+
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    height: 49px;
+
+    padding:
+        0 14px;
+
+    outline: none;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 13px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-family: inherit;
+
+}
+
+
+input:focus {
+
+    border-color:
+        rgba(139,92,246,.65);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(124,58,237,.08);
+
+}
+
+
+.submit {
+
+    width: 100%;
+
+    min-height: 51px;
+
+    margin-top: 8px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-family: inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb,
+            #0891b2
+        );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(79,70,229,.25);
+
+}
+
+
+.submit:disabled {
+
+    opacity: .6;
+
+    cursor: wait;
+
+}
+
+
+.message {
+
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 13px;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+}
+
+
+.message.show {
+    display: block;
+}
+
+
+.message.error {
+
+    color: #fecaca;
+
+    background:
+        rgba(127,29,29,.25);
+
+    border:
+        1px solid
+        rgba(248,113,113,.18);
+
+}
+
+
+.message.success {
+
+    color: #bbf7d0;
+
+    background:
+        rgba(20,83,45,.25);
+
+    border:
+        1px solid
+        rgba(74,222,128,.18);
+
+}
+
+
+.resend {
+
+    display: none;
+
+    width: 100%;
+
+    min-height: 44px;
+
+    margin-top: 10px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    border-radius: 12px;
+
+    color: #c4b5fd;
+
+    background:
+        rgba(124,58,237,.07);
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+}
+
+
+.resend.show {
+    display: block;
+}
+
+
+.back {
+
+    display: block;
+
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+}
+
+
+.back:hover {
+    color: white;
+}
+
+
+</style>
+
 </head>
+
 
 <body>
 
 <div class="stars"></div>
 
-<main class="page">
 
-    <section class="login-card">
+<main class="panel">
 
-        <div class="brand">
-            <div class="planet"></div>
+    <div class="logo"></div>
 
-            <h1>Gravity</h1>
 
-            <p>المعرفة بلا حدود · M11</p>
-        </div>
+    <h1>
+        GRAVITY
+    </h1>
 
-        <div class="tabs">
 
-            <button
-                class="tab active"
-                id="loginTab"
-                type="button">
-                تسجيل الدخول
-            </button>
+    <div class="subtitle">
+        حسابك الشخصي في مدار المعرفة
+    </div>
 
-            <button
-                class="tab"
-                id="signupTab"
-                type="button">
-                إنشاء حساب
-            </button>
 
-        </div>
+    <div class="tabs">
 
-        <form id="authForm">
+        <button
+            class="tab active"
+            id="loginTab"
+            type="button"
+        >
+            تسجيل الدخول
+        </button>
 
-            <div
-                class="field hidden"
-                id="nameField">
 
-                <label for="fullName">
-                    الاسم الكامل
-                </label>
+        <button
+            class="tab"
+            id="signupTab"
+            type="button"
+        >
+            إنشاء حساب
+        </button>
 
-                <input
-                    id="fullName"
-                    type="text"
-                    placeholder="اكتب اسمك">
-            </div>
+    </div>
 
-            <div class="field">
 
-                <label for="email">
-                    البريد الإلكتروني
-                </label>
-
-                <input
-                    id="email"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="example@email.com"
-                    required>
-            </div>
-
-            <div class="field">
-
-                <label for="password">
-                    كلمة المرور
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="كلمة المرور"
-                    required>
-            </div>
-
-            <button
-                class="submit"
-                id="submitButton"
-                type="submit">
-
-                دخول إلى Gravity 🚀
-
-            </button>
-
-        </form>
+    <form id="authForm">
 
         <div
-            class="message"
-            id="message">
+            class="field"
+            id="nameField"
+            style="display:none"
+        >
+
+            <label>
+                الاسم
+            </label>
+
+            <input
+                id="nameInput"
+                type="text"
+                autocomplete="name"
+                placeholder="اكتب اسمك"
+            >
+
         </div>
 
-        <a
-            class="back"
-            href="index.html">
-            ← العودة إلى المكتبة
-        </a>
 
-    </section>
+        <div class="field">
+
+            <label>
+                البريد الإلكتروني
+            </label>
+
+            <input
+                id="emailInput"
+                type="email"
+                autocomplete="email"
+                placeholder="example@email.com"
+                required
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                كلمة المرور
+            </label>
+
+            <input
+                id="passwordInput"
+                type="password"
+                autocomplete="current-password"
+                placeholder="6 أحرف أو أكثر"
+                required
+            >
+
+        </div>
+
+
+        <button
+            class="submit"
+            id="submitButton"
+            type="submit"
+        >
+            تسجيل الدخول
+        </button>
+
+    </form>
+
+
+    <div
+        class="message"
+        id="message"
+    ></div>
+
+
+    <button
+        class="resend"
+        id="resendButton"
+        type="button"
+    >
+        📧 إعادة إرسال رسالة التأكيد
+    </button>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← العودة إلى Gravity
+    </a>
 
 </main>
 
-<script src="supabase.js"></script>
-<script src="auth.js"></script>
+
+<script src="supabase.js?v=20261004"></script>
+
+<script src="auth.js?v=20261004"></script>
+
 
 <script>
 
-let mode = "login";
+let mode =
+    "login";
+
 
 const loginTab =
-    document.getElementById("loginTab");
+    document.getElementById(
+        "loginTab"
+    );
+
 
 const signupTab =
-    document.getElementById("signupTab");
+    document.getElementById(
+        "signupTab"
+    );
+
 
 const nameField =
-    document.getElementById("nameField");
+    document.getElementById(
+        "nameField"
+    );
+
+
+const nameInput =
+    document.getElementById(
+        "nameInput"
+    );
+
+
+const emailInput =
+    document.getElementById(
+        "emailInput"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "passwordInput"
+    );
+
+
+const form =
+    document.getElementById(
+        "authForm"
+    );
+
 
 const submitButton =
-    document.getElementById("submitButton");
+    document.getElementById(
+        "submitButton"
+    );
 
-const authForm =
-    document.getElementById("authForm");
 
 const message =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
-function showMessage(text) {
 
-    message.textContent = text;
-    message.style.display = "block";
+const resendButton =
+    document.getElementById(
+        "resendButton"
+    );
+
+
+function setMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " +
+        type;
+
 }
 
-function setMode(newMode) {
 
-    mode = newMode;
+function setMode(
+    nextMode
+) {
 
-    if (mode === "login") {
+    mode =
+        nextMode;
 
-        loginTab.classList.add("active");
-        signupTab.classList.remove("active");
 
-        nameField.classList.add("hidden");
+    const signup =
+        mode ===
+        "signup";
 
-        submitButton.textContent =
-            "دخول إلى Gravity 🚀";
 
-    } else {
+    loginTab.classList.toggle(
+        "active",
+        !signup
+    );
 
-        signupTab.classList.add("active");
-        loginTab.classList.remove("active");
 
-        nameField.classList.remove("hidden");
+    signupTab.classList.toggle(
+        "active",
+        signup
+    );
 
-        submitButton.textContent =
-            "إنشاء حساب 🚀";
-    }
 
-    message.style.display = "none";
-}
+    nameField.style.display =
+        signup
+            ? "block"
+            : "none";
 
-loginTab.addEventListener("click", () => {
-    setMode("login");
-});
 
-signupTab.addEventListener("click", () => {
-    setMode("signup");
-});
+    passwordInput.autocomplete =
+        signup
+            ? "new-password"
+            : "current-password";
 
-authForm.addEventListener("submit", async (event) => {
-
-    event.preventDefault();
-
-    message.style.display = "none";
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-    const fullName =
-        document.getElementById("fullName").value.trim();
-
-    submitButton.disabled = true;
 
     submitButton.textContent =
-        "جاري الاتصال بالمدار...";
+        signup
+            ? "🚀 إنشاء الحساب"
+            : "🚀 تسجيل الدخول";
+
+
+    message.className =
+        "message";
+
+
+    resendButton.classList.remove(
+        "show"
+    );
+
+}
+
+
+loginTab.addEventListener(
+    "click",
+    () =>
+        setMode("login")
+);
+
+
+signupTab.addEventListener(
+    "click",
+    () =>
+        setMode("signup")
+);
+
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        const name =
+            nameInput.value.trim();
+
+
+        if (!email) {
+
+            setMessage(
+                "اكتب البريد الإلكتروني.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            password.length < 6
+        ) {
+
+            setMessage(
+                "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            mode === "signup" &&
+            !name
+        ) {
+
+            setMessage(
+                "اكتب اسمك.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        submitButton.disabled =
+            true;
+
+
+        submitButton.textContent =
+            "⏳ جاري التنفيذ...";
+
+
+        try {
+
+            if (
+                mode === "signup"
+            ) {
+
+                const result =
+                    await window.gravityAuth
+                        .signUp(
+                            email,
+                            password,
+                            name
+                        );
+
+
+                if (
+                    result.needsEmailConfirmation
+                ) {
+
+                    setMessage(
+                        "تم إنشاء الحساب. افتح رسالة التأكيد التي أرسلناها إلى بريدك الإلكتروني ثم ارجع وسجّل الدخول.",
+                        "success"
+                    );
+
+
+                    resendButton.classList.add(
+                        "show"
+                    );
+
+
+                    return;
+
+                }
+
+
+                setMessage(
+                    "تم إنشاء الحساب بنجاح. جاري الدخول...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    700
+                );
+
+
+                return;
+
+            }
+
+
+            await window.gravityAuth
+                .signIn(
+                    email,
+                    password
+                );
+
+
+            setMessage(
+                "تم تسجيل الدخول بنجاح 🚀",
+                "success"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                500
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Gravity Auth:",
+                error
+            );
+
+
+            let text =
+                error?.message ||
+                "حدث خطأ غير متوقع.";
+
+
+            if (
+                text.includes(
+                    "Invalid login credentials"
+                )
+            ) {
+
+                text =
+                    "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+            }
+
+
+            if (
+                text.includes(
+                    "Email not confirmed"
+                )
+            ) {
+
+                text =
+                    "الحساب موجود، لكن البريد الإلكتروني لم يتم تأكيده بعد.";
+
+                resendButton.classList.add(
+                    "show"
+                );
+
+            }
+
+
+            setMessage(
+                text,
+                "error"
+            );
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                mode === "signup"
+                    ? "🚀 إنشاء الحساب"
+                    : "🚀 تسجيل الدخول";
+
+        }
+
+    }
+);
+
+
+resendButton.addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            const email =
+                emailInput.value.trim();
+
+
+            if (!email) {
+
+                setMessage(
+                    "اكتب بريدك الإلكتروني أولًا.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            resendButton.disabled =
+                true;
+
+
+            await window.gravityAuth
+                .resendConfirmation(
+                    email
+                );
+
+
+            setMessage(
+                "تم إرسال رسالة تأكيد جديدة. افحص بريدك الإلكتروني.",
+                "success"
+            );
+
+        } catch (error) {
+
+            setMessage(
+                error?.message ||
+                "تعذر إعادة إرسال الرسالة.",
+                "error"
+            );
+
+        } finally {
+
+            resendButton.disabled =
+                false;
+
+        }
+
+    }
+);
+
+
+(async function() {
 
     try {
 
-        await window.gravitySupabaseReady;
+        const user =
+            await window.gravityAuth
+                .getCurrentUser();
 
-        if (mode === "login") {
 
-            await window.gravityAuth.signIn(
-                email,
-                password
+        if (user) {
+
+            setMessage(
+                "أنت مسجل الدخول بالفعل. جاري فتح حسابك...",
+                "success"
             );
 
-            await window.gravityAuth.createProfileIfNeeded();
 
-            showMessage(
-                "تم تسجيل الدخول بنجاح 🚀 جاري فتح Gravity..."
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "index.html";
+
+                },
+                600
             );
 
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 900);
-
-        } else {
-
-            if (!fullName) {
-                throw new Error(
-                    "اكتب اسمك الكامل أولًا."
-                );
-            }
-
-            await window.gravityAuth.signUp(
-                email,
-                password,
-                fullName
-            );
-
-            showMessage(
-                "تم إنشاء الحساب بنجاح. لو ظهر لك طلب تأكيد البريد، أكّد بريدك ثم سجّل الدخول."
-            );
-
-            setMode("login");
         }
 
-    } catch (error) {
+    } catch {
 
-        console.error(error);
+        // لا شيء
 
-        showMessage(
-            error.message ||
-            "حدث خطأ. حاول مرة أخرى."
-        );
-
-    } finally {
-
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-            mode === "login"
-                ? "دخول إلى Gravity 🚀"
-                : "إنشاء حساب 🚀";
     }
 
-});
+})();
 
 </script>
 
 </body>
-  </html>
+
+    </html>
