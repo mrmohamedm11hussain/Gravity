@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gravity | تفاصيل الكتاب</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
-rel="stylesheet">
+<title>Gravity — تفاصيل الكتاب</title>
+<meta name="description" content="تفاصيل الكتاب في مكتبة Gravity">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#040611;
+    --panel:rgba(14,18,43,.78);
+    --panel2:rgba(20,25,57,.85);
+    --purple:#8879ff;
+    --cyan:#54dcff;
+    --text:#f7f8ff;
+    --muted:#969fbe;
+    --line:rgba(139,124,255,.18);
+}
 
 *{
     box-sizing:border-box;
@@ -23,425 +27,662 @@ rel="stylesheet">
     padding:0;
 }
 
-body{
-
-    min-height:100vh;
-
-    font-family:"Cairo",sans-serif;
-
-    color:white;
-
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(124,58,237,.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(34,211,238,.10),
-            transparent 30%
-        ),
-        #050511;
+html{
+    scroll-behavior:smooth;
 }
 
-.stars{
+body{
+    min-height:100vh;
+    font-family:"Cairo",Arial,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 15% 20%,rgba(106,65,210,.18),transparent 30%),
+        radial-gradient(circle at 85% 75%,rgba(0,180,255,.09),transparent 28%),
+        #040611;
+    overflow-x:hidden;
+}
 
+/* SPACE */
+
+.space{
     position:fixed;
     inset:0;
-
-    pointer-events:none;
-
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.7) 1px,
-            transparent 1px
-        );
-
-    background-size:110px 110px;
-
-    opacity:.25;
+    z-index:-10;
+    overflow:hidden;
 }
 
+.space::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,#fff 1px,transparent 1px),
+        radial-gradient(circle,#9f9aff 1px,transparent 1px);
+    background-size:87px 91px,131px 137px;
+    background-position:12px 24px,47px 71px;
+    opacity:.3;
+}
+
+.nebula{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+}
+
+.nebula.a{
+    width:430px;
+    height:430px;
+    background:#5c38d5;
+    top:-180px;
+    right:-130px;
+    opacity:.2;
+}
+
+.nebula.b{
+    width:380px;
+    height:380px;
+    background:#008bc0;
+    bottom:-180px;
+    left:-120px;
+    opacity:.12;
+}
+
+.shooting{
+    position:absolute;
+    width:180px;
+    height:2px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.95),
+        transparent
+    );
+    transform:rotate(-27deg);
+    opacity:0;
+    animation:shoot 7s linear infinite;
+}
+
+.shooting.one{
+    top:20%;
+    left:5%;
+}
+
+.shooting.two{
+    top:58%;
+    right:-2%;
+    animation-delay:3.5s;
+}
+
+@keyframes shoot{
+    0%{
+        opacity:0;
+        transform:translate(0,0) rotate(-27deg);
+    }
+    8%{
+        opacity:.9;
+    }
+    18%{
+        opacity:0;
+        transform:translate(300px,150px) rotate(-27deg);
+    }
+    100%{
+        opacity:0;
+    }
+}
+
+/* NAV */
+
 .navbar{
-
-    height:75px;
-
+    height:76px;
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
-    padding:0 7%;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.07);
-
-    background:
-        rgba(5,5,17,.75);
-
+    padding:0 6%;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    background:rgba(3,5,15,.72);
     backdrop-filter:blur(18px);
-
-    position:relative;
-
-    z-index:5;
 }
 
 .logo{
-
-    color:white;
-
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#fff;
     text-decoration:none;
+    font-weight:800;
+    font-size:1.2rem;
+}
 
-    font-size:23px;
+.logo-planet{
+    width:40px;
+    height:40px;
+    position:relative;
+    border-radius:50%;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ded7ff,
+            #7565dc 48%,
+            #282052 82%
+        );
+    box-shadow:0 0 30px rgba(128,110,255,.4);
+}
 
-    font-weight:900;
+.logo-planet::before{
+    content:"";
+    position:absolute;
+    width:48px;
+    height:15px;
+    border:1px solid #60dcff;
+    border-radius:50%;
+    top:12px;
+    left:-4px;
+    transform:rotate(-20deg);
 }
 
 .back{
-
-    color:#aaaabd;
-
+    color:#aeb5d1;
     text-decoration:none;
-
-    font-size:12px;
-
+    font-size:.85rem;
     transition:.25s;
 }
 
 .back:hover{
-
-    color:white;
+    color:#fff;
 }
 
-.container{
+/* PAGE */
 
-    width:min(1000px,90%);
-
+.page{
+    width:min(1050px,90%);
     margin:70px auto;
+}
 
+.breadcrumb{
+    color:#727b9c;
+    font-size:.75rem;
+    margin-bottom:22px;
+}
+
+.book-panel{
     position:relative;
-
-    z-index:2;
-}
-
-.book{
-
+    overflow:hidden;
     display:grid;
-
-    grid-template-columns:300px 1fr;
-
-    gap:45px;
-
-    align-items:center;
-
-    padding:35px;
-
-    border-radius:28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.02)
-        );
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.3);
-}
-
-.cover{
-
-    height:420px;
-
-    border-radius:22px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    padding:30px;
-
+    grid-template-columns:330px 1fr;
+    gap:50px;
+    padding:45px;
+    border:1px solid var(--line);
+    border-radius:30px;
     background:
         radial-gradient(
-            circle at 30% 20%,
-            rgba(167,139,250,.5),
-            transparent 35%
+            circle at 10% 20%,
+            rgba(115,91,230,.12),
+            transparent 30%
         ),
         linear-gradient(
             145deg,
-            #17132f,
-            #0b1830
+            rgba(19,25,58,.88),
+            rgba(7,10,26,.9)
         );
+    box-shadow:0 30px 100px rgba(0,0,0,.35);
+    animation:appear .8s ease both;
+}
 
-    border:
-        1px solid rgba(255,255,255,.08);
+.book-panel::after{
+    content:"";
+    position:absolute;
+    width:430px;
+    height:430px;
+    border:1px solid rgba(111,216,255,.07);
+    border-radius:50%;
+    left:-210px;
+    bottom:-220px;
+}
 
+/* COVER */
+
+.cover-area{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:420px;
+}
+
+.cover-orbit{
+    position:absolute;
+    width:310px;
+    height:310px;
+    border:1px solid rgba(134,118,255,.22);
+    border-radius:50%;
+    transform:rotate(-20deg);
+}
+
+.cover-orbit.two{
+    width:245px;
+    height:245px;
+    transform:rotate(60deg);
+    border-color:rgba(83,216,255,.16);
+}
+
+.cover{
+    position:relative;
+    z-index:3;
+    width:230px;
+    height:325px;
+    border-radius:17px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    text-align:center;
+    background:
+        radial-gradient(
+            circle at 25% 20%,
+            rgba(255,255,255,.16),
+            transparent 16%
+        ),
+        radial-gradient(
+            circle at 70% 72%,
+            rgba(61,218,255,.16),
+            transparent 25%
+        ),
+        linear-gradient(
+            150deg,
+            #43368f,
+            #171b43 65%,
+            #080b1c
+        );
     box-shadow:
-        0 25px 60px rgba(0,0,0,.35);
+        0 30px 60px rgba(0,0,0,.5),
+        inset 0 0 30px rgba(255,255,255,.04);
+    animation:float 5s ease-in-out infinite;
 }
 
-.cover span{
-
-    font-size:26px;
-
-    line-height:1.6;
-
-    font-weight:900;
+.cover::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:11px;
 }
+
+.cover-star{
+    font-size:3.7rem;
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 15px #897cff);
+}
+
+.cover-small{
+    position:relative;
+    z-index:2;
+    color:#8de7ff;
+    font-size:.62rem;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.cover-title{
+    position:relative;
+    z-index:2;
+    font-size:1.15rem;
+    line-height:1.7;
+    font-weight:800;
+}
+
+.cover-author{
+    position:relative;
+    z-index:2;
+    margin-top:10px;
+    color:#aab0d2;
+    font-size:.7rem;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(-1deg);
+    }
+    50%{
+        transform:translateY(-12px) rotate(1deg);
+    }
+}
+
+/* INFO */
 
 .category{
-
-    color:#67e8f9;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    margin-bottom:10px;
+    display:inline-flex;
+    padding:6px 11px;
+    border-radius:999px;
+    border:1px solid rgba(139,124,255,.25);
+    background:rgba(139,124,255,.08);
+    color:#a99eff;
+    font-size:.7rem;
+    margin-bottom:18px;
 }
 
-h1{
-
-    font-size:40px;
-
-    line-height:1.3;
-
+.title{
+    font-size:clamp(2rem,4vw,3.3rem);
+    line-height:1.25;
+    font-weight:800;
     margin-bottom:8px;
 }
 
 .author{
-
-    color:#a5a6bb;
-
-    font-size:14px;
-
-    margin-bottom:25px;
+    color:#818aa9;
+    font-size:.95rem;
+    margin-bottom:28px;
 }
 
 .description{
-
-    color:#999bb0;
-
-    font-size:14px;
-
+    color:#a5acc7;
     line-height:2.1;
+    font-size:.95rem;
+    max-width:620px;
+    min-height:90px;
+}
 
-    margin-bottom:30px;
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:25px 0;
+}
+
+.meta-item{
+    padding:9px 13px;
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.07);
+    color:#9da5c2;
+    font-size:.72rem;
 }
 
 .actions{
-
     display:flex;
-
-    gap:10px;
-
     flex-wrap:wrap;
+    gap:10px;
+    margin-top:30px;
 }
 
-.button{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:13px 22px;
-
+.action{
+    min-height:48px;
+    padding:0 20px;
     border-radius:13px;
-
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-decoration:none;
-
-    color:white;
-
     font-family:inherit;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    border:
-        1px solid rgba(255,255,255,.09);
-
-    background:
-        rgba(255,255,255,.04);
-
-    transition:.25s;
+    font-size:.82rem;
+    font-weight:700;
+    transition:.3s;
 }
 
-.button.primary{
-
-    border:0;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #0891b2
-        );
+.primary{
+    color:#fff;
+    background:linear-gradient(135deg,#7564e9,#4c83e8);
+    box-shadow:0 12px 30px rgba(89,77,214,.25);
 }
 
-.button:hover{
-
+.primary:hover{
     transform:translateY(-3px);
-
+    box-shadow:0 18px 40px rgba(89,77,214,.4);
 }
+
+.secondary{
+    color:#c2c7df;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.secondary:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* NOTICE */
 
 .notice{
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    color:#85869d;
-
-    font-size:10px;
-
-    line-height:1.8;
-
-    background:
-        rgba(255,255,255,.025);
-
-    border:
-        1px solid rgba(255,255,255,.06);
+    margin-top:25px;
+    padding:16px 18px;
+    border-radius:15px;
+    border:1px solid rgba(77,217,255,.12);
+    background:rgba(57,184,220,.045);
+    color:#7e879f;
+    font-size:.7rem;
+    line-height:1.9;
 }
 
-@media(max-width:750px){
+.notice strong{
+    color:#79dcf8;
+}
 
-    .book{
+/* FOOTER */
 
+footer{
+    padding:30px 6%;
+    border-top:1px solid rgba(255,255,255,.06);
+    color:#626b88;
+    font-size:.72rem;
+    text-align:center;
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .book-panel{
         grid-template-columns:1fr;
+        gap:20px;
+        padding:25px;
+    }
 
-        padding:22px;
+    .cover-area{
+        min-height:390px;
+    }
 
+    .book-info{
+        text-align:center;
+    }
+
+    .category{
+        margin-bottom:14px;
+    }
+
+    .description{
+        margin:auto;
+    }
+
+    .meta,
+    .actions{
+        justify-content:center;
+    }
+}
+
+@media(max-width:500px){
+
+    .page{
+        width:92%;
+        margin:40px auto;
+    }
+
+    .book-panel{
+        border-radius:23px;
+        padding:20px;
     }
 
     .cover{
-
-        height:330px;
-
+        width:200px;
+        height:285px;
     }
 
-    h1{
-
-        font-size:30px;
-
+    .cover-orbit{
+        width:275px;
+        height:275px;
     }
 
+    .cover-orbit.two{
+        width:220px;
+        height:220px;
+    }
+
+    .title{
+        font-size:1.8rem;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
-<div class="stars"></div>
+<div class="space">
+    <div class="nebula a"></div>
+    <div class="nebula b"></div>
+    <div class="shooting one"></div>
+    <div class="shooting two"></div>
+</div>
 
-<nav class="navbar">
+<header class="navbar">
 
-    <a
-        href="index.html"
-        class="logo"
-    >
-        ✦ Gravity
+    <a href="index.html" class="logo">
+        <span class="logo-planet"></span>
+        <span>GRAVITY</span>
     </a>
 
-    <a
-        href="index.html"
-        class="back"
-    >
+    <a href="index.html" class="back">
         ← العودة إلى المكتبة
     </a>
 
-</nav>
+</header>
 
+<main class="page">
 
-<main class="container">
+    <div class="breadcrumb">
+        GRAVITY / تفاصيل الكتاب
+    </div>
 
-    <section class="book">
+    <section class="book-panel">
 
-        <div class="cover">
+        <div class="cover-area">
 
-            <span id="coverTitle">
-                Gravity Book
-            </span>
+            <div class="cover-orbit"></div>
+            <div class="cover-orbit two"></div>
+
+            <div class="cover">
+
+                <div class="cover-small">
+                    GRAVITY LIBRARY
+                </div>
+
+                <div class="cover-star">
+                    ✦
+                </div>
+
+                <div
+                    class="cover-title"
+                    id="coverTitle"
+                >
+                    جاري تحميل الكتاب...
+                </div>
+
+                <div
+                    class="cover-author"
+                    id="coverAuthor"
+                >
+                </div>
+
+            </div>
 
         </div>
 
-
-        <div>
+        <div class="book-info">
 
             <div
                 class="category"
                 id="category"
             >
-                كتاب
+                جاري التحميل
             </div>
 
-
-            <h1 id="title">
-                الكتاب
+            <h1
+                class="title"
+                id="title"
+            >
+                جاري تحميل الكتاب...
             </h1>
-
 
             <div
                 class="author"
                 id="author"
             >
-                المؤلف
             </div>
 
-
-            <div
+            <p
                 class="description"
                 id="description"
             >
-                تفاصيل الكتاب.
-            </div>
+            </p>
 
+            <div class="meta">
+
+                <div class="meta-item">
+                    🌌 Gravity Library
+                </div>
+
+                <div
+                    class="meta-item"
+                    id="language"
+                >
+                    —
+                </div>
+
+                <div class="meta-item">
+                    📚 مصدر الكتاب
+                </div>
+
+            </div>
 
             <div class="actions">
 
                 <a
-                    id="openBook"
+                    id="sourceButton"
+                    class="action primary"
                     href="#"
                     target="_blank"
-                    rel="noopener"
-                    class="button primary"
+                    rel="noopener noreferrer"
                 >
-                    فتح المصدر القانوني
+                    فتح المصدر القانوني ↗
                 </a>
-
 
                 <a
                     href="index.html"
-                    class="button"
+                    class="action secondary"
                 >
                     العودة للمكتبة
                 </a>
 
             </div>
 
-
             <div class="notice">
-
-                Gravity تعرض روابط لمصادر الكتب القانونية
-                والمفتوحة. حقوق المحتوى تعود لأصحابها
-                ومصادره الأصلية.
-
+                <strong>تنبيه:</strong>
+                Gravity يعرض روابط المصادر الرسمية أو القانونية المتاحة
+                للكتب، ولا يعيد رفع الكتب المحمية بحقوق النشر على خوادمه.
             </div>
 
         </div>
@@ -450,80 +691,61 @@ h1{
 
 </main>
 
+<footer>
+    GRAVITY × M11 — المعرفة بلا حدود
+</footer>
 
 <script>
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+const params = new URLSearchParams(
+    window.location.search
+);
 
 const title =
-    params.get("title");
+    params.get("title") || "كتاب غير محدد";
 
 const author =
-    params.get("author");
+    params.get("author") || "مؤلف غير محدد";
 
 const category =
-    params.get("category");
+    params.get("category") || "عام";
 
 const description =
-    params.get("description");
+    params.get("description") ||
+    "لا يوجد وصف متاح لهذا الكتاب حاليًا.";
 
 const url =
-    params.get("url");
+    params.get("url") || "#";
 
+const language =
+    params.get("language") || "غير محددة";
 
-if(title){
+document.getElementById("title").textContent = title;
+document.getElementById("author").textContent = author;
+document.getElementById("category").textContent = category;
+document.getElementById("description").textContent = description;
 
-    document
-        .getElementById("title")
-        .textContent = title;
+document.getElementById("coverTitle").textContent = title;
+document.getElementById("coverAuthor").textContent = author;
 
-    document
-        .getElementById("coverTitle")
-        .textContent = title;
+document.getElementById("language").textContent =
+    "🌐 " + language;
 
+const sourceButton =
+    document.getElementById("sourceButton");
+
+if(url && url !== "#"){
+    sourceButton.href = url;
+}else{
+    sourceButton.style.opacity = ".5";
+    sourceButton.style.pointerEvents = "none";
+    sourceButton.textContent = "المصدر غير متاح";
 }
 
-
-if(author){
-
-    document
-        .getElementById("author")
-        .textContent = author;
-
-}
-
-
-if(category){
-
-    document
-        .getElementById("category")
-        .textContent = category;
-
-}
-
-
-if(description){
-
-    document
-        .getElementById("description")
-        .textContent = description;
-
-}
-
-
-if(url){
-
-    document
-        .getElementById("openBook")
-        .href = url;
-
-}
+document.title =
+    "Gravity — " + title;
 
 </script>
 
 </body>
-
-  </html>
+    </html>
