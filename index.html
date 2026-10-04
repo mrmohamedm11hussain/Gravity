@@ -1,1171 +1,66 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gravity × M11 — المعرفة بلا حدود</title>
-
-    <meta
-        name="description"
-        content="Gravity × M11 — مكتبة رقمية للمعرفة والكتب."
-    >
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Tahoma, Arial, sans-serif;
-            background:
-                radial-gradient(circle at 15% 20%, rgba(124,58,237,.18), transparent 28%),
-                radial-gradient(circle at 85% 10%, rgba(6,182,212,.14), transparent 25%),
-                #030712;
-            color: #f8fafc;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: .55;
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px),
-                radial-gradient(circle, rgba(125,211,252,.6) 1px, transparent 1px);
-            background-size: 90px 90px, 140px 140px;
-            background-position: 10px 20px, 50px 80px;
-            z-index: -1;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        input,
-        select {
-            font-family: inherit;
-        }
-
-        /* ================= HEADER ================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(18px);
-            background: rgba(3,7,18,.72);
-            border-bottom: 1px solid rgba(255,255,255,.08);
-        }
-
-        .nav {
-            max-width: 1250px;
-            margin: auto;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 900;
-            font-size: 21px;
-            white-space: nowrap;
-        }
-
-        .logo-orb {
-            width: 43px;
-            height: 43px;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 30% 25%, #67e8f9, #7c3aed 45%, #111827 75%);
-            box-shadow:
-                0 0 25px rgba(124,58,237,.55),
-                inset -8px -8px 15px rgba(0,0,0,.45);
-            animation: floatOrb 4s ease-in-out infinite;
-        }
-
-        @keyframes floatOrb {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-btn {
-            border: 1px solid rgba(255,255,255,.1);
-            background: rgba(255,255,255,.05);
-            color: #e2e8f0;
-            padding: 10px 15px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: .25s;
-        }
-
-        .nav-btn:hover {
-            background: rgba(124,58,237,.2);
-            transform: translateY(-2px);
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            max-width: 1250px;
-            margin: auto;
-            padding: 80px 22px 60px;
-            min-height: 620px;
-            display: grid;
-            grid-template-columns: 1.1fr .9fr;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .hero-text {
-            animation: heroIn .8s ease both;
-        }
-
-        @keyframes heroIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .eyebrow {
-            color: #67e8f9;
-            font-weight: bold;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-        }
-
-        .hero h1 {
-            font-size: clamp(48px, 7vw, 88px);
-            line-height: 1;
-            margin-bottom: 24px;
-            background: linear-gradient(
-                135deg,
-                #fff,
-                #c4b5fd 45%,
-                #67e8f9
-            );
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero p {
-            max-width: 620px;
-            color: #94a3b8;
-            font-size: 19px;
-            line-height: 2;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .primary-btn {
-            border: 0;
-            color: white;
-            cursor: pointer;
-            padding: 14px 22px;
-            border-radius: 14px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #7c3aed, #0891b2);
-            box-shadow: 0 12px 35px rgba(124,58,237,.25);
-            transition: .3s;
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 45px rgba(124,58,237,.38);
-        }
-
-        .secondary-btn {
-            border: 1px solid rgba(255,255,255,.12);
-            background: rgba(255,255,255,.05);
-            color: white;
-            padding: 14px 22px;
-            border-radius: 14px;
-            cursor: pointer;
-        }
-
-        /* ================= PLANET ================= */
-
-        .planet-space {
-            min-height: 470px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .planet-system {
-            width: 330px;
-            height: 330px;
-            position: relative;
-            animation: planetFloat 6s ease-in-out infinite;
-        }
-
-        @keyframes planetFloat {
-            0%,100% {
-                transform: translateY(0) rotate(-2deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-        }
-
-        .planet {
-            position: absolute;
-            width: 210px;
-            height: 210px;
-            left: 60px;
-            top: 60px;
-            border-radius: 50%;
-            background:
-                radial-gradient(circle at 32% 27%, #a5f3fc 0 4%, transparent 5%),
-                radial-gradient(circle at 62% 38%, #8b5cf6 0 10%, transparent 11%),
-                radial-gradient(circle at 35% 65%, #4c1d95 0 18%, transparent 19%),
-                radial-gradient(circle at 70% 70%, #0891b2 0 15%, transparent 16%),
-                radial-gradient(circle at 35% 25%, #67e8f9, #4c1d95 48%, #020617 85%);
-            box-shadow:
-                inset -35px -25px 55px rgba(0,0,0,.7),
-                0 0 70px rgba(124,58,237,.45),
-                0 0 120px rgba(8,145,178,.16);
-        }
-
-        .planet::after {
-            content: "";
-            position: absolute;
-            inset: 15px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,.15);
-        }
-
-        .orbit {
-            position: absolute;
-            width: 340px;
-            height: 120px;
-            left: -5px;
-            top: 105px;
-            border: 2px solid rgba(103,232,249,.35);
-            border-radius: 50%;
-            transform: rotate(-22deg);
-        }
-
-        .orbit::after {
-            content: "";
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #67e8f9;
-            border-radius: 50%;
-            top: 13px;
-            left: 42px;
-            box-shadow: 0 0 20px #67e8f9;
-            animation: orbitDot 5s linear infinite;
-        }
-
-        @keyframes orbitDot {
-            from {
-                transform: rotate(0deg) translateX(145px) rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg) translateX(145px) rotate(-360deg);
-            }
-        }
-
-        .planet-ring {
-            position: absolute;
-            width: 310px;
-            height: 70px;
-            left: 10px;
-            top: 130px;
-            border: 7px solid rgba(196,181,253,.22);
-            border-radius: 50%;
-            transform: rotate(-18deg);
-        }
-
-        /* ================= SEARCH ================= */
-
-        .library {
-            max-width: 1250px;
-            margin: auto;
-            padding: 30px 22px 80px;
-        }
-
-        .section-heading {
-            margin-bottom: 25px;
-        }
-
-        .section-heading h2 {
-            font-size: 34px;
-            margin-bottom: 8px;
-        }
-
-        .section-heading p {
-            color: #64748b;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .search-box input {
-            flex: 1;
-            min-width: 0;
-            padding: 16px 18px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,.1);
-            background: rgba(15,23,42,.75);
-            color: white;
-            outline: none;
-            font-size: 16px;
-        }
-
-        .search-box input:focus {
-            border-color: rgba(103,232,249,.55);
-            box-shadow: 0 0 0 4px rgba(103,232,249,.07);
-        }
-
-        /* ================= FILTERS ================= */
-
-        .filters {
-            display: flex;
-            gap: 9px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .filter {
-            border: 1px solid rgba(255,255,255,.09);
-            background: rgba(255,255,255,.045);
-            color: #cbd5e1;
-            padding: 10px 15px;
-            border-radius: 999px;
-            cursor: pointer;
-            transition: .25s;
-        }
-
-        .filter:hover,
-        .filter.active {
-            color: white;
-            background: linear-gradient(
-                135deg,
-                rgba(124,58,237,.55),
-                rgba(8,145,178,.35)
-            );
-            border-color: rgba(167,139,250,.4);
-        }
-
-        /* ================= BOOKS ================= */
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .book-card {
-            position: relative;
-            overflow: hidden;
-            min-height: 320px;
-            padding: 23px;
-            border-radius: 22px;
-            border: 1px solid rgba(255,255,255,.08);
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(30,41,59,.72),
-                    rgba(15,23,42,.7)
-                );
-            transition:
-                transform .3s ease,
-                border-color .3s ease,
-                box-shadow .3s ease;
-            animation: cardIn .5s ease both;
-        }
-
-        @keyframes cardIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .book-card:hover {
-            transform: translateY(-7px);
-            border-color: rgba(124,58,237,.45);
-            box-shadow:
-                0 20px 50px rgba(0,0,0,.3),
-                0 0 30px rgba(124,58,237,.09);
-        }
-
-        .book-icon {
-            width: 65px;
-            height: 82px;
-            border-radius: 10px 14px 14px 10px;
-            margin-bottom: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            background:
-                linear-gradient(
-                    145deg,
-                    #7c3aed,
-                    #0891b2
-                );
-            box-shadow:
-                8px 8px 0 rgba(0,0,0,.18),
-                0 15px 30px rgba(124,58,237,.18);
-        }
-
-        .book-language {
-            display: inline-block;
-            font-size: 11px;
-            color: #67e8f9;
-            margin-bottom: 9px;
-        }
-
-        .book-card h3 {
-            font-size: 19px;
-            line-height: 1.6;
-            margin-bottom: 7px;
-        }
-
-        .book-author {
-            color: #a78bfa;
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-
-        .book-description {
-            color: #94a3b8;
-            line-height: 1.8;
-            font-size: 13px;
-            min-height: 70px;
-        }
-
-        .book-category {
-            color: #64748b;
-            font-size: 11px;
-            margin-top: 15px;
-        }
-
-        .book-open {
-            display: block;
-            margin-top: 18px;
-            padding: 11px;
-            text-align: center;
-            border-radius: 12px;
-            background: rgba(124,58,237,.14);
-            border: 1px solid rgba(124,58,237,.22);
-            color: #ddd6fe;
-            transition: .25s;
-        }
-
-        .book-open:hover {
-            background: rgba(124,58,237,.3);
-        }
-
-        .empty {
-            text-align: center;
-            padding: 60px 20px;
-            color: #64748b;
-            border: 1px dashed rgba(255,255,255,.1);
-            border-radius: 20px;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            border-top: 1px solid rgba(255,255,255,.08);
-            margin-top: 40px;
-            padding: 35px 22px;
-            text-align: center;
-            color: #64748b;
-        }
-
-        footer strong {
-            color: #c4b5fd;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 1000px) {
-            .books-grid {
-                grid-template-columns: repeat(3, minmax(0,1fr));
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 720px) {
-            .books-grid {
-                grid-template-columns: repeat(2, minmax(0,1fr));
-            }
-
-            .nav {
-                padding: 13px 15px;
-            }
-
-            .logo {
-                font-size: 17px;
-            }
-
-            .logo-orb {
-                width: 36px;
-                height: 36px;
-            }
-
-            .hero {
-                padding-top: 50px;
-                min-height: auto;
-            }
-
-            .planet-system {
-                transform: scale(.78);
-            }
-
-            .planet-system:hover {
-                transform: scale(.82);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .planet-space {
-                min-height: 350px;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <nav class="nav">
-        <a href="index.html" class="logo">
-            <span class="logo-orb"></span>
-            <span>GRAVITY × M11</span>
-        </a>
-
-        <div class="nav-actions">
-            <a class="nav-btn" href="login.html">
-                الحساب
-            </a>
-        </div>
-    </nav>
-</header>
-
-<main>
-
-    <!-- HERO -->
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <div class="eyebrow">
-                ✦ مكتبة Gravity الرقمية
-            </div>
-
-            <h1>
-                المعرفة<br>
-                بلا حدود.
-            </h1>
-
-            <p>
-                استكشف عالمًا من الكتب والمعرفة والمغامرات.
-                ابحث، اكتشف، واحفظ كتبك المفضلة في مدارك الخاص.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#library" class="primary-btn">
-                    🚀 استكشف المكتبة
-                </a>
-
-                <a href="login.html" class="secondary-btn">
-                    ⭐ تسجيل الدخول
-                </a>
-            </div>
-
-        </div>
-
-        <div class="planet-space">
-
-            <div class="planet-system">
-
-                <div class="orbit"></div>
-
-                <div class="planet-ring"></div>
-
-                <div class="planet"></div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- LIBRARY -->
-    <section class="library" id="library">
-
-        <div class="section-heading">
-
-            <h2>
-                🚀 المكتبة
-            </h2>
-
-            <p>
-                اختر مسارك وانطلق إلى عالم المعرفة.
-            </p>
-
-        </div>
-
-
-        <div class="search-box">
-
-            <input
-                id="searchInput"
-                type="search"
-                placeholder="ابحث عن كتاب، مؤلف، تصنيف..."
-                autocomplete="off"
-            >
-
-        </div>
-
-
-        <div class="filters" id="filters">
-
-            <button class="filter active" data-category="الكل">
-                الكل
-            </button>
-
-            <button class="filter" data-language="العربية">
-                العربية
-            </button>
-
-            <button class="filter" data-language="English">
-                English
-            </button>
-
-            <button class="filter" data-category="روايات عربية">
-                روايات عربية
-            </button>
-
-            <button class="filter" data-category="خيال علمي">
-                خيال علمي
-            </button>
-
-            <button class="filter" data-category="فضاء وفانتازيا">
-                فضاء وفانتازيا
-            </button>
-
-            <button class="filter" data-category="فانتازيا">
-                فانتازيا
-            </button>
-
-            <button class="filter" data-category="مغامرات">
-                مغامرات
-            </button>
-
-            <button class="filter" data-category="غموض">
-                غموض
-            </button>
-
-            <button class="filter" data-category="رعب وفانتازيا">
-                رعب وفانتازيا
-            </button>
-
-            <button class="filter" data-category="قصص مصورة">
-                قصص مصورة
-            </button>
-
-            <button class="filter" data-category="حكايات عربية">
-                حكايات عربية
-            </button>
-
-        </div>
-
-
-        <div
-            class="books-grid"
-            id="booksGrid"
-        ></div>
-
-    </section>
-
-</main>
-
-
-<footer>
-
-    <div>
-        <strong>GRAVITY × M11</strong>
-    </div>
-
-    <div style="margin-top:8px;">
-        المعرفة بلا حدود • 2026
-    </div>
-
-</footer>
-
-
 <!-- ============================================
-     GRAVITY BOOK DATABASE
-============================================= -->
-
-<script src="books.js"></script>
-
-
-<!-- ============================================
-     PAGE LOGIC
-============================================= -->
-
-<script>
-
-(function () {
-
-    const grid =
-        document.getElementById("booksGrid");
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    const filters =
-        document.querySelectorAll(".filter");
-
-
-    let currentCategory = "الكل";
-    let currentLanguage = "";
-
-
-    function escapeHtml(value) {
-
-        return String(value || "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-
-
-    function getBooks() {
-
-        if (
-            typeof getGravityBooks === "function"
-        ) {
-            return getGravityBooks();
-        }
-
-        if (
-            typeof gravityBooks !== "undefined"
-        ) {
-            return gravityBooks;
-        }
-
-        return [];
-    }
-
-
-    function renderBooks() {
-
-        const allBooks =
-            getBooks();
-
-        const search =
-            String(searchInput.value || "")
-                .trim()
-                .toLowerCase();
-
-
-        const filtered =
-            allBooks.filter(book => {
-
-                const title =
-                    String(book.title || "")
-                        .toLowerCase();
-
-                const author =
-                    String(book.author || "")
-                        .toLowerCase();
-
-                const description =
-                    String(book.description || "")
-                        .toLowerCase();
-
-                const category =
-                    String(book.category || "");
-
-                const language =
-                    String(book.language || "");
-
-
-                const matchesSearch =
-                    !search ||
-                    title.includes(search) ||
-                    author.includes(search) ||
-                    description.includes(search) ||
-                    category.toLowerCase().includes(search) ||
-                    language.toLowerCase().includes(search);
-
-
-                const matchesCategory =
-                    currentCategory === "الكل" ||
-                    category === currentCategory;
-
-
-                const matchesLanguage =
-                    !currentLanguage ||
-                    language === currentLanguage;
-
-
-                return (
-                    matchesSearch &&
-                    matchesCategory &&
-                    matchesLanguage
-                );
-
-            });
-
-
-        if (!filtered.length) {
-
-            grid.innerHTML = `
-                <div class="empty" style="grid-column:1/-1;">
-                    <div style="font-size:45px;margin-bottom:15px;">
-                        🌌
-                    </div>
-
-                    <h3 style="margin-bottom:10px;">
-                        لم نعثر على كتاب في هذا المدار
-                    </h3>
-
-                    <p>
-                        جرّب كلمة بحث أخرى أو اختر تصنيفًا مختلفًا.
-                    </p>
-                </div>
-            `;
-
-            return;
-        }
-
-
-        grid.innerHTML =
-            filtered.map((book, index) => {
-
-                return `
-                    <article
-                        class="book-card"
-                        data-gravity-book
-                        data-book-index="${index}"
-                    >
-
-                        <div class="book-icon">
-                            📖
-                        </div>
-
-                        <span class="book-language">
-                            ${escapeHtml(book.language || "")}
-                        </span>
-
-                        <h3>
-                            ${escapeHtml(book.title || "كتاب")}
-                        </h3>
-
-                        <div class="book-author">
-                            ${escapeHtml(book.author || "مؤلف غير معروف")}
-                        </div>
-
-                        <p class="book-description">
-                            ${escapeHtml(
-                                book.description ||
-                                "اكتشف هذا الكتاب في مكتبة Gravity."
-                            )}
-                        </p>
-
-                        <div class="book-category">
-                            ◈ ${escapeHtml(book.category || "عام")}
-                        </div>
-
-                        <a
-                            class="book-open"
-                            href="javascript:void(0)"
-                            data-open-book
-                        >
-                            فتح الكتاب →
-                        </a>
-
-                    </article>
-                `;
-
-            }).join("");
-
-
-        /*
-         * ربط بيانات الكتاب بالكارت
-         * بدون الحاجة لتعديل books.js
-         */
-
-        const cards =
-            grid.querySelectorAll(
-                "[data-gravity-book]"
-            );
-
-
-        cards.forEach((card, index) => {
-
-            const book =
-                filtered[index];
-
-            if (!book) {
-                return;
-            }
-
-
-            card.__gravityBook =
-                book;
-
-
-            const openButton =
-                card.querySelector(
-                    "[data-open-book]"
-                );
-
-
-            if (openButton) {
-
-                openButton.addEventListener(
-                    "click",
-                    function () {
-
-                        if (
-                            typeof openGravityBook ===
-                            "function"
-                        ) {
-
-                            openGravityBook(book);
-
-                        } else {
-
-                            const params =
-                                new URLSearchParams({
-                                    title: book.title || "",
-                                    author: book.author || "",
-                                    category: book.category || "",
-                                    description: book.description || "",
-                                    url: book.url || "",
-                                    language: book.language || ""
-                                });
-
-                            window.location.href =
-                                "book.html?" +
-                                params.toString();
-                        }
-
-                    }
-                );
-
-            }
-
-        });
-
-
-        /*
-         * تشغيل نظام المفضلة
-         */
-
-        if (
-            window.gravityFavoritesUI &&
-            typeof window.gravityFavoritesUI.setup ===
-            "function"
-        ) {
-
-            window.gravityFavoritesUI
-                .setup();
-
-        }
-
-    }
-
-
-    searchInput.addEventListener(
-        "input",
-        renderBooks
-    );
-
-
-    filters.forEach(button => {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                filters.forEach(
-                    item =>
-                        item.classList.remove("active")
-                );
-
-                this.classList.add("active");
-
-
-                currentCategory =
-                    this.dataset.category ||
-                    "الكل";
-
-                currentLanguage =
-                    this.dataset.language ||
-                    "";
-
-
-                renderBooks();
-
-            }
-        );
-
-    });
-
-
-    /*
-     * أول تشغيل
-     */
-
-    renderBooks();
-
-
-    /*
-     * لو نظام المفضلة تأخر في التحميل،
-     * نجرب مرة أخرى بعد تحميل الصفحة.
-     */
-
-    window.addEventListener(
-        "load",
-        function () {
-
-            setTimeout(
-                renderBooks,
-                700
-            );
-
-        }
-    );
-
-
-})();
-
-</script>
-
-
-<!-- ============================================
-     SUPABASE
+     SUPABASE + AUTH
 ============================================= -->
 
 <script src="supabase.js"></script>
 <script src="auth.js"></script>
 
-
-<!-- ============================================
-     ADMIN BUTTON
-============================================= -->
-
 <script>
-
 (async function () {
 
-    try {
+    /*
+     * Gravity Account / Admin Controller
+     *
+     * لا نظهر الإدارة إلا بعد:
+     * 1. تحميل Supabase
+     * 2. وجود Session حقيقية
+     * 3. إنشاء/قراءة Profile
+     * 4. التأكد أن role = admin
+     */
 
-        if (
-            !window.gravitySupabaseReady ||
-            !window.gravityAuth
-        ) {
+    const oldAdmin =
+        document.getElementById("gravity-admin-button");
+
+    if (oldAdmin) {
+        oldAdmin.remove();
+    }
+
+
+    const accountButton =
+        document.querySelector(
+            '.nav-actions a[href="login.html"]'
+        );
+
+
+    function showLoggedOut() {
+
+        if (!accountButton) {
             return;
         }
 
+        accountButton.href =
+            "login.html";
 
-        await window.gravitySupabaseReady;
+        accountButton.textContent =
+            "⭐ تسجيل الدخول";
+    }
 
 
-        const user =
-            await window.gravityAuth
-                .getCurrentUser();
+    function showLoggedIn(user) {
 
-
-        if (!user) {
+        if (!accountButton) {
             return;
         }
 
+        accountButton.href =
+            "login.html";
 
-        await window.gravityAuth
-            .createProfileIfNeeded();
-
-
-        const isAdmin =
-            await window.gravityAuth
-                .isAdmin();
+        accountButton.textContent =
+            "👤 حسابي";
+    }
 
 
-        if (!isAdmin) {
-            return;
-        }
-
+    function createAdminButton() {
 
         if (
             document.getElementById(
@@ -1176,61 +71,147 @@
         }
 
 
-        const adminButton =
+        const button =
             document.createElement("a");
 
-
-        adminButton.id =
+        button.id =
             "gravity-admin-button";
 
-
-        adminButton.href =
+        button.href =
             "admin.html";
 
-
-        adminButton.textContent =
+        button.textContent =
             "👑 الإدارة";
 
 
-        adminButton.style.cssText = `
+        button.style.cssText = `
             position: fixed;
             left: 20px;
             bottom: 20px;
-            z-index: 9999;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 120px;
+
             padding: 12px 18px;
-            border-radius: 14px;
+
+            border-radius: 15px;
+
             color: white;
+
             text-decoration: none;
-            font-family: Tahoma, Arial, sans-serif;
+
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
             font-weight: bold;
-            background: linear-gradient(
-                135deg,
-                #7c3aed,
-                #0891b2
-            );
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #0891b2
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
             box-shadow:
-                0 10px 35px rgba(79,70,229,.35);
-            border: 1px solid rgba(255,255,255,.15);
+                0 12px 35px
+                rgba(79,70,229,.35);
+
+            backdrop-filter:
+                blur(12px);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
         `;
 
 
-        document.body.appendChild(
-            adminButton
+        button.addEventListener(
+            "mouseenter",
+            function () {
+
+                button.style.transform =
+                    "translateY(-3px)";
+
+                button.style.boxShadow =
+                    "0 16px 45px rgba(79,70,229,.5)";
+            }
         );
 
 
-    } catch (error) {
+        button.addEventListener(
+            "mouseleave",
+            function () {
 
-        console.error(
-            "Gravity Admin Check:",
-            error
+                button.style.transform =
+                    "translateY(0)";
+
+                button.style.boxShadow =
+                    "0 12px 35px rgba(79,70,229,.35)";
+            }
         );
 
+
+        document.body.appendChild(button);
     }
 
-})();
 
-</script>
+    try {
 
-</body>
-                           </html>
+        /*
+         * انتظر اتصال Supabase
+         */
+
+        if (
+            !window.gravitySupabaseReady
+        ) {
+
+            showLoggedOut();
+
+            return;
+        }
+
+
+        const supabase =
+            await window.gravitySupabaseReady;
+
+
+        /*
+         * احصل على Session الحالية
+         */
+
+        const {
+            data: sessionData,
+            error: sessionError
+        } =
+            await supabase.auth.getSession();
+
+
+        if (sessionError) {
+
+            console.error(
+                "Gravity Session Error:",
+                sessionError
+            );
+
+            showLoggedOut();
+
+            return;
+        }
+
+
+        const session =
+            sessionData?.session;
+
+
+        /*
+         * لا
