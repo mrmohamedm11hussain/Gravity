@@ -518,3 +518,15 @@ function openGravityBook(book) {
         "book.html?" + params.toString();
 
     }
+// ============================================
+// GRAVITY AUTH AUTO LOADER
+// ============================================
+
+(function () {
+    const loader = document.createElement("script");
+
+    loader.src = "gravity-auth-loader.js";
+    loader.async = true;
+
+    document.head.appendChild(loader);
+})();
