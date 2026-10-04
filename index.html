@@ -1,1463 +1,1223 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gravity — المعرفة بلا حدود</title>
-<meta name="description" content="Gravity — مكتبة رقمية للكتب والمعرفة">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
-
-:root{
-    --bg:#050713;
-    --bg2:#090d20;
-    --card:rgba(14,19,45,.72);
-    --card2:rgba(19,25,57,.82);
-    --line:rgba(139,130,255,.18);
-    --purple:#8b7cff;
-    --purple2:#b49cff;
-    --cyan:#46d9ff;
-    --text:#f7f7ff;
-    --muted:#9da5c7;
-    --shadow:0 25px 80px rgba(0,0,0,.42);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-    font-family:"Cairo",Arial,sans-serif;
-    color:var(--text);
-    background:
-        radial-gradient(circle at 15% 15%,rgba(91,62,190,.18),transparent 30%),
-        radial-gradient(circle at 85% 25%,rgba(0,191,255,.10),transparent 27%),
-        radial-gradient(circle at 50% 85%,rgba(103,50,190,.12),transparent 30%),
-        var(--bg);
-    overflow-x:hidden;
-}
-
-/* ===== SPACE ===== */
-
-.space{
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    overflow:hidden;
-    pointer-events:none;
-}
-
-.space::before,
-.space::after{
-    content:"";
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:#fff;
-    box-shadow:
-        4vw 8vh #fff,
-        11vw 23vh #aeb6ff,
-        17vw 73vh #fff,
-        24vw 42vh #c9c4ff,
-        31vw 15vh #fff,
-        38vw 82vh #fff,
-        45vw 27vh #b7f2ff,
-        52vw 62vh #fff,
-        59vw 11vh #fff,
-        66vw 36vh #bdb5ff,
-        73vw 77vh #fff,
-        81vw 18vh #fff,
-        88vw 51vh #a9efff,
-        94vw 88vh #fff,
-        7vw 91vh #fff,
-        28vw 58vh #fff,
-        47vw 94vh #bdb5ff,
-        69vw 7vh #fff,
-        91vw 31vh #fff;
-    opacity:.7;
-}
-
-.space::after{
-    width:3px;
-    height:3px;
-    opacity:.35;
-    filter:blur(.3px);
-    transform:scale(.7);
-}
-
-.nebula{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(65px);
-    opacity:.25;
-}
-
-.nebula.one{
-    width:420px;
-    height:420px;
-    background:#5d35d5;
-    top:-170px;
-    right:-80px;
-}
-
-.nebula.two{
-    width:350px;
-    height:350px;
-    background:#007cba;
-    bottom:-130px;
-    left:-80px;
-}
-
-.nebula.three{
-    width:280px;
-    height:280px;
-    background:#9b3bff;
-    top:42%;
-    left:43%;
-    opacity:.09;
-}
-
-.shooting-star{
-    position:absolute;
-    width:150px;
-    height:2px;
-    background:linear-gradient(90deg,transparent,#fff,transparent);
-    transform:rotate(-28deg);
-    opacity:0;
-    animation:shoot 7s linear infinite;
-}
-
-.shooting-star.one{
-    top:20%;
-    left:5%;
-    animation-delay:1s;
-}
-
-.shooting-star.two{
-    top:42%;
-    right:2%;
-    animation-delay:4s;
-}
-
-@keyframes shoot{
-    0%{
-        opacity:0;
-        transform:translate(0,0) rotate(-28deg);
-    }
-    8%{opacity:.9}
-    18%{
-        opacity:0;
-        transform:translate(260px,140px) rotate(-28deg);
-    }
-    100%{opacity:0}
-}
-
-/* ===== NAVBAR ===== */
-
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:50;
-    height:78px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:rgba(5,7,19,.68);
-    border-bottom:1px solid rgba(255,255,255,.07);
-    backdrop-filter:blur(18px);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration:none;
-    color:#fff;
-    font-weight:800;
-    font-size:1.25rem;
-}
-
-.logo-orbit{
-    position:relative;
-    width:42px;
-    height:42px;
-    display:grid;
-    place-items:center;
-    border-radius:50%;
-    background:radial-gradient(circle at 35% 30%,#d7d0ff,#7664e8 45%,#30276e);
-    box-shadow:0 0 28px rgba(139,124,255,.45);
-}
-
-.logo-orbit::before{
-    content:"";
-    position:absolute;
-    width:50px;
-    height:17px;
-    border:1px solid rgba(110,221,255,.7);
-    border-radius:50%;
-    transform:rotate(-25deg);
-}
-
-.logo-orbit::after{
-    content:"";
-    width:7px;
-    height:7px;
-    position:absolute;
-    border-radius:50%;
-    background:var(--cyan);
-    top:2px;
-    right:5px;
-    box-shadow:0 0 10px var(--cyan);
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:28px;
-}
-
-.nav-links a{
-    color:#b9c0dd;
-    text-decoration:none;
-    font-size:.9rem;
-    transition:.25s;
-}
-
-.nav-links a:hover{
-    color:#fff;
-}
-
-.admin-btn{
-    padding:9px 17px;
-    border-radius:12px;
-    border:1px solid rgba(139,124,255,.35);
-    background:rgba(139,124,255,.10);
-}
-
-/* ===== HERO ===== */
-
-.hero{
-    width:min(1240px,90%);
-    min-height:620px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:30px;
-    position:relative;
-}
-
-.hero-content{
-    animation:heroIn 1s ease both;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:7px 13px;
-    border:1px solid rgba(139,124,255,.2);
-    border-radius:999px;
-    background:rgba(139,124,255,.07);
-    color:#bdb6ff;
-    font-size:.78rem;
-    margin-bottom:22px;
-}
-
-.eyebrow span{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#64e5ff;
-    box-shadow:0 0 12px #64e5ff;
-}
-
-.hero h1{
-    font-size:clamp(3rem,7vw,6.4rem);
-    line-height:1.05;
-    letter-spacing:-3px;
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.gradient-text{
-    background:linear-gradient(100deg,#fff 5%,#b8aaff 48%,#58ddff);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-}
-
-.hero p{
-    max-width:590px;
-    color:var(--muted);
-    font-size:1.08rem;
-    line-height:2;
-    margin-bottom:32px;
-}
-
-.hero-actions{
-    display:flex;
-    gap:13px;
-    flex-wrap:wrap;
-}
-
-.primary-btn,
-.secondary-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:13px 22px;
-    border-radius:14px;
-    text-decoration:none;
-    font-family:inherit;
-    font-weight:700;
-    transition:.3s;
-    cursor:pointer;
-}
-
-.primary-btn{
-    color:#fff;
-    background:linear-gradient(135deg,#7665ed,#4f8dfd);
-    box-shadow:0 12px 35px rgba(91,82,220,.28);
-}
-
-.primary-btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 18px 45px rgba(91,82,220,.4);
-}
-
-.secondary-btn{
-    color:#d9dcf4;
-    border:1px solid rgba(255,255,255,.12);
-    background:rgba(255,255,255,.04);
-}
-
-.secondary-btn:hover{
-    background:rgba(255,255,255,.08);
-}
-
-/* ===== PLANET ===== */
-
-.planet-zone{
-    min-height:500px;
-    display:grid;
-    place-items:center;
-    position:relative;
-    animation:planetIn 1.2s ease both;
-}
-
-.orbit{
-    position:absolute;
-    width:390px;
-    height:390px;
-    border:1px solid rgba(121,112,255,.2);
-    border-radius:50%;
-    transform:rotate(-20deg);
-}
-
-.orbit.two{
-    width:310px;
-    height:310px;
-    transform:rotate(62deg);
-    border-color:rgba(70,217,255,.18);
-}
-
-.orbit.three{
-    width:470px;
-    height:180px;
-    transform:rotate(28deg);
-    border-color:rgba(164,134,255,.12);
-}
-
-.orbit-dot{
-    position:absolute;
-    width:11px;
-    height:11px;
-    border-radius:50%;
-    background:#63e5ff;
-    box-shadow:0 0 18px #63e5ff;
-    top:48px;
-    right:92px;
-}
-
-.planet{
-    width:230px;
-    height:230px;
-    border-radius:50%;
-    position:relative;
-    background:
-        radial-gradient(circle at 32% 25%,#e0d8ff 0 5%,transparent 6%),
-        radial-gradient(circle at 60% 35%,#6e60d8 0 8%,transparent 9%),
-        radial-gradient(circle at 35% 65%,#423994 0 13%,transparent 14%),
-        radial-gradient(circle at 68% 70%,#8a77ee 0 9%,transparent 10%),
-        radial-gradient(circle at 35% 30%,#9e90ff,#594cc0 46%,#211b58 82%);
-    box-shadow:
-        inset -28px -30px 45px rgba(0,0,0,.55),
-        inset 20px 15px 35px rgba(255,255,255,.14),
-        0 0 65px rgba(116,101,255,.45);
-    animation:float 5s ease-in-out infinite;
-}
-
-.planet::before{
-    content:"";
-    position:absolute;
-    width:285px;
-    height:78px;
-    border:3px solid rgba(125,226,255,.45);
-    border-radius:50%;
-    left:-28px;
-    top:77px;
-    transform:rotate(-17deg);
-}
-
-.planet::after{
-    content:"";
-    position:absolute;
-    width:280px;
-    height:78px;
-    border:1px solid rgba(205,194,255,.18);
-    border-radius:50%;
-    left:-24px;
-    top:75px;
-    transform:rotate(-17deg);
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-15px)}
-}
-
-@keyframes heroIn{
-    from{opacity:0;transform:translateY(25px)}
-    to{opacity:1;transform:translateY(0)}
-}
-
-@keyframes planetIn{
-    from{opacity:0;transform:scale(.85)}
-    to{opacity:1;transform:scale(1)}
-}
-
-/* ===== SEARCH ===== */
-
-.search-section{
-    width:min(1100px,90%);
-    margin:0 auto 80px;
-}
-
-.search-box{
-    position:relative;
-}
-
-.search-box input{
-    width:100%;
-    height:64px;
-    padding:0 58px 0 25px;
-    border:1px solid rgba(139,124,255,.2);
-    border-radius:18px;
-    outline:none;
-    background:rgba(13,18,43,.75);
-    color:#fff;
-    font-family:inherit;
-    font-size:1rem;
-    box-shadow:var(--shadow);
-    backdrop-filter:blur(15px);
-}
-
-.search-box input::placeholder{
-    color:#777f9f;
-}
-
-.search-icon{
-    position:absolute;
-    right:21px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#a69aff;
-    font-size:1.25rem;
-}
-
-/* ===== MAIN ===== */
-
-.container{
-    width:min(1240px,90%);
-    margin:auto;
-}
-
-.section-head{
-    display:flex;
-    align-items:end;
-    justify-content:space-between;
-    gap:20px;
-    margin-bottom:26px;
-}
-
-.section-title{
-    font-size:1.7rem;
-    font-weight:800;
-}
-
-.section-subtitle{
-    color:#8189aa;
-    font-size:.85rem;
-    margin-top:5px;
-}
-
-.book-count{
-    color:#9c95ff;
-    font-size:.82rem;
-}
-
-.filters{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-    margin-bottom:30px;
-}
-
-.filter{
-    border:1px solid rgba(255,255,255,.08);
-    background:rgba(255,255,255,.035);
-    color:#aeb5d2;
-    padding:9px 15px;
-    border-radius:999px;
-    cursor:pointer;
-    font-family:inherit;
-    transition:.25s;
-}
-
-.filter:hover,
-.filter.active{
-    color:#fff;
-    border-color:rgba(139,124,255,.5);
-    background:rgba(139,124,255,.15);
-}
-
-/* ===== BOOKS ===== */
-
-.books-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.book-card{
-    position:relative;
-    overflow:hidden;
-    min-height:350px;
-    padding:17px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    background:linear-gradient(145deg,rgba(20,26,59,.82),rgba(8,12,30,.8));
-    transition:.35s;
-    animation:cardIn .5s ease both;
-}
-
-.book-card:hover{
-    transform:translateY(-7px);
-    border-color:rgba(139,124,255,.4);
-    box-shadow:0 20px 50px rgba(0,0,0,.3);
-}
-
-.book-cover{
-    height:175px;
-    border-radius:14px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle at 25% 25%,rgba(255,255,255,.2),transparent 14%),
-        radial-gradient(circle at 75% 70%,rgba(65,218,255,.22),transparent 25%),
-        linear-gradient(145deg,#30276b,#111632);
-    margin-bottom:15px;
-}
-
-.book-cover::before{
-    content:"";
-    position:absolute;
-    width:130px;
-    height:130px;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:50%;
-}
-
-.book-cover::after{
-    content:"✦";
-    position:absolute;
-    top:18px;
-    left:20px;
-    color:#72e4ff;
-    font-size:14px;
-}
-
-.book-symbol{
-    position:relative;
-    z-index:2;
-    font-size:3.3rem;
-    filter:drop-shadow(0 0 15px rgba(139,124,255,.45));
-}
-
-.book-language{
-    position:absolute;
-    top:12px;
-    right:12px;
-    z-index:3;
-    padding:4px 9px;
-    border-radius:8px;
-    font-size:.65rem;
-    background:rgba(4,6,18,.65);
-    border:1px solid rgba(255,255,255,.1);
-    color:#c8c9ed;
-}
-
-.book-category{
-    color:#8d83ff;
-    font-size:.68rem;
-    margin-bottom:5px;
-}
-
-.book-title{
-    font-size:1rem;
-    line-height:1.6;
-    font-weight:800;
-    margin-bottom:3px;
-}
-
-.book-author{
-    color:#7f87a7;
-    font-size:.76rem;
-    margin-bottom:13px;
-}
-
-.book-actions{
-    display:flex;
-    gap:7px;
-}
-
-.book-actions a,
-.book-actions button{
-    flex:1;
-    border:0;
-    min-height:38px;
-    border-radius:10px;
-    font-family:inherit;
-    font-size:.72rem;
-    font-weight:700;
-    text-decoration:none;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.details-btn{
-    color:#fff;
-    background:linear-gradient(135deg,#6455d9,#4777dc);
-}
-
-.source-btn{
-    color:#b9c0dc;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.08) !important;
-}
-
-.empty{
-    grid-column:1/-1;
-    text-align:center;
-    padding:60px 20px;
-    border:1px dashed rgba(139,124,255,.22);
-    border-radius:20px;
-    color:#7e86a6;
-}
-
-.empty strong{
-    display:block;
-    color:#c7c9df;
-    font-size:1.1rem;
-    margin-bottom:6px;
-}
-
-@keyframes cardIn{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* ===== FEATURE ===== */
-
-.feature{
-    margin:100px 0;
-    padding:35px;
-    min-height:210px;
-    position:relative;
-    overflow:hidden;
-    border:1px solid rgba(139,124,255,.16);
-    border-radius:28px;
-    background:
-        radial-gradient(circle at 90% 50%,rgba(95,72,220,.18),transparent 35%),
-        linear-gradient(110deg,rgba(18,23,52,.82),rgba(8,12,29,.82));
-}
-
-.feature::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border:1px solid rgba(93,220,255,.1);
-    border-radius:50%;
-    left:-100px;
-    top:-120px;
-}
-
-.feature-content{
-    position:relative;
-    z-index:2;
-}
-
-.feature-label{
-    color:#66dfff;
-    font-size:.72rem;
-    margin-bottom:10px;
-}
-
-.feature h2{
-    font-size:1.7rem;
-    margin-bottom:8px;
-}
-
-.feature p{
-    color:#8e96b5;
-    max-width:700px;
-    line-height:1.9;
-    font-size:.88rem;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-    margin-top:90px;
-    padding:35px 6%;
-    border-top:1px solid rgba(255,255,255,.06);
-    background:rgba(3,5,14,.65);
-}
-
-.footer-inner{
-    width:min(1240px,100%);
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.footer-brand{
-    color:#fff;
-    font-weight:800;
-}
-
-.footer-brand span{
-    color:#8175ff;
-}
-
-.footer-text{
-    color:#69718f;
-    font-size:.75rem;
-}
-
-/* ===== TO TOP ===== */
-
-.top-btn{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    width:43px;
-    height:43px;
-    border-radius:50%;
-    border:1px solid rgba(139,124,255,.25);
-    background:rgba(11,15,36,.8);
-    color:#fff;
-    cursor:pointer;
-    opacity:0;
-    visibility:hidden;
-    transition:.3s;
-    z-index:30;
-}
-
-.top-btn.show{
-    opacity:1;
-    visibility:visible;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:1050px){
-    .books-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .hero{
-        grid-template-columns:1fr .8fr;
-    }
-
-    .planet{
-        width:190px;
-        height:190px;
-    }
-
-    .orbit{
-        width:330px;
-        height:330px;
-    }
-}
-
-@media(max-width:800px){
-    .navbar{
-        height:70px;
-        padding:0 5%;
-    }
-
-    .nav-links a:not(.admin-btn){
-        display:none;
-    }
-
-    .hero{
-        min-height:auto;
-        padding-top:65px;
-        grid-template-columns:1fr;
-        text-align:center;
-    }
-
-    .hero p{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .hero-actions{
-        justify-content:center;
-    }
-
-    .planet-zone{
-        min-height:390px;
-    }
-
-    .books-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .feature{
-        margin:75px 0;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-        text-align:center;
-    }
-}
-
-@media(max-width:500px){
-    .hero h1{
-        font-size:3rem;
-        letter-spacing:-1.5px;
-    }
-
-    .hero p{
-        font-size:.9rem;
-    }
-
-    .planet{
-        width:165px;
-        height:165px;
-    }
-
-    .planet::before{
-        width:215px;
-        left:-25px;
-        top:55px;
-    }
-
-    .planet::after{
-        width:215px;
-        left:-25px;
-        top:53px;
-    }
-
-    .orbit{
-        width:270px;
-        height:270px;
-    }
-
-    .orbit.two{
-        width:225px;
-        height:225px;
-    }
-
-    .orbit.three{
-        width:320px;
-        height:140px;
-    }
-
-    .books-grid{
-        grid-template-columns:1fr;
-    }
-
-    .book-card{
-        min-height:0;
-    }
-
-    .section-head{
-        align-items:start;
-        flex-direction:column;
-    }
-
-    .feature{
-        padding:25px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gravity × M11 — المعرفة بلا حدود</title>
+
+    <meta
+        name="description"
+        content="Gravity × M11 — مكتبة رقمية للمعرفة والكتب."
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(124,58,237,.18), transparent 28%),
+                radial-gradient(circle at 85% 10%, rgba(6,182,212,.14), transparent 25%),
+                #030712;
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .55;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(125,211,252,.6) 1px, transparent 1px);
+            background-size: 90px 90px, 140px 140px;
+            background-position: 10px 20px, 50px 80px;
+            z-index: -1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(18px);
+            background: rgba(3,7,18,.72);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .nav {
+            max-width: 1250px;
+            margin: auto;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 21px;
+            white-space: nowrap;
+        }
+
+        .logo-orb {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 25%, #67e8f9, #7c3aed 45%, #111827 75%);
+            box-shadow:
+                0 0 25px rgba(124,58,237,.55),
+                inset -8px -8px 15px rgba(0,0,0,.45);
+            animation: floatOrb 4s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.05);
+            color: #e2e8f0;
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(124,58,237,.2);
+            transform: translateY(-2px);
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            max-width: 1250px;
+            margin: auto;
+            padding: 80px 22px 60px;
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-text {
+            animation: heroIn .8s ease both;
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            color: #67e8f9;
+            font-weight: bold;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 7vw, 88px);
+            line-height: 1;
+            margin-bottom: 24px;
+            background: linear-gradient(
+                135deg,
+                #fff,
+                #c4b5fd 45%,
+                #67e8f9
+            );
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 620px;
+            color: #94a3b8;
+            font-size: 19px;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            border: 0;
+            color: white;
+            cursor: pointer;
+            padding: 14px 22px;
+            border-radius: 14px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #7c3aed, #0891b2);
+            box-shadow: 0 12px 35px rgba(124,58,237,.25);
+            transition: .3s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(124,58,237,.38);
+        }
+
+        .secondary-btn {
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.05);
+            color: white;
+            padding: 14px 22px;
+            border-radius: 14px;
+            cursor: pointer;
+        }
+
+        /* ================= PLANET ================= */
+
+        .planet-space {
+            min-height: 470px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .planet-system {
+            width: 330px;
+            height: 330px;
+            position: relative;
+            animation: planetFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes planetFloat {
+            0%,100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+        }
+
+        .planet {
+            position: absolute;
+            width: 210px;
+            height: 210px;
+            left: 60px;
+            top: 60px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 32% 27%, #a5f3fc 0 4%, transparent 5%),
+                radial-gradient(circle at 62% 38%, #8b5cf6 0 10%, transparent 11%),
+                radial-gradient(circle at 35% 65%, #4c1d95 0 18%, transparent 19%),
+                radial-gradient(circle at 70% 70%, #0891b2 0 15%, transparent 16%),
+                radial-gradient(circle at 35% 25%, #67e8f9, #4c1d95 48%, #020617 85%);
+            box-shadow:
+                inset -35px -25px 55px rgba(0,0,0,.7),
+                0 0 70px rgba(124,58,237,.45),
+                0 0 120px rgba(8,145,178,.16);
+        }
+
+        .planet::after {
+            content: "";
+            position: absolute;
+            inset: 15px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.15);
+        }
+
+        .orbit {
+            position: absolute;
+            width: 340px;
+            height: 120px;
+            left: -5px;
+            top: 105px;
+            border: 2px solid rgba(103,232,249,.35);
+            border-radius: 50%;
+            transform: rotate(-22deg);
+        }
+
+        .orbit::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #67e8f9;
+            border-radius: 50%;
+            top: 13px;
+            left: 42px;
+            box-shadow: 0 0 20px #67e8f9;
+            animation: orbitDot 5s linear infinite;
+        }
+
+        @keyframes orbitDot {
+            from {
+                transform: rotate(0deg) translateX(145px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(145px) rotate(-360deg);
+            }
+        }
+
+        .planet-ring {
+            position: absolute;
+            width: 310px;
+            height: 70px;
+            left: 10px;
+            top: 130px;
+            border: 7px solid rgba(196,181,253,.22);
+            border-radius: 50%;
+            transform: rotate(-18deg);
+        }
+
+        /* ================= SEARCH ================= */
+
+        .library {
+            max-width: 1250px;
+            margin: auto;
+            padding: 30px 22px 80px;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: #64748b;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            min-width: 0;
+            padding: 16px 18px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(15,23,42,.75);
+            color: white;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-box input:focus {
+            border-color: rgba(103,232,249,.55);
+            box-shadow: 0 0 0 4px rgba(103,232,249,.07);
+        }
+
+        /* ================= FILTERS ================= */
+
+        .filters {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter {
+            border: 1px solid rgba(255,255,255,.09);
+            background: rgba(255,255,255,.045);
+            color: #cbd5e1;
+            padding: 10px 15px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .filter:hover,
+        .filter.active {
+            color: white;
+            background: linear-gradient(
+                135deg,
+                rgba(124,58,237,.55),
+                rgba(8,145,178,.35)
+            );
+            border-color: rgba(167,139,250,.4);
+        }
+
+        /* ================= BOOKS ================= */
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .book-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            padding: 23px;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,.08);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30,41,59,.72),
+                    rgba(15,23,42,.7)
+                );
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+            animation: cardIn .5s ease both;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .book-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(124,58,237,.45);
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.3),
+                0 0 30px rgba(124,58,237,.09);
+        }
+
+        .book-icon {
+            width: 65px;
+            height: 82px;
+            border-radius: 10px 14px 14px 10px;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #7c3aed,
+                    #0891b2
+                );
+            box-shadow:
+                8px 8px 0 rgba(0,0,0,.18),
+                0 15px 30px rgba(124,58,237,.18);
+        }
+
+        .book-language {
+            display: inline-block;
+            font-size: 11px;
+            color: #67e8f9;
+            margin-bottom: 9px;
+        }
+
+        .book-card h3 {
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 7px;
+        }
+
+        .book-author {
+            color: #a78bfa;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .book-description {
+            color: #94a3b8;
+            line-height: 1.8;
+            font-size: 13px;
+            min-height: 70px;
+        }
+
+        .book-category {
+            color: #64748b;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        .book-open {
+            display: block;
+            margin-top: 18px;
+            padding: 11px;
+            text-align: center;
+            border-radius: 12px;
+            background: rgba(124,58,237,.14);
+            border: 1px solid rgba(124,58,237,.22);
+            color: #ddd6fe;
+            transition: .25s;
+        }
+
+        .book-open:hover {
+            background: rgba(124,58,237,.3);
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            border: 1px dashed rgba(255,255,255,.1);
+            border-radius: 20px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,.08);
+            margin-top: 40px;
+            padding: 35px 22px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        footer strong {
+            color: #c4b5fd;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+            .books-grid {
+                grid-template-columns: repeat(3, minmax(0,1fr));
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .books-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr));
+            }
+
+            .nav {
+                padding: 13px 15px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-orb {
+                width: 36px;
+                height: 36px;
+            }
+
+            .hero {
+                padding-top: 50px;
+                min-height: auto;
+            }
+
+            .planet-system {
+                transform: scale(.78);
+            }
+
+            .planet-system:hover {
+                transform: scale(.82);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .planet-space {
+                min-height: 350px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="space">
-    <div class="nebula one"></div>
-    <div class="nebula two"></div>
-    <div class="nebula three"></div>
-    <div class="shooting-star one"></div>
-    <div class="shooting-star two"></div>
-</div>
+<header>
+    <nav class="nav">
+        <a href="index.html" class="logo">
+            <span class="logo-orb"></span>
+            <span>GRAVITY × M11</span>
+        </a>
 
-<header class="navbar">
-
-    <a href="index.html" class="logo">
-        <span class="logo-orbit"></span>
-        <span>GRAVITY</span>
-    </a>
-
-    <nav class="nav-links">
-        <a href="#library">المكتبة</a>
-        <a href="#new">وصل حديثًا</a>
-        <a href="admin.html" class="admin-btn">M11 Control</a>
+        <div class="nav-actions">
+            <a class="nav-btn" href="login.html">
+                الحساب
+            </a>
+        </div>
     </nav>
-
 </header>
 
 <main>
 
-<section class="hero">
+    <!-- HERO -->
+    <section class="hero">
 
-    <div class="hero-content">
+        <div class="hero-text">
 
-        <div class="eyebrow">
-            <span></span>
-            مكتبة رقمية مفتوحة للمعرفة
-        </div>
-
-        <h1>
-            <span class="gradient-text">المعرفة</span><br>
-            بلا حدود.
-        </h1>
-
-        <p>
-            أهلاً بك في Gravity — مساحة رقمية تجمع الكتب والمعرفة
-            في تجربة بسيطة، سريعة، وبتصميم مستوحى من اتساع الفضاء.
-        </p>
-
-        <div class="hero-actions">
-            <a href="#library" class="primary-btn">
-                استكشف المكتبة
-            </a>
-
-            <a href="#new" class="secondary-btn">
-                وصل حديثًا
-            </a>
-        </div>
-
-    </div>
-
-    <div class="planet-zone">
-
-        <div class="orbit">
-            <span class="orbit-dot"></span>
-        </div>
-
-        <div class="orbit two"></div>
-        <div class="orbit three"></div>
-
-        <div class="planet"></div>
-
-    </div>
-
-</section>
-
-<section class="search-section">
-
-    <div class="search-box">
-
-        <span class="search-icon">⌕</span>
-
-        <input
-            id="searchInput"
-            type="search"
-            placeholder="ابحث عن كتاب، مؤلف، تصنيف أو لغة..."
-            autocomplete="off"
-        >
-
-    </div>
-
-</section>
-
-<section class="container" id="new">
-
-    <div class="section-head">
-
-        <div>
-            <h2 class="section-title">وصل حديثًا إلى المدار</h2>
-            <p class="section-subtitle">
-                مجموعة مختارة من الكتب المتاحة في Gravity
-            </p>
-        </div>
-
-        <div class="book-count" id="bookCount"></div>
-
-    </div>
-
-    <div class="filters">
-
-        <button class="filter active" data-filter="الكل">
-            الكل
-        </button>
-
-        <button class="filter" data-filter="العربية">
-            العربية
-        </button>
-
-        <button class="filter" data-filter="English">
-            English
-        </button>
-
-        <button class="filter" data-filter="روايات">
-            روايات
-        </button>
-
-        <button class="filter" data-filter="روايات عربية">
-            روايات عربية
-        </button>
-
-        <button class="filter" data-filter="أدب عربي">
-            أدب عربي
-        </button>
-
-    </div>
-
-</section>
-
-<section class="container" id="library">
-
-    <div class="books-grid" id="booksGrid"></div>
-
-</section>
-
-<section class="container">
-
-    <div class="feature">
-
-        <div class="feature-content">
-
-            <div class="feature-label">
-                GRAVITY / M11
+            <div class="eyebrow">
+                ✦ مكتبة Gravity الرقمية
             </div>
 
-            <h2>كل كتاب هو مدار جديد.</h2>
+            <h1>
+                المعرفة<br>
+                بلا حدود.
+            </h1>
 
             <p>
-                Gravity مشروع مكتبة رقمية يهدف إلى جعل الوصول إلى المعرفة
-                أكثر سهولة، مع الاعتماد على مصادر قانونية ومفتوحة أو
-                روابط رسمية للكتب المتاحة مجانًا.
+                استكشف عالمًا من الكتب والمعرفة والمغامرات.
+                ابحث، اكتشف، واحفظ كتبك المفضلة في مدارك الخاص.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#library" class="primary-btn">
+                    🚀 استكشف المكتبة
+                </a>
+
+                <a href="login.html" class="secondary-btn">
+                    ⭐ تسجيل الدخول
+                </a>
+            </div>
+
+        </div>
+
+        <div class="planet-space">
+
+            <div class="planet-system">
+
+                <div class="orbit"></div>
+
+                <div class="planet-ring"></div>
+
+                <div class="planet"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LIBRARY -->
+    <section class="library" id="library">
+
+        <div class="section-heading">
+
+            <h2>
+                🚀 المكتبة
+            </h2>
+
+            <p>
+                اختر مسارك وانطلق إلى عالم المعرفة.
             </p>
 
         </div>
 
-    </div>
 
-</section>
+        <div class="search-box">
+
+            <input
+                id="searchInput"
+                type="search"
+                placeholder="ابحث عن كتاب، مؤلف، تصنيف..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="filters" id="filters">
+
+            <button class="filter active" data-category="الكل">
+                الكل
+            </button>
+
+            <button class="filter" data-language="العربية">
+                العربية
+            </button>
+
+            <button class="filter" data-language="English">
+                English
+            </button>
+
+            <button class="filter" data-category="روايات عربية">
+                روايات عربية
+            </button>
+
+            <button class="filter" data-category="خيال علمي">
+                خيال علمي
+            </button>
+
+            <button class="filter" data-category="فضاء وفانتازيا">
+                فضاء وفانتازيا
+            </button>
+
+            <button class="filter" data-category="فانتازيا">
+                فانتازيا
+            </button>
+
+            <button class="filter" data-category="مغامرات">
+                مغامرات
+            </button>
+
+            <button class="filter" data-category="غموض">
+                غموض
+            </button>
+
+            <button class="filter" data-category="رعب وفانتازيا">
+                رعب وفانتازيا
+            </button>
+
+            <button class="filter" data-category="قصص مصورة">
+                قصص مصورة
+            </button>
+
+            <button class="filter" data-category="حكايات عربية">
+                حكايات عربية
+            </button>
+
+        </div>
+
+
+        <div
+            class="books-grid"
+            id="booksGrid"
+        ></div>
+
+    </section>
 
 </main>
 
+
 <footer>
 
-    <div class="footer-inner">
+    <div>
+        <strong>GRAVITY × M11</strong>
+    </div>
 
-        <div class="footer-brand">
-            GRAVITY <span>× M11</span>
-        </div>
-
-        <div class="footer-text">
-            المعرفة بلا حدود — 2026
-        </div>
-
+    <div style="margin-top:8px;">
+        المعرفة بلا حدود • 2026
     </div>
 
 </footer>
 
-<button class="top-btn" id="topBtn" aria-label="العودة للأعلى">
-    ↑
-</button>
 
-<!-- مهم جدًا: books.js لازم يكون موجود في نفس مكان index.html -->
+<!-- ============================================
+     GRAVITY BOOK DATABASE
+============================================= -->
+
 <script src="books.js"></script>
+
+
+<!-- ============================================
+     PAGE LOGIC
+============================================= -->
 
 <script>
 
-const booksGrid = document.getElementById("booksGrid");
-const searchInput = document.getElementById("searchInput");
-const bookCount = document.getElementById("bookCount");
-const filterButtons = document.querySelectorAll(".filter");
-const topBtn = document.getElementById("topBtn");
+(function () {
 
-let currentFilter = "الكل";
+    const grid =
+        document.getElementById("booksGrid");
 
-function safeText(value){
-    return String(value ?? "");
-}
+    const searchInput =
+        document.getElementById("searchInput");
 
-function getBookIcon(book){
-    const language = safeText(book.language).toLowerCase();
-    const category = safeText(book.category);
+    const filters =
+        document.querySelectorAll(".filter");
 
-    if(language.includes("english")){
-        return "📖";
+
+    let currentCategory = "الكل";
+    let currentLanguage = "";
+
+
+    function escapeHtml(value) {
+
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 
-    if(category.includes("أدب")){
-        return "✒️";
+
+    function getBooks() {
+
+        if (
+            typeof getGravityBooks === "function"
+        ) {
+            return getGravityBooks();
+        }
+
+        if (
+            typeof gravityBooks !== "undefined"
+        ) {
+            return gravityBooks;
+        }
+
+        return [];
     }
 
-    if(category.includes("روايات")){
-        return "📚";
-    }
 
-    return "📘";
-}
+    function renderBooks() {
 
-function matchesFilter(book){
-    if(currentFilter === "الكل"){
-        return true;
-    }
+        const allBooks =
+            getBooks();
 
-    if(currentFilter === "العربية"){
-        return safeText(book.language) === "العربية";
-    }
+        const search =
+            String(searchInput.value || "")
+                .trim()
+                .toLowerCase();
 
-    if(currentFilter === "English"){
-        return safeText(book.language).toLowerCase() === "english";
-    }
 
-    return safeText(book.category) === currentFilter;
-}
+        const filtered =
+            allBooks.filter(book => {
 
-function renderBooks(list){
+                const title =
+                    String(book.title || "")
+                        .toLowerCase();
 
-    booksGrid.innerHTML = "";
+                const author =
+                    String(book.author || "")
+                        .toLowerCase();
 
-    if(!list.length){
+                const description =
+                    String(book.description || "")
+                        .toLowerCase();
 
-        booksGrid.innerHTML = `
-            <div class="empty">
-                <strong>لم نجد كتابًا بهذا البحث</strong>
-                جرّب اسمًا مختلفًا أو اختر تصنيفًا آخر.
-            </div>
-        `;
+                const category =
+                    String(book.category || "");
 
-        bookCount.textContent = "0 كتاب";
-        return;
-    }
+                const language =
+                    String(book.language || "");
 
-    bookCount.textContent =
-        `${list.length} ${list.length === 1 ? "كتاب" : "كتب"}`;
 
-    list.forEach((book,index) => {
+                const matchesSearch =
+                    !search ||
+                    title.includes(search) ||
+                    author.includes(search) ||
+                    description.includes(search) ||
+                    category.toLowerCase().includes(search) ||
+                    language.toLowerCase().includes(search);
 
-        const card = document.createElement("article");
 
-        card.className = "book-card";
+                const matchesCategory =
+                    currentCategory === "الكل" ||
+                    category === currentCategory;
 
-        card.style.animationDelay =
-            `${Math.min(index * 0.045, .5)}s`;
 
-        const title = safeText(book.title) || "كتاب بدون عنوان";
-        const author = safeText(book.author) || "مؤلف غير محدد";
-        const category = safeText(book.category) || "عام";
-        const language = safeText(book.language) || "غير محددة";
-        const description = safeText(book.description);
-        const url = safeText(book.url);
+                const matchesLanguage =
+                    !currentLanguage ||
+                    language === currentLanguage;
 
-        card.innerHTML = `
 
-            <div class="book-cover">
+                return (
+                    matchesSearch &&
+                    matchesCategory &&
+                    matchesLanguage
+                );
 
-                <span class="book-language">
-                    ${escapeHtml(language)}
-                </span>
+            });
 
-                <span class="book-symbol">
-                    ${getBookIcon(book)}
-                </span>
 
-            </div>
+        if (!filtered.length) {
 
-            <div class="book-category">
-                ${escapeHtml(category)}
-            </div>
+            grid.innerHTML = `
+                <div class="empty" style="grid-column:1/-1;">
+                    <div style="font-size:45px;margin-bottom:15px;">
+                        🌌
+                    </div>
 
-            <h3 class="book-title">
-                ${escapeHtml(title)}
-            </h3>
+                    <h3 style="margin-bottom:10px;">
+                        لم نعثر على كتاب في هذا المدار
+                    </h3>
 
-            <div class="book-author">
-                ${escapeHtml(author)}
-            </div>
+                    <p>
+                        جرّب كلمة بحث أخرى أو اختر تصنيفًا مختلفًا.
+                    </p>
+                </div>
+            `;
 
-            <div class="book-actions">
+            return;
+        }
 
-                <button
-                    class="details-btn"
-                    type="button"
-                >
-                    التفاصيل
-                </button>
 
-                <a
-                    class="source-btn"
-                    href="${escapeAttribute(url)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    المصدر
-                </a>
+        grid.innerHTML =
+            filtered.map((book, index) => {
 
-            </div>
-        `;
+                return `
+                    <article
+                        class="book-card"
+                        data-gravity-book
+                        data-book-index="${index}"
+                    >
 
-        const detailsButton =
-            card.querySelector(".details-btn");
+                        <div class="book-icon">
+                            📖
+                        </div>
 
-        detailsButton.addEventListener("click",() => {
+                        <span class="book-language">
+                            ${escapeHtml(book.language || "")}
+                        </span>
 
-            if(typeof openGravityBook === "function"){
+                        <h3>
+                            ${escapeHtml(book.title || "كتاب")}
+                        </h3>
 
-                openGravityBook({
-                    title,
-                    author,
-                    category,
-                    language,
-                    description,
-                    url
-                });
+                        <div class="book-author">
+                            ${escapeHtml(book.author || "مؤلف غير معروف")}
+                        </div>
 
-            }else{
+                        <p class="book-description">
+                            ${escapeHtml(
+                                book.description ||
+                                "اكتشف هذا الكتاب في مكتبة Gravity."
+                            )}
+                        </p>
 
-                window.location.href =
-                    "book.html?" +
-                    new URLSearchParams({
-                        title,
-                        author,
-                        category,
-                        description,
-                        url
-                    }).toString();
+                        <div class="book-category">
+                            ◈ ${escapeHtml(book.category || "عام")}
+                        </div>
+
+                        <a
+                            class="book-open"
+                            href="javascript:void(0)"
+                            data-open-book
+                        >
+                            فتح الكتاب →
+                        </a>
+
+                    </article>
+                `;
+
+            }).join("");
+
+
+        /*
+         * ربط بيانات الكتاب بالكارت
+         * بدون الحاجة لتعديل books.js
+         */
+
+        const cards =
+            grid.querySelectorAll(
+                "[data-gravity-book]"
+            );
+
+
+        cards.forEach((card, index) => {
+
+            const book =
+                filtered[index];
+
+            if (!book) {
+                return;
+            }
+
+
+            card.__gravityBook =
+                book;
+
+
+            const openButton =
+                card.querySelector(
+                    "[data-open-book]"
+                );
+
+
+            if (openButton) {
+
+                openButton.addEventListener(
+                    "click",
+                    function () {
+
+                        if (
+                            typeof openGravityBook ===
+                            "function"
+                        ) {
+
+                            openGravityBook(book);
+
+                        } else {
+
+                            const params =
+                                new URLSearchParams({
+                                    title: book.title || "",
+                                    author: book.author || "",
+                                    category: book.category || "",
+                                    description: book.description || "",
+                                    url: book.url || "",
+                                    language: book.language || ""
+                                });
+
+                            window.location.href =
+                                "book.html?" +
+                                params.toString();
+                        }
+
+                    }
+                );
 
             }
 
         });
 
-        booksGrid.appendChild(card);
-    });
-}
 
-function escapeHtml(value){
+        /*
+         * تشغيل نظام المفضلة
+         */
 
-    return safeText(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
+        if (
+            window.gravityFavoritesUI &&
+            typeof window.gravityFavoritesUI.setup ===
+            "function"
+        ) {
 
-function escapeAttribute(value){
-    return escapeHtml(value);
-}
+            window.gravityFavoritesUI
+                .setup();
 
-function updateBooks(){
+        }
 
-    let books = [];
-
-    if(typeof getGravityBooks === "function"){
-        books = getGravityBooks();
     }
 
-    const query =
-        safeText(searchInput.value).trim().toLowerCase();
 
-    if(query){
+    searchInput.addEventListener(
+        "input",
+        renderBooks
+    );
 
-        books = books.filter(book => {
 
-            const title =
-                safeText(book.title).toLowerCase();
+    filters.forEach(button => {
 
-            const author =
-                safeText(book.author).toLowerCase();
+        button.addEventListener(
+            "click",
+            function () {
 
-            const category =
-                safeText(book.category).toLowerCase();
+                filters.forEach(
+                    item =>
+                        item.classList.remove("active")
+                );
 
-            const language =
-                safeText(book.language).toLowerCase();
+                this.classList.add("active");
 
-            const description =
-                safeText(book.description).toLowerCase();
 
-            return (
-                title.includes(query) ||
-                author.includes(query) ||
-                category.includes(query) ||
-                language.includes(query) ||
-                description.includes(query)
-            );
-        });
-    }
+                currentCategory =
+                    this.dataset.category ||
+                    "الكل";
 
-    books = books.filter(matchesFilter);
+                currentLanguage =
+                    this.dataset.language ||
+                    "";
 
-    renderBooks(books);
-}
 
-searchInput.addEventListener("input",updateBooks);
+                renderBooks();
 
-filterButtons.forEach(button => {
-
-    button.addEventListener("click",() => {
-
-        filterButtons.forEach(item =>
-            item.classList.remove("active")
+            }
         );
 
-        button.classList.add("active");
-
-        currentFilter =
-            button.dataset.filter || "الكل";
-
-        updateBooks();
-
     });
 
-});
 
-window.addEventListener("scroll",() => {
+    /*
+     * أول تشغيل
+     */
 
-    if(window.scrollY > 450){
-        topBtn.classList.add("show");
-    }else{
-        topBtn.classList.remove("show");
-    }
+    renderBooks();
 
-});
 
-topBtn.addEventListener("click",() => {
+    /*
+     * لو نظام المفضلة تأخر في التحميل،
+     * نجرب مرة أخرى بعد تحميل الصفحة.
+     */
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+    window.addEventListener(
+        "load",
+        function () {
 
-});
+            setTimeout(
+                renderBooks,
+                700
+            );
 
-/*
- * حماية بسيطة لو books.js لم يتم تحميله.
- */
-if(typeof getGravityBooks !== "function"){
+        }
+    );
 
-    booksGrid.innerHTML = `
-        <div class="empty">
-            <strong>تعذر تحميل مكتبة Gravity</strong>
-            تأكد أن ملف books.js موجود بجانب index.html.
-        </div>
-    `;
 
-}else{
-
-    updateBooks();
-
-}
+})();
 
 </script>
+
+
+<!-- ============================================
+     SUPABASE
+============================================= -->
+
 <script src="supabase.js"></script>
 <script src="auth.js"></script>
 
+
+<!-- ============================================
+     ADMIN BUTTON
+============================================= -->
+
 <script>
+
 (async function () {
 
     try {
 
+        if (
+            !window.gravitySupabaseReady ||
+            !window.gravityAuth
+        ) {
+            return;
+        }
+
+
         await window.gravitySupabaseReady;
 
+
         const user =
-            await window.gravityAuth.getCurrentUser();
+            await window.gravityAuth
+                .getCurrentUser();
+
 
         if (!user) {
             return;
         }
 
-        await window.gravityAuth.createProfileIfNeeded();
+
+        await window.gravityAuth
+            .createProfileIfNeeded();
+
 
         const isAdmin =
-            await window.gravityAuth.isAdmin();
+            await window.gravityAuth
+                .isAdmin();
+
 
         if (!isAdmin) {
             return;
         }
 
-        // إنشاء زر الإدارة
+
+        if (
+            document.getElementById(
+                "gravity-admin-button"
+            )
+        ) {
+            return;
+        }
+
+
         const adminButton =
             document.createElement("a");
 
-        adminButton.href = "admin.html";
-        adminButton.textContent = "👑 الإدارة";
+
+        adminButton.id =
+            "gravity-admin-button";
+
+
+        adminButton.href =
+            "admin.html";
+
+
+        adminButton.textContent =
+            "👑 الإدارة";
+
 
         adminButton.style.cssText = `
             position: fixed;
-            top: 20px;
             left: 20px;
+            bottom: 20px;
             z-index: 9999;
-            padding: 11px 17px;
+            padding: 12px 18px;
             border-radius: 14px;
             color: white;
             text-decoration: none;
             font-family: Tahoma, Arial, sans-serif;
             font-weight: bold;
-            background: linear-gradient(135deg, #7c3aed, #0891b2);
-            box-shadow: 0 8px 25px rgba(79,70,229,.35);
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #0891b2
+            );
+            box-shadow:
+                0 10px 35px rgba(79,70,229,.35);
             border: 1px solid rgba(255,255,255,.15);
         `;
 
-        document.body.appendChild(adminButton);
+
+        document.body.appendChild(
+            adminButton
+        );
+
 
     } catch (error) {
 
@@ -1469,6 +1229,8 @@ if(typeof getGravityBooks !== "function"){
     }
 
 })();
+
 </script>
+
 </body>
-    </html>
+                           </html>
