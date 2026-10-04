@@ -530,3 +530,20 @@ function openGravityBook(book) {
 
     document.head.appendChild(loader);
 })();
+// ============================================
+// GRAVITY FEATURES AUTO LOADER
+// ============================================
+
+(function () {
+
+    const script =
+        document.createElement("script");
+
+    script.src =
+        "gravity-features-loader.js";
+
+    script.async = true;
+
+    document.head.appendChild(script);
+
+})();
