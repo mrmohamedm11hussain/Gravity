@@ -1408,6 +1408,67 @@ if(typeof getGravityBooks !== "function"){
 }
 
 </script>
+<script src="supabase.js"></script>
+<script src="auth.js"></script>
 
+<script>
+(async function () {
+
+    try {
+
+        await window.gravitySupabaseReady;
+
+        const user =
+            await window.gravityAuth.getCurrentUser();
+
+        if (!user) {
+            return;
+        }
+
+        await window.gravityAuth.createProfileIfNeeded();
+
+        const isAdmin =
+            await window.gravityAuth.isAdmin();
+
+        if (!isAdmin) {
+            return;
+        }
+
+        // إنشاء زر الإدارة
+        const adminButton =
+            document.createElement("a");
+
+        adminButton.href = "admin.html";
+        adminButton.textContent = "👑 الإدارة";
+
+        adminButton.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            padding: 11px 17px;
+            border-radius: 14px;
+            color: white;
+            text-decoration: none;
+            font-family: Tahoma, Arial, sans-serif;
+            font-weight: bold;
+            background: linear-gradient(135deg, #7c3aed, #0891b2);
+            box-shadow: 0 8px 25px rgba(79,70,229,.35);
+            border: 1px solid rgba(255,255,255,.15);
+        `;
+
+        document.body.appendChild(adminButton);
+
+    } catch (error) {
+
+        console.error(
+            "Gravity Admin Check:",
+            error
+        );
+
+    }
+
+})();
+</script>
 </body>
     </html>
